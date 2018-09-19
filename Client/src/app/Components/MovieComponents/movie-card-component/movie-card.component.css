@@ -1,0 +1,20 @@
+/* A CSS class for giving consistent texture to each card*/
+.movie-card {
+    max-width: 250px;
+    background: white;
+    text-decoration: none;
+    color: #444;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+  }
+  
+/* A CSS class for each image*/
+  .movie-header-image {
+    background-size: cover;
+  }
+
+  
+
+  
