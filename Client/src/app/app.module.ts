@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatCardModule} from '@angular/material/card';
 import { RouterModule, Routes } from '@angular/router';
-
 import { MatToolbarModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
