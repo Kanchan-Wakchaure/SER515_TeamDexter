@@ -9,15 +9,12 @@ import { AppComponent } from './app.component';
 import { MovieCardComponent } from './Components/MovieComponents/movie-card-component/movie-card.component';
 import { MovieService } from './Services/movie.service';
 import { NavbarComponent } from './Components/navbar/navbar.component';
-import { ComingSoonComponent } from './Components/coming-soon/coming-soon.component';
-import { WishListComponent } from './Components/wish-list/wish-list.component';
-import { LatestComponent } from './Components/latest/latest.component';
 import { HomeComponent } from './Components/home/home.component';
 
 const routes: Routes = [
-    { path: 'coming_soon', component: ComingSoonComponent },
-    { path: 'wish_list/:id', component: WishListComponent },
-    { path: 'latest', component: LatestComponent },
+    { path: 'coming_soon', component: HomeComponent },
+    { path: 'wish_list/:id', component: HomeComponent },
+    { path: 'latest', component: HomeComponent },
     { path: 'home', component: HomeComponent },
     { path: '', redirectTo: 'home', pathMatch: 'full'}
 ]
@@ -28,10 +25,7 @@ const routes: Routes = [
         AppComponent,
         MovieCardComponent,
         NavbarComponent,
-        ComingSoonComponent,
-        WishListComponent,
-        LatestComponent,
-        HomeComponent
+        HomeComponent,
     ],
     imports: [
         BrowserModule,
