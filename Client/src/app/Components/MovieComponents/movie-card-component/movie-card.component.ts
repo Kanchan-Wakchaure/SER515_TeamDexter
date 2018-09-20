@@ -8,9 +8,12 @@ import { Movie } from '../../movie.model';
 })
 
 
+
 export class MovieCardComponent implements OnInit {
 
   @Input() public movie: Movie;
+  
+  
   constructor() { }
 
   ngOnInit() {
