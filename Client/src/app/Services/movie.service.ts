@@ -1,7 +1,10 @@
-import { Injectable } from '@angular/core';
 import {Movie} from '../Components/movie.model';
 
-@Injectable()
+/*
+* A service Class that acts as centralized repository for handling movie data.
+* @Author: Sai Saran Kandimalla.
+* @version 1: created on 09/18/2018.
+*/
 export class MovieService {
 
   //Sample data for movies.
@@ -12,6 +15,7 @@ export class MovieService {
     new Movie("A Star is Born","Comedy","http://www.blackfilm.com/read/wp-content/uploads/2018/06/A-Star-Is-Born-poster-1.jpg"),
     new Movie("Alpha","Action","https://cdn2.bigcommerce.com/server5000/yshlhd/products/11960/images/134761/full.alpha_27475__02779.1533498340.1280.1280.jpg?c=2"),
   ]; 
+  
   constructor() { }
 
   /* A getter method to get movies.

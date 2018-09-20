@@ -1,0 +1,12 @@
+.footer{
+	height: auto;
+	background-color: black;
+	text-align: center;
+}
+
+.logo{
+	color: maroon;
+	text-align: center;
+	font-size: 20px;
+	font-weight: bold;
+}

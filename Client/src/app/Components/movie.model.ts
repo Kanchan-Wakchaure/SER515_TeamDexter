@@ -1,4 +1,8 @@
-
+/*
+* A model class for movie.
+* @Author: Sai Saran Kandimalla.
+* @version 1: created on 09/18/2018.
+*/
 export class Movie {
     public name: String;
     public genre: String;

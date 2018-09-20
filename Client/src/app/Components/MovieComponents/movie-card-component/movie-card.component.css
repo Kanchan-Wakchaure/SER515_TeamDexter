@@ -1,4 +1,6 @@
-/* A CSS class for giving consistent texture to each card*/
+
+
+/* A CSS class for properties of mat-card*/
 .movie-card {
     max-width: 250px;
     background: white;
@@ -8,6 +10,16 @@
     display: flex;
     flex-direction: column;
     min-height: 100%;
+    position: relative;
+    top: 0;
+    transition: all .2s ease-in;
+    
+  }
+
+  /*A CSS Class that handles styling of hovered card*/
+  .movie-card:hover {
+    top: -10px;
+    box-shadow: 0 4px 5px rgba(0,0,0,0.5)
   }
   
 /* A CSS class for each image*/
