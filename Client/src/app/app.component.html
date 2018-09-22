@@ -2,11 +2,12 @@
 <!--The division below handles navigation bar.-->
 	<app-navbar></app-navbar>
 	<!-- <router-outlet></router-outlet> -->
-  
+  <br>
 <!--The division below handles movie cards.-->
-<div class="band">
+<div class="band container">
     <div  *ngFor="let movie of movies" >
       <app-movie-card [movie]=movie > </app-movie-card>
     </div>
   </div>
 
+<app-footer></app-footer>
