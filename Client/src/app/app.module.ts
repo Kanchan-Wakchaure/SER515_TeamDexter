@@ -10,6 +10,7 @@ import { MovieCardComponent } from './Components/MovieComponents/movie-card-comp
 import { MovieService } from './Services/movie.service';
 import { NavbarComponent } from './Components/navbar/navbar.component';
 import { HomeComponent } from './Components/home/home.component';
+import { FooterComponent } from './Components/footer/footer.component';
 
 const routes: Routes = [
     { path: 'coming_soon', component: HomeComponent },
@@ -26,6 +27,7 @@ const routes: Routes = [
         MovieCardComponent,
         NavbarComponent,
         HomeComponent,
+        FooterComponent,
     ],
     imports: [
         BrowserModule,
