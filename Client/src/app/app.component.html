@@ -4,6 +4,7 @@
 	<!-- <router-outlet></router-outlet> -->
   <br>
 <!--The division below handles movie cards.-->
+<app-movie-slide></app-movie-slide>
 <div class="band container">
     <div  *ngFor="let movie of movies" >
       <app-movie-card [movie]=movie > </app-movie-card>

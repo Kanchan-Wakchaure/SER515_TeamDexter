@@ -12,6 +12,7 @@ import { NavbarComponent } from './Components/navbar/navbar.component';
 import { HomeComponent } from './Components/home/home.component';
 import { FooterComponent } from './Components/footer/footer.component';
 import { MovieDetailsComponent } from './Components/movie-details/movie-details.component';
+import { MovieSlideComponent } from './Components/MovieComponents/movie-slide/movie-slide.component';
 
 const routes: Routes = [
     { path: 'coming_soon', component: HomeComponent },
@@ -30,6 +31,7 @@ const routes: Routes = [
         HomeComponent,
         FooterComponent,
         MovieDetailsComponent,
+        MovieSlideComponent,
     ],
     imports: [
         BrowserModule,
