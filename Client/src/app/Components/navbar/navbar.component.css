@@ -1,16 +1,16 @@
 .navigation{
+	/*height: 60%;*/
 	width: 100%;
 	background-color: black;
-	padding-bottom: 1%;
+
 }
 
 .logo{
 	color: maroon;
 	text-align: right;
 	font-size: 20px;
-	font-family: "Times New Roman", Times, serif;
 	font-weight: bold;
-	padding-top: 18%;
+	padding-top: 17%;
 }
 .search-box{
 	padding-top: 4%;
@@ -20,39 +20,20 @@
 .search-button{
 	background-color: maroon;
 	font-size: 12px;
-	border: 1px solid black;
+	width: 40%;
+	height: 65%;
+	border: 1px solid #8D0707;
 	text-align: center;
-	vertical-align: center;
 }
 
 .search-content{
 	padding-top: 2.7%;
-	width: auto;
-	font-size: auto;
 }
 
 .navbar{
-	padding: 0rem 0rem !important;
-	padding-left: 33% !important;
+	padding: 0rem 32rem !important;
 }
 
 .nav-link{
 	color: maroon;
-}
-
-.login-button{
-	background-color: maroon;
-	font-size: 9px;
-	border: 1px solid black;
-	text-align: center;
-	vertical-align: center;
-}
-
-.nav-link{
-	padding-left: 0rem 0rem !important;
-}
-
-.log-content{
-	padding-top: 0.5%;
-	padding-left: 1%;
 }
