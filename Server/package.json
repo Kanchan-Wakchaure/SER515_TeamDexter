@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./index.js"
+    "start": "babel-watch index.js"
   },
   "dependencies": {
     "bluebird": "^3.5.2",
@@ -15,5 +15,10 @@
     "nodemon": "^1.18.4",
     "request": "^2.88.0",
     "request-promise": "^4.2.2"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-watch": "^2.0.7"
   }
 }
