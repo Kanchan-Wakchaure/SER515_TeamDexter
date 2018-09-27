@@ -13,6 +13,7 @@ import { HomeComponent } from './Components/home/home.component';
 import { FooterComponent } from './Components/footer/footer.component';
 import { MovieDetailsComponent } from './Components/movie-details/movie-details.component';
 import { MovieSlideComponent } from './Components/MovieComponents/movie-slide/movie-slide.component';
+import { HttpClientModule } from '../../node_modules/@angular/common/http';
 
 const routes: Routes = [
     { path: 'coming_soon', component: HomeComponent },
@@ -38,7 +39,8 @@ const routes: Routes = [
         BrowserAnimationsModule,
         MatCardModule,
         RouterModule.forRoot(routes),
-        MatToolbarModule
+        MatToolbarModule,
+        HttpClientModule
     ],
     providers: [MovieService],
     bootstrap: [AppComponent]

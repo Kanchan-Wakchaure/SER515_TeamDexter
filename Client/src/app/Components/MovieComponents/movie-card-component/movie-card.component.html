@@ -1,10 +1,10 @@
 <mat-card class="movie-card">
   <mat-card-header>
     <div mat-card-avatar class="movie-header-image"></div>
-    <mat-card-title> {{movie.name}}</mat-card-title>
-    <mat-card-subtitle> {{movie.genre}}</mat-card-subtitle>
+    <mat-card-title> <strong>{{movie.title}}</strong></mat-card-title>
+    <mat-card-subtitle> {{movie.id}}</mat-card-subtitle>
   </mat-card-header>
-  <img mat-card-image src= {{movie.imageUrl}}  alt="Movie Image">
+  <img mat-card-image src= {{movie.poster_path}}  alt="Movie Image">
   
   <mat-card-actions>
     <button class = "btn btn-success" (click)="getDetails()">Details</button>
