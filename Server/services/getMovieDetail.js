@@ -14,6 +14,17 @@ module.exports = {
       json: true
     };
 
+    var options_cast = {
+      method: "GET",
+      url: `https://api.themoviedb.org/3/movie/${id}/credits`,
+      qs: {
+        language: "en-US",
+        api_key: keys.movieApiKey
+      },
+      json: true
+    }
+
+
     return request(options).then(item => {
       var details = new MovieDetail();
       details.adult = item.adult;
@@ -41,7 +52,12 @@ module.exports = {
       details.video = item.video;
       details.vote_average = item.vote_average;
       details.vote_count = item.vote_count;
-      return details;
+
+      return request(options_cast).then(cast => {
+        details.cast = cast.cast
+        return details;
+      })
+
     });
   }
 };
