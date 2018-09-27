@@ -29,12 +29,12 @@ module.exports = {
                 overview.id = item.id;
                 overview.title = item.title;
                 overview.tagline = item.tagline;
-                overview.poster_path = item.popularity;
+                overview.poster_path = item.poster_path;
                 overview.overview = item.overview;
                 overview.vote_average = item.vote_average;
                 movieList.push(overview);
             })
-            return Object.assign({}, movieList);
+            return movieList;
         });
     }
 
