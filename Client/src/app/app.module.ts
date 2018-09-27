@@ -10,15 +10,19 @@ import { MovieCardComponent } from './Components/MovieComponents/movie-card-comp
 import { MovieService } from './Services/movie.service';
 import { NavbarComponent } from './Components/navbar/navbar.component';
 import { HomeComponent } from './Components/home/home.component';
+import { FooterComponent } from './Components/footer/footer.component';
+import { MovieDetailsComponent } from './Components/movie-details/movie-details.component';
+import { MovieSlideComponent } from './Components/MovieComponents/movie-slide/movie-slide.component';
+import { HttpClientModule } from '../../node_modules/@angular/common/http';
 
 const routes: Routes = [
     { path: 'coming_soon', component: HomeComponent },
     { path: 'wish_list/:id', component: HomeComponent },
     { path: 'latest', component: HomeComponent },
     { path: 'home', component: HomeComponent },
+    { path: 'movie_details', component: MovieDetailsComponent }, 
     { path: '', redirectTo: 'home', pathMatch: 'full'}
 ]
-
 
 @NgModule({
     declarations: [
@@ -26,13 +30,17 @@ const routes: Routes = [
         MovieCardComponent,
         NavbarComponent,
         HomeComponent,
+        FooterComponent,
+        MovieDetailsComponent,
+        MovieSlideComponent,
     ],
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
         MatCardModule,
         RouterModule.forRoot(routes),
-        MatToolbarModule
+        MatToolbarModule,
+        HttpClientModule
     ],
     providers: [MovieService],
     bootstrap: [AppComponent]

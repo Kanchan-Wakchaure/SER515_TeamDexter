@@ -16,6 +16,9 @@
     
   }
 
+  .mat-card-header{
+    height: 100px;
+  }
   /*A CSS Class that handles styling of hovered card*/
   .movie-card:hover {
     top: -10px;

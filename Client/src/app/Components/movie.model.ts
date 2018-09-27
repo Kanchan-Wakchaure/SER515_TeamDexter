@@ -4,13 +4,13 @@
 * @version 1: created on 09/18/2018.
 */
 export class Movie {
-    public name: String;
-    public genre: String;
-    public imageUrl: String;
+    public title: String;
+    public tagline: String;
+    public overview: String;
+    public vote_average: Number;
+    //public genre: String;
+    public poster_path: String;
+    public id: string;
 
-    constructor(name: String, genre: String, imageUrl: String) {
-        this.name = name;
-        this.genre = genre;
-        this.imageUrl = imageUrl;
-    }
+    
 }
