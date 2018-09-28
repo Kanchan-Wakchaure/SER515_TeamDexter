@@ -10,9 +10,18 @@
   <!-- Next and previous buttons -->
   <a class="prev" (click)="changeSlide(-1)">&#10094;</a>
   <a class="next" (click)="changeSlide(1)">&#10095;</a>
+  
+  <!-- Dots -->
+  <div class="container">
+      <div class="row center-dot">
+        <div  *ngFor="let movieId of popularMovies"  >
+          <span 
+          [ngStyle] = "{'background-color': movieId.sNumber==currentMovie.sNumber?'#717171':'#bbb'}"
+          class="dot" (click) = "jumpSlide(movieId.sNumber)" >
+          </span> 
+        </div>
+      </div>
+    </div>
 </div>
 <br>
-<div style="text-align:center" *ngFor="let movieId of popularMovies" >
-  <span class="dot" ></span> 
-  </div>
 

@@ -43,7 +43,7 @@ export class MovieSlideComponent implements OnInit {
   }
 
   /*
-  * The method changes slides when "prev", "next" or "dots" are clicked
+  * The method changes slides when "prev", "next" are clicked
   * @param: slideNumber: the sNumber of the image that needs to be displayed
   */
   changeSlide(slideNumber: number) {
@@ -55,9 +55,23 @@ export class MovieSlideComponent implements OnInit {
       this.currentMovie = this.popularMovies.find(x=>x.sNumber===this.currentMovie.sNumber+slideNumber);
     }
 
+  
+
     //reset slide interval.
     clearInterval(this.timeInterval);
     this.startSliderInterval();
   }
+
+  /*
+  * The method changes slides when "dots" are clicked.
+  * @param: slideNumber: the sNumber of the image that needs to be displayed
+  */
+ jumpSlide(slideNumber: number) {
+  this.currentMovie = this.popularMovies.find(x=>x.sNumber===slideNumber);
+  
+  //reset slide interval.
+  clearInterval(this.timeInterval);
+  this.startSliderInterval();
+}
 
 }
