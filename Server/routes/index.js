@@ -3,8 +3,8 @@ var router = express.Router();
 var { getMovieList } = require("../services/getMovieList");
 var { getMovieDetail } = require("../services/getMovieDetail");
 
-/* GET home page. */
-router.get("/", function(req, res, next) {
+// GET home page and show list of movies.
+router.get("/", function (req, res, next) {
   getMovieList()
     .then(movie => {
       res.json(movie);
@@ -14,7 +14,8 @@ router.get("/", function(req, res, next) {
     });
 });
 
-router.get("/movie/:id", function(req, res, next) {
+// GET movie details for a specific movie. 
+router.get("/movie/:id", function (req, res, next) {
   getMovieDetail(req.params.id)
     .then(movie => {
       res.send(movie);
