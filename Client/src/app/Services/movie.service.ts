@@ -19,12 +19,12 @@ export class MovieService {
   /* A getter method to get movies.
   * @returns movies: Movie[].
   */
-  getMovies()  {
-    
-    return this.http.get("http://localhost:4241/",{responseType:'json'});
-    
+  getMovies(){    
+    return this.http.get("http://localhost:4241/",{responseType:'json'}); 
   }
-
   
-
+  /* A getter method to get movie details */
+  getMovieDetails(id: number){
+    return this.http.get("http://localhost:4241/movie/"+id,{responseType:'json'});
+  }
 }
