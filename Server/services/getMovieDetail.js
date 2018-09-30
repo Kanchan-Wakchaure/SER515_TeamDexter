@@ -22,8 +22,7 @@ module.exports = {
         api_key: keys.movieApiKey
       },
       json: true
-    }
-
+    };
 
     return request(options).then(item => {
       var details = new MovieDetail();
@@ -39,7 +38,7 @@ module.exports = {
       details.original_title = item.original_title;
       details.overview = item.overview;
       details.popularity = item.popularity;
-      details.poster_path = item.popularity;
+      details.poster_path = keys.imageBaseURL + item.poster_path;
       details.production_companies = item.production_companies;
       details.production_countries = item.production_countries;
       details.release_date = item.release_date;
@@ -54,10 +53,9 @@ module.exports = {
       details.vote_count = item.vote_count;
 
       return request(options_cast).then(cast => {
-        details.cast = cast.cast
+        details.cast = cast.cast;
         return details;
-      })
-
+      });
     });
   }
 };
