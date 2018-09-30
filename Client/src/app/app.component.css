@@ -1,8 +1,0 @@
-/*CSS class to create rows for movie cards*/
-.band {
-    margin: 5px auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: auto;
-    grid-gap: 20px;
-  }
