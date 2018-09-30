@@ -18,9 +18,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+//Routes handling
 app.use("/", indexRouter);
 app.use("/movie", indexRouter);
 
+//Mongoose for Database operations
 var mongoose = require("mongoose");
 mongoose.Promise = bluebird;
 

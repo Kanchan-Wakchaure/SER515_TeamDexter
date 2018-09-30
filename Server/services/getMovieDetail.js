@@ -14,6 +14,16 @@ module.exports = {
       json: true
     };
 
+    var options_cast = {
+      method: "GET",
+      url: `https://api.themoviedb.org/3/movie/${id}/credits`,
+      qs: {
+        language: "en-US",
+        api_key: keys.movieApiKey
+      },
+      json: true
+    };
+
     return request(options).then(item => {
       var details = new MovieDetail();
       details.adult = item.adult;
@@ -28,7 +38,7 @@ module.exports = {
       details.original_title = item.original_title;
       details.overview = item.overview;
       details.popularity = item.popularity;
-      details.poster_path = item.popularity;
+      details.poster_path = keys.imageBaseURL + item.poster_path;
       details.production_companies = item.production_companies;
       details.production_countries = item.production_countries;
       details.release_date = item.release_date;
@@ -41,7 +51,11 @@ module.exports = {
       details.video = item.video;
       details.vote_average = item.vote_average;
       details.vote_count = item.vote_count;
-      return details;
+
+      return request(options_cast).then(cast => {
+        details.cast = cast.cast;
+        return details;
+      });
     });
   }
 };

@@ -2,6 +2,10 @@ const request = require('request-promise');
 const keys = require('../config/keys');
 import MovieOverview from '../models/MovieOverview';
 
+/* 
+*This modules fetches the list of top 20 recent movies from themoviedb api. 
+*@Author: Team Dexter.
+*/
 module.exports = {
 
     getMovieList: () => {
@@ -14,7 +18,7 @@ module.exports = {
                 sort_by: 'popularity.desc',
                 include_adult: 'false',
                 include_video: 'false',
-                page: 1
+                page: 1   // Increment @page to get next 20 movies
             },
             headers: {
                 'User-Agent': 'Request-Promise'
@@ -29,7 +33,7 @@ module.exports = {
                 overview.id = item.id;
                 overview.title = item.title;
                 overview.tagline = item.tagline;
-                overview.poster_path = item.poster_path;
+                overview.poster_path = keys.imageBaseURL + item.poster_path;
                 overview.overview = item.overview;
                 overview.vote_average = item.vote_average;
                 movieList.push(overview);
