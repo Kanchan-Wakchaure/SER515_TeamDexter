@@ -1,3 +1,5 @@
-<p>
-  home works!
-</p>
+<div class="band container">
+    <div  *ngFor="let movie of movies" >
+      <app-movie-card [movie]=movie > </app-movie-card>
+    </div>
+  </div>
