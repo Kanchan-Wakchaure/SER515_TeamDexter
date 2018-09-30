@@ -6,9 +6,9 @@
 }
 
 .logo{
-	color: maroon;
+	color: red;
 	text-align: right;
-	font-size: 20px;
+	font-size: 40px;
 	font-weight: bold;
 	padding-top: 17%;
 }
@@ -18,7 +18,7 @@
 }
 
 .search-button{
-	background-color: maroon;
+	background-color: red;
 	font-size: 12px;
 	width: 40%;
 	height: 65%;
@@ -35,5 +35,5 @@
 }
 
 .nav-link{
-	color: maroon;
+	color: red;
 }

@@ -25,7 +25,7 @@ export class MovieCardComponent implements OnInit {
   }
 
   getDetails(){
-    this.router.navigate(['movie_details']);
+    this.router.navigate(['movie_details', {movie_id: this.movie.id}]);
   }
 
 }
