@@ -1,33 +1,45 @@
 <div style = "display: flex;">
 <!-- <div><img src= {{movie.poster_path}}></div> -->
 <div>
-    <img src = "https://in.bmscdn.com/iedb/movies/images/website/poster/large/a-simple-favor-et00079789-14-07-2018-03-31-59.jpg">
+    <img src = {{movie.poster_path}}>
 </div>
-<div style="background-color:white;color: red;padding:10px;">
+<div style="background-color:white;color: black;padding:10px;">
 <table>
 <tr>
-    <td align= "right"><b>Movie name :</b></td>
-    <td><font color="black">&nbsp;A Simple Favor</font></td>
+    <td align= "right" class="td-config"><b>Movie name :</b></td>
+    <td><font color="black">&nbsp;{{movie.original_title}}</font></td>
 </tr>
 <tr>
-    <td align= "right"><b>Star Cast :</b></td>
-    <td><font color="black">&nbsp;Anna Kendrick, Blake Lively, Henry Golding, Andrew Rannells, Linda Cardellini, Rupert Friend, Jean Smart</font></td>
+        <td align= "right" class="td-config"><b>Tag line :</b></td>
+        <td><font color="black">&nbsp;{{movie.tagline}}</font></td>
+    </tr>
+<tr>
+    <td align= "right" class="td-config"><b>Genres :</b></td>
+    <td><span *ngFor = "let genre of movie.genres"><font color="black">{{genre.name}}/</font></span></td>
 </tr>
 <tr>
-    <td align= "right"><b>Director :</b></td>
-    <td><font color="black">&nbsp;Paul Feig</font></td>
+    <td align= "right" class="td-config"><b>Original Language :</b></td>
+    <td><font color="black">&nbsp;{{movie.original_language}}</font></td>
 </tr>
 <tr>
-    <td align= "right"><b>Producer :</b></td>
-    <td><font color="black">&nbsp;Jason Cloth, Mike Drake, Paul Feig, Jessie Henderson</font></td>
+    <td align= "right" valign = "top" class="td-config"><b>Star Cast :</b></td>
+    <td><span *ngFor = "let cast of movie.cast"><font color="black">{{cast.name}},</font></span></td>
 </tr>
 <tr>
-    <td align= "right"><b>Release Date :</b></td>
-    <td><font color="black">&nbsp;September 14, 2018</font></td>
+    <td align= "right" class="td-config"><b>Release Date :</b></td>
+    <td><font color="black">&nbsp;{{movie.release_date | date}}</font></td>
+</tr>
+<tr>
+    <td align= "right" class="td-config"><b>Vote average :</b></td>
+    <td><font color="black">&nbsp;{{movie.vote_average}}</font></td>
+</tr>
+<tr>
+    <td align= "right" class="td-config"><b>Vote count :</b></td>
+    <td><font color="black">&nbsp;{{movie.vote_count}}</font></td>
 </tr>
 </table>
 <br>
 <b>Overview:</b>
-<p><font color="black">A Simple Favor, directed by Paul Feig, centers around Stephanie (Anna Kendrick), a mommy vlogger who seeks to uncover the truth behind her best friend Emily's (Blake Lively) sudden disappearance from their small town. Stephanie is joined by Emily's husband Sean (Henry Golding) in this stylish thriller filled with twists and betrayals, secrets and revelations, love and loyalty, murder and revenge.</font></p>
+<p><font color="black">{{movie.overview}}</font></p>
 </div>
 </div>
