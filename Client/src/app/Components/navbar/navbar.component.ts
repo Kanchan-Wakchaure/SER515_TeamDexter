@@ -21,9 +21,12 @@ export class NavbarComponent implements OnInit {
       width: '600px'
     })
     
+    //action needed after dialog is closed.
     dialogReference.afterClosed().subscribe(result=>{
       console.log("dialog was closed");
     });
+
+    return false;
   }
     
 }
