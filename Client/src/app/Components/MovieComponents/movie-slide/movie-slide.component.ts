@@ -12,10 +12,10 @@ export class MovieSlideComponent implements OnInit {
   
   //array of popular movies that needs to be seen on slider.
   popularMovies: {sNumber: number, imageUrl: string}[] = [
-    {sNumber: 1 , imageUrl: "https://3.bp.blogspot.com/-1hXvJeWAWGY/WUDHSFbd4HI/AAAAAAAAAOc/9NvGkXxRGlERV8VSWtw7-CVw-YYTfmsKACLcBGAs/s1600/A153L.jpg"},
-    {sNumber: 2 , imageUrl: "https://cms-assets.tutsplus.com/uploads/users/166/posts/29098/final_image/Aquaman%20Inspired%20Text%20Effect%20-%20850.jpg"},
-    {sNumber: 3 , imageUrl: "https://3.bp.blogspot.com/-1hXvJeWAWGY/WUDHSFbd4HI/AAAAAAAAAOc/9NvGkXxRGlERV8VSWtw7-CVw-YYTfmsKACLcBGAs/s1600/A153L.jpg"},
-    {sNumber: 4 , imageUrl: "https://cms-assets.tutsplus.com/uploads/users/166/posts/29098/final_image/Aquaman%20Inspired%20Text%20Effect%20-%20850.jpg"}
+    {sNumber: 1 , imageUrl: "https://ohmy.disney.com/wp-content/uploads/2018/04/solo-thumb.jpg"},
+    {sNumber: 2 , imageUrl: "https://i.ytimg.com/vi/XsGs_WvAQxw/maxresdefault.jpg" },
+    {sNumber: 3 , imageUrl: "https://i2.wp.com/www.ageratingjuju.com/wp-content/uploads/2018/08/A-Simple-Favor-Age-Rating-2018-Movie-Poster-Images-and-Wallpapers.jpg?fit=1802%2C944&ssl=1"},
+    {sNumber: 4 , imageUrl: "https://cdn.traileraddict.com/content/screencap/121677.jpg"}
   ];
   
   currentMovie: {sNumber: number, imageUrl: string}=this.popularMovies.find(x=>x.sNumber===1);
