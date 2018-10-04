@@ -14,7 +14,13 @@ Design Architecture:
 
 
 Installations:
-1. Node.js => https://nodejs.org/dist/v8.1.1/node-v8.1.1-x64.msi
-2. MongoDB => https://www.mongodb.com/dr/fastdl.mongodb.org/win32/mongodb-win32-x86_64-2008plus-ssl-3.4.5-signed.msi/download
-3. Visual Studio Code => https://code.visualstudio.com/download
-4. Angular CLI => Run command 'npm install -g @angular/cli' in CLI
+(Pre-Requisite :Node.js => https://nodejs.org/dist/v8.1.1/node-v8.1.1-x64.msi)
+
+1. Clone the Repository
+2. Open terminal and go to SER515_TeamDexter/Server
+    -Run 'npm install'
+    -Run command 'npm start'
+3. Open terminal and go to SER515_TeamDexter/Client 
+    -Run'npm install'
+    -Run command 'npm start'
+4. Now open the browser and open "localhost:4200". You can view the website here. 
