@@ -111,18 +111,25 @@ let MovieDetail = new Schema({
   vote_count: {
     type: Number
   },
-  cast: [
-    {
-      cast_id: Number,
-      character: String,
-      credit_id: String,
-      gender: Number,
-      id: Number,
-      name: String,
-      order: Number,
-      profile_path: String
-    }
-  ]
+  cast: [{
+    cast_id: Number,
+    character: String,
+    credit_id: String,
+    gender: Number,
+    id: Number,
+    name: String,
+    order: Number,
+    profile_path: String
+  }],
+  crew: [{
+    credit_id: String,
+    department: String,
+    gender: Number,
+    id: Number,
+    job: String,
+    name: String,
+    profile_path: String
+  }]
 });
 
 export default mongoose.model("MovieDetail", MovieDetail);
