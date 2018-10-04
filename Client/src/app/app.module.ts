@@ -17,6 +17,7 @@ import { MovieSlideComponent } from './Components/MovieComponents/movie-slide/mo
 import { LoginComponent } from './Components/login/login.component';
 
 import { MovieService } from './Services/movie.service';
+import { ReactiveFormsModule } from '../../node_modules/@angular/forms';
 
 const routes: Routes = [
     { path: 'coming_soon', component: HomeComponent },
@@ -46,6 +47,7 @@ const routes: Routes = [
         BrowserAnimationsModule,
         MatCardModule,
         MatDialogModule,
+        ReactiveFormsModule,
         RouterModule.forRoot(routes),
         MatToolbarModule,
         HttpClientModule

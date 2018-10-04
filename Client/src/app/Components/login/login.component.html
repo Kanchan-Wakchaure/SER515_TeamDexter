@@ -1,3 +1,57 @@
-<p>
-  login works!
-</p>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      
+      <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
+        
+        <div formGroupName="loginData">
+          
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input 
+            class="form-control" 
+            type="email" 
+            name="email" 
+            id="email" 
+            formControlName="email"
+            placeholder="{{emailPlaceholder}}">
+          </div>
+          
+          <span 
+          class="help-block"
+          *ngIf="!loginForm.get('loginData.email').valid && loginForm.get('loginData.email').touched">
+          <p style="color: red">
+            please enter valid email!
+          </p>  
+          </span>
+          
+          <div class="form-group">
+            <label for="password">Password:</label>
+            <input 
+            class="form-control" 
+            type="password" 
+            name="password" 
+            id="password" 
+            formControlName="password"
+            placeholder="{{passwordPlaceholder}}"
+            >
+          </div>
+
+          <span 
+          class="help-block"
+          *ngIf="!loginForm.get('loginData.password').valid && loginForm.get('loginData.password').touched">
+          <p style="color: red">
+            please enter password!
+          </p>  
+          </span>
+          
+          <button [disabled]="!loginForm.valid" class="btn btn-danger">Log in</button> 
+          <br>
+          <br>
+          <a>Not a registered user? Sign up!</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
