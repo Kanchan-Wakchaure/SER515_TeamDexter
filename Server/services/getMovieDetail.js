@@ -14,7 +14,7 @@ module.exports = {
       json: true
     };
 
-    var options_cast = {
+    var options_credits = {
       method: "GET",
       url: `https://api.themoviedb.org/3/movie/${id}/credits`,
       qs: {
@@ -52,8 +52,9 @@ module.exports = {
       details.vote_average = item.vote_average;
       details.vote_count = item.vote_count;
 
-      return request(options_cast).then(cast => {
-        details.cast = cast.cast;
+      return request(options_credits).then(credits => {
+        details.cast = credits.cast;
+        details.crew = credits.crew;
         return details;
       });
     });
