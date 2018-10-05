@@ -16,10 +16,12 @@ let MovieDetail = new Schema({
   budget: {
     type: Number
   },
-  genres: [{
-    id: Number,
-    name: String
-  }],
+  genres: [
+    {
+      id: Number,
+      name: String
+    }
+  ],
   homepage: {
     type: String,
     default: null
@@ -52,19 +54,20 @@ let MovieDetail = new Schema({
     type: String,
     default: null
   },
-  production_companies: [{
-    name: String,
-    id: Number,
-    logo_path: {
-      type: String,
-      default: null
-    },
-    origin_country: String
-  }],
-  production_countries: [{
-    iso_3166_1: Number,
-    name: String
-  }],
+  production_companies: [
+    {
+      name: String,
+      id: Number,
+      logo_path: { type: String, default: null },
+      origin_country: String
+    }
+  ],
+  production_countries: [
+    {
+      iso_3166_1: Number,
+      name: String
+    }
+  ],
   release_date: {
     type: Date
   },
@@ -75,10 +78,12 @@ let MovieDetail = new Schema({
     type: Number,
     default: null
   },
-  spoken_languages: [{
-    iso_639_1: String,
-    name: String
-  }],
+  spoken_languages: [
+    {
+      iso_639_1: String,
+      name: String
+    }
+  ],
   status: {
     type: String,
     enum: [
@@ -106,25 +111,18 @@ let MovieDetail = new Schema({
   vote_count: {
     type: Number
   },
-  cast: [{
-    cast_id: Number,
-    character: String,
-    credit_id: String,
-    gender: Number,
-    id: Number,
-    name: String,
-    order: Number,
-    profile_path: String
-  }],
-  crew: [{
-    credit_id: String,
-    department: String,
-    gender: Number,
-    id: Number,
-    job: String,
-    name: String,
-    profile_path: String
-  }]
+  cast: [
+    {
+      cast_id: Number,
+      character: String,
+      credit_id: String,
+      gender: Number,
+      id: Number,
+      name: String,
+      order: Number,
+      profile_path: String
+    }
+  ]
 });
 
 export default mongoose.model("MovieDetail", MovieDetail);
