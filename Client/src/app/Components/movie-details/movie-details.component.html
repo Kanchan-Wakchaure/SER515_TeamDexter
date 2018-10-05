@@ -9,10 +9,11 @@
     <td align= "right" class="td-config"><b>Movie name :</b></td>
     <td><font color="black">&nbsp;{{movie.original_title}}</font></td>
 </tr>
-<tr>
-        <td align= "right" class="td-config"><b>Tag line :</b></td>
-        <td><font color="black">&nbsp;{{movie.tagline}}</font></td>
-    </tr>
+<tr *ngIf = "movie.tagline">
+    <td align= "right" class="td-config"><b>Tag line :</b></td>
+    <td><font color="black">&nbsp;{{movie.tagline}}</font></td>
+</tr>
+
 <tr>
     <td align= "right" class="td-config"><b>Genres :</b></td>
     <td><span *ngFor = "let genre of movie.genres"><font color="black">{{genre.name}}/</font></span></td>
@@ -24,6 +25,20 @@
 <tr>
     <td align= "right" valign = "top" class="td-config"><b>Star Cast :</b></td>
     <td><span *ngFor = "let cast of movie.cast"><font color="black">{{cast.name}},</font></span></td>
+</tr>
+<tr>
+    <td align= "right" valign = "top" class="td-config"><b>Producer :</b></td>
+    <td><font color="black">
+        <span *ngFor = "let crew of movie.crew"><% if (crew.job == "Producer") %> {{crew.name}} <% endif %></span>
+        </font>
+    </td>
+</tr>
+<tr>
+    <td align= "right" valign = "top" class="td-config"><b>Director :</b></td>
+    <td><font color="black">
+        <span *ngFor = "let crew of movie.crew"><% if (crew.job == "Director") %> {{crew.name}} <% endif %></span>
+        </font>
+    </td>
 </tr>
 <tr>
     <td align= "right" class="td-config"><b>Release Date :</b></td>
