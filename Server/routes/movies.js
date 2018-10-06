@@ -9,6 +9,9 @@ var {
 var {
   getUpcomingMovies
 } = require("../services/getUpcomingMovies");
+var {
+  getMovieSearch
+} = require("../services/getMovieSearch");
 
 // GET home page and show list of movies.
 router.get("/", function (req, res, next) {
@@ -34,6 +37,16 @@ router.get("/", function (req, res, next) {
       break;
     case 'upcoming':
       getUpcomingMovies(page)
+        .then(movie => {
+          res.json(movie);
+        })
+        .catch(err => {
+          console.log("Error  fetching from upcoming movies list", err);
+        })
+      break;
+    case 'search':
+      let movieName = req.query.name;
+      getMovieSearch(movieName)
         .then(movie => {
           res.json(movie);
         })
