@@ -31,6 +31,7 @@ router.get("/", function (req, res, next) {
         .catch(err => {
           console.log("got error from movielist service", err);
         });
+      break;
     case 'upcoming':
       getUpcomingMovies(page)
         .then(movie => {
@@ -42,8 +43,7 @@ router.get("/", function (req, res, next) {
       break;
 
     default:
-
-
+      res.send("bye")
   }
 });
 
