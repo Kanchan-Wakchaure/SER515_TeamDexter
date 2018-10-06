@@ -5,11 +5,11 @@
     </div>
     <div class="col-md-8 col-sm-8">
       <div class="form-group search-box">
-        <input type="text" class="form-control" id="search_subject" placeholder="Search">
+        <input type="text" class="form-control" id="search_subject" placeholder="Search" [formControl]="seachForm">
       </div>
     </div>
     <div class="col-md-2 col-sm-2 search-content">
-        <a class="btn btn-primary search-button" href="/search" role="button">Search</a>
+      <a class="btn btn-primary search-button" role="button" (click)="searchMovies(seachForm.value)">Search</a>
     </div>
   </div>
 
