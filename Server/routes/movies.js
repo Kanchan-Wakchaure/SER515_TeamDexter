@@ -1,7 +1,14 @@
 var express = require("express");
 var router = express.Router();
-var { getMovieList } = require("../services/getMovieList");
-var { getMovieDetail } = require("../services/getMovieDetail");
+var {
+  getMovieList
+} = require("../services/getMovieList");
+var {
+  getMovieDetail
+} = require("../services/getMovieDetail");
+var {
+  getUpcomingMovies
+} = require("../services/getUpcomingMovies");
 
 // GET home page and show list of movies.
 router.get("/", function (req, res, next) {
@@ -25,7 +32,13 @@ router.get("/", function (req, res, next) {
           console.log("got error from movielist service", err);
         });
     case 'upcoming':
-      //do something 
+      getUpcomingMovies(page)
+        .then(movie => {
+          res.json(movie);
+        })
+        .catch(err => {
+          console.log("Error  fetching from upcoming movies list", err);
+        })
       break;
 
     default:
