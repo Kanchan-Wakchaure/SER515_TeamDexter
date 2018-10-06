@@ -14,7 +14,7 @@ Design Architecture:
 
 
 Installations:
-(Pre-Requisite :Node.js => https://nodejs.org/dist/v8.1.1/node-v8.1.1-x64.msi)
+(Pre-Requisite :Node.js => https://nodejs.org/en/download/)
 
 1. Clone the Repository
 2. Open terminal and go to SER515_TeamDexter/Server
