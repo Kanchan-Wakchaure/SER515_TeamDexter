@@ -18,6 +18,7 @@ import { LoginComponent } from './Components/login/login.component';
 
 import { MovieService } from './Services/movie.service';
 import { ReactiveFormsModule } from '../../node_modules/@angular/forms';
+import { SignupComponent } from './Components/signup/signup.component';
 
 const routes: Routes = [
     { path: 'coming_soon', component: HomeComponent },
@@ -30,7 +31,8 @@ const routes: Routes = [
 
 @NgModule({
     entryComponents: [
-        LoginComponent
+        LoginComponent,
+        SignupComponent
     ],
     declarations: [
         AppComponent,
@@ -40,7 +42,8 @@ const routes: Routes = [
         FooterComponent,
         MovieDetailsComponent,
         MovieSlideComponent,
-        LoginComponent
+        LoginComponent,
+        SignupComponent
     ],
     imports: [
         BrowserModule,

@@ -1,0 +1,7 @@
+input.ng-invalid.ng-touched {
+    border-color: red;
+}
+
+.btn btn-primary{
+    background-color: red;
+}
