@@ -122,6 +122,14 @@ let MovieDetail = new Schema({
       order: Number,
       profile_path: String
     }
+  ],
+  show_detail: [
+    {
+      international_movie_id: String,
+      cinema_id: String,
+      time: String,
+      booking_link: String
+    }
   ]
 });
 
