@@ -4,6 +4,9 @@ var cookieParser = require("cookie-parser");
 var moviesRoute = require("./routes/movies");
 var authUserRoute = require("./routes/auth");
 var usersRoute = require("./routes/users");
+// var {
+//   getCinemaList
+// } = require('./services/getCinemaList');
 
 var cors = require('cors')
 require('./services/db')
@@ -15,6 +18,7 @@ app.listen(PORT, () => {
   console.log("Connected to port:" + PORT);
 });
 
+//getCinemaList()
 
 app.use(cors())
 app.use(express.json());
