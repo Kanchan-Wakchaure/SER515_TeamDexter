@@ -12,6 +12,9 @@ var {
 var {
   getMovieSearch
 } = require("../services/getMovieSearch");
+var {
+  getSimilarMovies
+} = require("../services/getSimilarMovies");
 
 // GET home page and show list of movies.
 router.get("/", function (req, res, next) {
@@ -32,7 +35,7 @@ router.get("/", function (req, res, next) {
           res.json(movie);
         })
         .catch(err => {
-          console.log("got error from movielist service", err);
+          console.log("Error fetching from movies list", err);
         });
       break;
     case 'upcoming':
@@ -41,7 +44,7 @@ router.get("/", function (req, res, next) {
           res.json(movie);
         })
         .catch(err => {
-          console.log("Error  fetching from upcoming movies list", err);
+          console.log("Error fetching from upcoming movies list", err);
         })
       break;
     case 'search':
@@ -51,7 +54,7 @@ router.get("/", function (req, res, next) {
           res.json(movie);
         })
         .catch(err => {
-          console.log("Error  fetching from upcoming movies list", err);
+          console.log("Error while retrieving search result", err);
         })
       break;
 
@@ -62,13 +65,33 @@ router.get("/", function (req, res, next) {
 
 // GET movie details for a specific movie. 
 router.get("/:id", function (req, res, next) {
-  getMovieDetail(req.params.id)
-    .then(movie => {
-      res.send(movie);
-    })
-    .catch(err => {
-      console.log("got error from movielist service", err);
-    });
+  let type = req.query.type;
+
+  if (typeof (type) === 'undefined') {
+    type = 'ID'
+  }
+  switch (type) {
+    case 'ID':
+      getMovieDetail(req.params.id)
+        .then(movie => {
+          res.send(movie);
+        })
+        .catch(err => {
+          console.log("Error fetching movie details", err);
+        });
+      break;
+    case 'similar':
+      getSimilarMovies(req.params.id)
+        .then(movie => {
+          res.send(movie);
+        })
+        .catch(err => {
+          console.log("Error fetching  similar movies list", err);
+        });
+      break;
+    default:
+      res.send("bye")
+  }
 });
 
 module.exports = router;
