@@ -13,3 +13,5 @@ mongoose
     .catch(() => {
         console.log(`Error Connecting to the Mongodb Database`);
     });
+
+    require('../models/User');
