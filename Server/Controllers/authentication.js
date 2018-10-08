@@ -20,7 +20,7 @@ module.exports.login = function(request,response){
             response.json({
                 'token': token
             });
-
+            
         } else {
             //if user is not found
             response.status(401).json(info);
