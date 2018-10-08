@@ -1,12 +1,14 @@
+
 var express = require("express");
-var jwt = require('ecpress-jwt');
+var jwt = require('express-jwt');
 var app = express();
+require('./services/db');
 var cookieParser = require("cookie-parser");
 var moviesRoute = require("./routes/movies");
 var authUserRoute = require("./routes/auth");
 var usersRoute = require("./routes/users");
 var path = require('path');
-var favivon = require('serve-fevicon');
+//var favicon = require('serve-fevicon');
 var bodyParser = require('body-parser');
 var passport = require('passport');
 var cors = require('cors');
@@ -14,7 +16,7 @@ var cors = require('cors');
 //   getCinemaList
 // } = require('./services/getCinemaList');
 
-require('./services/db');
+
 require('./config/passport');
 
 //Created server at port 4241
@@ -33,7 +35,7 @@ app.use(cookieParser());
 
 //Add routing routes here
 app.use("/movies", moviesRoute);
-//app.use("/auth", authUserRoute);    //uncomment this on usage. Use this for handling login 
+app.use("/auth", authUserRoute);    //uncomment this on usage. Use this for handling login 
 //app.use("/users", usersRoute);      //uncomment this on usage. Use this for handling REGISTER,PROFILE INFO, UPDATING PROFILE INFO. Use post method to register and get for getting info under same route 
 
 //error handlers
