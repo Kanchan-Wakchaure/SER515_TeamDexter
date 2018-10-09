@@ -5,7 +5,8 @@
     </div>
     <div class="col-md-8 col-sm-8">
       <div class="form-group search-box">
-        <input type="text" class="form-control" id="search_subject" placeholder="Search" [formControl]="seachForm">
+        <input type="text" class="form-control" id="search_subject" placeholder="Search for movies" (keyup.enter)="searchMovies(seachForm.value)"
+          [formControl]="seachForm">
       </div>
     </div>
     <div class="col-md-2 col-sm-2 search-content">
@@ -21,7 +22,7 @@
         <a class="nav-li" href="/wish_list">Wish List</a>
         <a class="nav-li" href="/latest">Latest</a>
       </nav>
-      <div class="log"><a class="btn btn-primary login-button" href="" (click)="openDialog()">Log In</a></div>      
+      <div class="log"><a class="btn btn-primary login-button" href="" (click)="openDialog()">Log In</a></div>
       <div class="signup"><a class="btn btn-primary signup-button" href="" (click)="openSignUp()">Sign Up</a></div>
     </div>
   </div>
