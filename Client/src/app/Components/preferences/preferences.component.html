@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <script>
+      function AllowEdit(xHow){
+        TheForm=document.forms[0].elements;  //get form elements list    
+    	for(i=0;i<TheForm.length;i++){
+      		if(TheForm[i].name != "EditButton")
+      			TheForm[i].disabled = !xHow;
+        }
+      }
+    </script>
+  </head>
+  <body onload="AllowEdit(false)">
+    <form name="Test" class="container">
+		<input type="text" name="T1" value="Test1"><br>
+	  	<input type="text" name="T2" value="Test2"><br>
+	  	<input type="text" name="T3" value="Test3"><br>
+	  	<input type="text" name="T4" value="Test4"><br>
+	  	<input type="text" name="T5" value="Test5"><br>
+	  	<input type="text" name="T6" value="Test6"><br>
+	  	<input type="text" name="T7" value="Test7"><br>
+	  	<input type="text" name="T8" value="Test8"><br>
+	  	<input type="submit" name="Submit" value="Submit Button">
+  	  	<input type="button" name="EditButton" onclick="AllowEdit(true)" value="Edit Form">
+    </form>
+  </body>
+</html>
