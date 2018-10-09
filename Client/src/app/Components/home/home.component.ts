@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router'
 import { Movie } from '../movie.model';
 import { MovieService } from '../../Services/movie.service';
 
@@ -11,19 +12,28 @@ export class HomeComponent implements OnInit {
 
   public movies: Movie[];
 
-  constructor(public movieService: MovieService) { }
+  constructor(public movieService: MovieService, private router: Router,
+    private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    this.movieService.getMovies().subscribe(
-      
-     (response: Movie[])=> {
-       console.log(response);
-       this.movies = response;
-       console.log(this.movies[0]);
-     }
-   
-   );
-   
-   }
+    if (this.router.url.includes('/search')) {
+      this.searchMovies();
+    } else {
+      this.movieService.getMovies().subscribe(
+        (response: Movie[]) => {
+          this.movies = response;
+        }
+      );
+    }
+  }
 
+  private searchMovies() {
+    this.activatedRoute.params.subscribe(params => {
+      let movieName: string = params['name'];
+      this.movieService.getSearchedMovieList(movieName).subscribe((res: Movie[]) => {
+        debugger;
+        this.movies = res;
+      });
+    });
+  }
 }

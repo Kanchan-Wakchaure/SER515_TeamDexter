@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatCardModule} from '@angular/material/card';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
 import { RouterModule, Routes } from '@angular/router';
 import { MatToolbarModule } from '@angular/material';
 import { HttpClientModule } from '../../node_modules/@angular/common/http';
@@ -26,8 +26,9 @@ const routes: Routes = [
     { path: 'wish_list/:id', component: HomeComponent },
     { path: 'latest', component: HomeComponent },
     { path: 'home', component: HomeComponent },
-    { path: 'movie_details', component: MovieDetailsComponent }, 
-    { path: '', redirectTo: 'home', pathMatch: 'full'}
+    { path: 'movie_details', component: MovieDetailsComponent },
+    { path: 'search', component: HomeComponent },
+    { path: '', redirectTo: 'home', pathMatch: 'full' },
 ]
 
 @NgModule({

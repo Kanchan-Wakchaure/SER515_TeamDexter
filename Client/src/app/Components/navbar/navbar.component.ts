@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
+
 import { MatDialog } from '../../../../node_modules/@angular/material';
 
 import { LoginComponent } from '../login/login.component';
@@ -14,7 +16,8 @@ import { MovieService } from '../../Services/movie.service';
 export class NavbarComponent implements OnInit {
 
   seachForm = new FormControl('');
-  constructor(public dialog: MatDialog, private movieService: MovieService) { }
+  constructor(public dialog: MatDialog, private movieService: MovieService,
+    private router: Router) { }
 
   ngOnInit() {
   }
@@ -33,22 +36,17 @@ export class NavbarComponent implements OnInit {
     return false;
   }
 
-    //opens pop up when sign up button is clicked
-  openSignUp(){
-    const dialogReference = this.dialog.open(SignupComponent,{width: '600px'})
-    
+  //opens pop up when sign up button is clicked
+  openSignUp() {
+    const dialogReference = this.dialog.open(SignupComponent, { width: '600px' })
+
     //action needed after dialog is closed.
-    dialogReference.afterClosed().subscribe(result=>{console.log("dialog was closed");});
+    dialogReference.afterClosed().subscribe(result => { console.log("dialog was closed"); });
     return false;
   }
 
   searchMovies(movieName: string) {
-    this.movieService.getSearchedMovieList(movieName).subscribe(
-      (res: any) => {
-        debugger;
-        let movies = res;
-      }
-    );
+    this.router.navigate(['search', { name: movieName }]);
   }
 
 }
