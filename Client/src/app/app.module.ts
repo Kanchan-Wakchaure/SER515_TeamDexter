@@ -18,7 +18,7 @@ import { LoginComponent } from './Components/login/login.component';
 
 import { MovieService } from './Services/movie.service';
 import { ReactiveFormsModule } from '../../node_modules/@angular/forms';
-import { SignupComponent } from './Components/signup/signup.component';
+import { AuthenticationService } from './Services/authentication.service';
 
 const routes: Routes = [
     { path: 'coming_soon', component: HomeComponent },
@@ -31,8 +31,7 @@ const routes: Routes = [
 
 @NgModule({
     entryComponents: [
-        LoginComponent,
-        SignupComponent
+        LoginComponent
     ],
     declarations: [
         AppComponent,
@@ -42,8 +41,7 @@ const routes: Routes = [
         FooterComponent,
         MovieDetailsComponent,
         MovieSlideComponent,
-        LoginComponent,
-        SignupComponent
+        LoginComponent
     ],
     imports: [
         BrowserModule,
@@ -55,7 +53,7 @@ const routes: Routes = [
         MatToolbarModule,
         HttpClientModule
     ],
-    providers: [MovieService],
+    providers: [MovieService, AuthenticationService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
