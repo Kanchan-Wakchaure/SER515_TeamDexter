@@ -15,7 +15,7 @@ router.post("/", function (req, res, next) {
         });
 });
 
-router.route('/').get((req, res, next) => {
+router.get("/", function (req, res, next) {
     UserPreference.find({ email: req.query.email }, (err, preferences) => {
         if (err)
             return next(err);
@@ -24,7 +24,7 @@ router.route('/').get((req, res, next) => {
     })
 });
 
-router.route('/').put((req, res, next) => {
+router.put('/', function (req, res, next) {
     UserPreference.findOneAndUpdate({ email: req.query.email }, (err, preference) => {
         if (err)
             return next(err);
@@ -32,3 +32,4 @@ router.route('/').put((req, res, next) => {
             return res.json(preference);
     });
 });
+module.exports = router;
