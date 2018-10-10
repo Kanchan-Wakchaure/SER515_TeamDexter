@@ -7,6 +7,7 @@ var cookieParser = require("cookie-parser");
 var moviesRoute = require("./routes/movies");
 var authUserRoute = require("./routes/auth");
 var usersRoute = require("./routes/users");
+var preferencesRoute = require("./routes/preferences");
 var path = require('path');
 //var favicon = require('serve-fevicon');
 var bodyParser = require('body-parser');
@@ -37,10 +38,10 @@ app.use(cookieParser());
 app.use("/movies", moviesRoute);
 app.use("/auth", authUserRoute);    //uncomment this on usage. Use this for handling login 
 //app.use("/users", usersRoute);      //uncomment this on usage. Use this for handling REGISTER,PROFILE INFO, UPDATING PROFILE INFO. Use post method to register and get for getting info under same route 
-
+app.use("/preferences", preferencesRoute);
 //error handlers
 // catch 404 and forward to error handler
-app.use(function(request, response, next) {
+app.use(function (request, response, next) {
   var error = new Error('Not Found');
   error.status = 404;
   next(error);
@@ -50,7 +51,7 @@ app.use(function(request, response, next) {
 app.use(function (error, request, response, next) {
   if (error.name === 'UnauthorizedError') {
     response.status(401);
-    response.json({"message" : error.name + ": " + error.message});
+    response.json({ "message": error.name + ": " + error.message });
   }
 });
 
