@@ -6,6 +6,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { RouterModule, Routes } from '@angular/router';
 import { MatToolbarModule } from '@angular/material';
 import { HttpClientModule } from '../../node_modules/@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { MovieCardComponent } from './Components/MovieComponents/movie-card-component/movie-card.component';
@@ -57,7 +58,8 @@ const routes: Routes = [
         ReactiveFormsModule,
         RouterModule.forRoot(routes),
         MatToolbarModule,
-        HttpClientModule
+        HttpClientModule,
+        FormsModule
     ],
     providers: [MovieService, AuthenticationService],
     bootstrap: [AppComponent]
