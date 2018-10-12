@@ -45,4 +45,13 @@ export class MovieService {
       responseType: "json"
     });
   }
+
+  getSimilarMovies(id: number) {
+    return this.http.get(
+      "http://localhost:4241/movies/" + id + "/?type=similar",
+      {
+        responseType: "json"
+      }
+    );
+  }
 }
