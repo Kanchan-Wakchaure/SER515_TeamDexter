@@ -1,28 +1,40 @@
-<div class="container">
-    <h1>Preferences</h1>
-    <form #preferenceForm="ngForm">
-      <!-- {{diagnostic}} -->
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="text" class="form-control" id="email" required [(ngModel)]="model.email" name="email">
-      </div>
-      
-      <div class="form-group">
-        <label for="genres">Genre</label>
-        <input type="text" class="form-control" id="genres" required [(ngModel)]="model.genres" name="genres">
-      </div>
+<div class="container prefer">
+  {{diagnostic}}
 
-      <div class="form-group">
-        <label for="languages">Language</label>
-        <input type="text" class="form-control" id="languages" required [(ngModel)]="model.languages" name="languages">
-      </div>
-      
-      <div class="form-group">
-        <label for="actors">Actor</label>
-        <input type="text" class="form-control" id="actors" required [(ngModel)]="model.actors" name="actors">
-      </div>
- 
-      <button type="submit" class="btn btn-success">Submit</button>
- 
-    </form>
+  <p>Email</p>
+
+  <input type="text" class="form-control" id="email" required [(ngModel)]="email" name="email"><br>
+
+  <p>Genre</p>
+
+  <ng-multiselect-dropdown
+  [placeholder]="'Select Genres'"
+  [data]="genresList"
+  [(ngModel)]="selectedGenres"
+  [settings]="dropdownSettings"
+  (onSelect)="onItemSelect($event)"
+  (onSelectAll)="onSelectAll($event)" name="selectedGenres"></ng-multiselect-dropdown><br>
+
+  <p>Language</p>
+
+  <ng-multiselect-dropdown
+  [placeholder]="'Select Languages'"
+  [data]="languagesList"
+  [(ngModel)]="selectedLanguages"
+  [settings]="dropdownSettings"
+  (onSelect)="onItemSelect($event)"
+  (onSelectAll)="onSelectAll($event)" name="selectedLanguages"></ng-multiselect-dropdown><br>
+
+  <p>Actor</p>
+
+  <ng-multiselect-dropdown
+  [placeholder]="'Select Actors'"
+  [data]="actorsList"
+  [(ngModel)]="selectedActors"
+  [settings]="dropdownSettings"
+  (onSelect)="onItemSelect($event)"
+  (onSelectAll)="onSelectAll($event)" name="selectedActors"></ng-multiselect-dropdown><br>
+
+  <button type="submit" class="btn btn-success">Submit</button>
+
 </div>

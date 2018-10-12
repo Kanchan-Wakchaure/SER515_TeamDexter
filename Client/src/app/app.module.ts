@@ -7,6 +7,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { MatToolbarModule } from '@angular/material';
 import { HttpClientModule } from '../../node_modules/@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 import { AppComponent } from './app.component';
 import { MovieCardComponent } from './Components/MovieComponents/movie-card-component/movie-card.component';
@@ -61,7 +62,8 @@ const routes: Routes = [
         RouterModule.forRoot(routes),
         MatToolbarModule,
         HttpClientModule,
-        FormsModule
+        FormsModule,
+        NgMultiSelectDropDownModule.forRoot()
     ],
     providers: [MovieService, AuthenticationService],
     bootstrap: [AppComponent]
