@@ -35,18 +35,14 @@ export class HomeComponent implements OnInit {
       this.movieService
         .getSearchedMovieList(movieName)
         .subscribe((res: Movie[]) => {
-          debugger;
           this.movies = res;
         });
     });
   }
 
   private upcomingMovies() {
-    this.activatedRoute.params.subscribe(params => {
-      this.movieService.getUpcomingMovieList().subscribe((res: Movie[]) => {
-        debugger;
-        this.movies = res;
-      });
+    this.movieService.getUpcomingMovieList().subscribe((res: Movie[]) => {
+      this.movies = res;
     });
   }
 }

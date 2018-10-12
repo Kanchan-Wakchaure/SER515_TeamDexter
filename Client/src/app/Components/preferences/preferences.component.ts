@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Preferences } from '../preferences.model';
-
 @Component({
   selector: 'app-preferences',
   templateUrl: './preferences.component.html',
@@ -9,17 +7,72 @@ import { Preferences } from '../preferences.model';
 })
 export class PreferencesComponent implements OnInit {
 
-  model = new Preferences('abc@example.com', 'some genre', 'some language', 'some actor');
+  email = "adfsdv";
+  genresList = [];
+  languagesList = [];
+  actorsList = [];
+  selectedGenres = [];
+  selectedLanguages = [];
+  selectedActors = [];
+
+  dropdownSettings = {};
 
   submitted = false;
 
   onSubmit() { this.submitted = true; }
 
-  get diagnostic() { return JSON.stringify(this.model); }
-
   constructor() { }
 
   ngOnInit() {
+
+    this.genresList = [
+      { item_id: 1, item_text: 'Action' },
+      { item_id: 2, item_text: 'Drama' },
+      { item_id: 3, item_text: 'Romance' },
+      { item_id: 4, item_text: 'Thriller' },
+      { item_id: 5, item_text: 'Comedy' }
+    ];
+
+    this.languagesList = [
+      { item_id: 1, item_text: 'English' },
+      { item_id: 2, item_text: 'Spanish' },
+      { item_id: 3, item_text: 'Hindi' }
+    ];
+
+    this.actorsList = [
+      { item_id: 1, item_text: 'Will Smith' },
+      { item_id: 2, item_text: 'Tom Hanks' },
+      { item_id: 3, item_text: 'Angelina Jolie' },
+      { item_id: 4, item_text: 'Tom Cruise' },
+    ];
+
+    this.selectedGenres = [];
+    this.selectedLanguages = [];
+    this.selectedActors = [];
+
+    this.dropdownSettings = {
+      singleSelection: false,
+      idField: 'item_id',
+      textField: 'item_text',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 3,
+      allowSearchFilter: true
+    };
+  }
+
+  onItemSelect (item:any) {
+    console.log(item);
+  }
+
+  onSelectAll (items: any) {
+    console.log(items);
+  }
+
+  get diagnostic() { return JSON.stringify(this.selectedGenres); }
+
+  submitData(){
+    
   }
 
 }

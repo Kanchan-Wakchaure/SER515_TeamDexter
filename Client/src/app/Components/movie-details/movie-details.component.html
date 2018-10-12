@@ -1,63 +1,79 @@
-<div style = "display: flex;">
-<div><img src = {{movie.poster_path}}></div>
-<div style="background-color:white;color: black;padding:10px;">
-<table>
-<tr>
-    <td align= "right" class="td-config"><b>Movie name :</b></td>
-    <td><font color="black">&nbsp;{{movie.original_title}}</font></td>
-</tr>
-<tr *ngIf="movie.tagline">
-    <td align= "right" class="td-config"><b>Tag line :</b></td>
-    <td><font color="black">&nbsp;{{movie.tagline}}</font></td>
-</tr>
-<tr>
-    <td align= "right" class="td-config"><b>Genres :</b></td>
-    <td><span *ngFor = "let genre of movie.genres; let isLast=last">
-    <font color="black">{{genre.name}}{{isLast ? '' : '/'}}</font>
-        </span>
-    </td>
-</tr>
-<tr>
-    <td align= "right" class="td-config"><b>Original Language :</b></td>
-    <td><font color="black">&nbsp;{{movie.original_language}}</font></td>
-</tr>
-<tr>
-    <td align= "right" valign = "top" class="td-config"><b>Star Cast :</b></td>
-    <td><span *ngFor = "let cast of movie.cast; let isLast=last">
-        <font color="black">{{cast.name}}{{isLast ? '' : ', '}}</font>
-        </span>
-    </td>
-</tr>
-<tr>
-    <td align= "right" valign = "top" class="td-config"><b>Producer :</b></td>
-    <td><span *ngFor = "let crew of movie.crew">
-        <font color="black" *ngIf="crew.job=='Producer'">{{crew.name}},</font>
-        </span>
-    </td>
-</tr>
-<tr>
-    <td align= "right" valign = "top" class="td-config"><b>Director :</b></td>
-    <td><span *ngFor = "let crew of movie.crew">
-        <font color="black" *ngIf="crew.job=='Director'">{{crew.name}},</font>
-        </span>
-    </td>
-</tr>
-<tr>
-    <td align= "right" class="td-config"><b>Release Date :</b></td>
-    <td><font color="black">&nbsp;{{movie.release_date | date}}</font></td>
-</tr>
-<tr>
-    <td align= "right" class="td-config"><b>Vote average :</b></td>
-    <td><font color="black">&nbsp;{{movie.vote_average}}</font></td>
-</tr>
-<tr>
-    <td align= "right" class="td-config"><b>Vote count :</b></td>
-    <td><font color="black">&nbsp;{{movie.vote_count}}</font></td>
-</tr>
-</table>
-<br>
-<b>Overview:</b>
-<p><font color="black">{{movie.overview}}</font></p>
+<div style="display: flex;">
+  <div><img src={{movie.poster_path}}></div>
+  <div style="background-color:white;color: black;padding:10px;">
+    <table>
+      <tr>
+        <td align="right" class="td-config"><b>Movie name :</b></td>
+        <td>
+          <font color="black">&nbsp;{{movie.original_title}}</font>
+        </td>
+      </tr>
+      <tr *ngIf="movie.tagline">
+        <td align="right" class="td-config"><b>Tag line :</b></td>
+        <td>
+          <font color="black">&nbsp;{{movie.tagline}}</font>
+        </td>
+      </tr>
+      <tr>
+        <td align="right" class="td-config"><b>Genres :</b></td>
+        <td><span *ngFor="let genre of movie.genres; let isLast=last">
+            <font color="black">{{genre.name}}{{isLast ? '' : '/'}}</font>
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td align="right" class="td-config"><b>Original Language :</b></td>
+        <td>
+          <font color="black">&nbsp;{{movie.original_language}}</font>
+        </td>
+      </tr>
+      <tr>
+        <td align="right" valign="top" class="td-config"><b>Star Cast :</b></td>
+        <td><span *ngFor="let cast of movie.cast; let isLast=last">
+            <font color="black">{{cast.name}}{{isLast ? '' : ', '}}</font>
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td align="right" valign="top" class="td-config"><b>Producer :</b></td>
+        <td><span *ngFor="let crew of movie.crew">
+            <font color="black" *ngIf="crew.job=='Producer'">{{crew.name}},</font>
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td align="right" valign="top" class="td-config"><b>Director :</b></td>
+        <td><span *ngFor="let crew of movie.crew">
+            <font color="black" *ngIf="crew.job=='Director'">{{crew.name}},</font>
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td align="right" class="td-config"><b>Release Date :</b></td>
+        <td>
+          <font color="black">&nbsp;{{movie.release_date | date}}</font>
+        </td>
+      </tr>
+      <tr>
+        <td align="right" class="td-config"><b>Vote average :</b></td>
+        <td>
+          <font color="black">&nbsp;{{movie.vote_average}}</font>
+        </td>
+      </tr>
+      <tr>
+        <td align="right" class="td-config"><b>Vote count :</b></td>
+        <td>
+          <font color="black">&nbsp;{{movie.vote_count}}</font>
+        </td>
+      </tr>
+    </table>
+    <br>
+    <b>Overview:</b>
+    <p>
+      <font color="black">{{movie.overview}}</font>
+    </p>
+  </div>
 </div>
+<div>
+  <app-similar-movies [movieID]="movie_id"></app-similar-movies>
 </div>
-        

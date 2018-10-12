@@ -7,6 +7,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { MatToolbarModule } from '@angular/material';
 import { HttpClientModule } from '../../node_modules/@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 import { AppComponent } from './app.component';
 import { MovieCardComponent } from './Components/MovieComponents/movie-card-component/movie-card.component';
@@ -22,6 +23,7 @@ import { ReactiveFormsModule } from '../../node_modules/@angular/forms';
 import { AuthenticationService } from './Services/authentication.service';
 import { SignupComponent } from './Components/signup/signup.component';
 import { PreferencesComponent } from './Components/preferences/preferences.component';
+import { SimilarMoviesComponent } from './Components/similar-movies/similar-movies.component';
 
 const routes: Routes = [
     { path: 'coming_soon', component: HomeComponent },
@@ -48,7 +50,8 @@ const routes: Routes = [
         MovieSlideComponent,
         LoginComponent,
         SignupComponent,
-        PreferencesComponent
+        PreferencesComponent,
+        SimilarMoviesComponent
     ],
     imports: [
         BrowserModule,
@@ -59,7 +62,8 @@ const routes: Routes = [
         RouterModule.forRoot(routes),
         MatToolbarModule,
         HttpClientModule,
-        FormsModule
+        FormsModule,
+        NgMultiSelectDropDownModule.forRoot()
     ],
     providers: [MovieService, AuthenticationService],
     bootstrap: [AppComponent]
