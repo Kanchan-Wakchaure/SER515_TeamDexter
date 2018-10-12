@@ -18,8 +18,11 @@ export class LoginComponent implements OnInit {
   passwordPlaceholder : string;
   
   credentials: TokenPayload = {
+    firstname: '',
+    lastname: '',
     email: '',
-    password: ''
+    password: '',
+    location: '' 
   };
 
 

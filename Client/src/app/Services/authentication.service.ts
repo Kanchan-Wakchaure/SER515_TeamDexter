@@ -17,9 +17,11 @@ interface TokenResponse {
 }
 
 export interface TokenPayload {
+  firstname: string;
+  lastname: string;
   email: string;
   password: string;
-  name?: string;
+  location: string;
 }
 
 @Injectable()
@@ -77,7 +79,7 @@ export class AuthenticationService {
    }
 
    //generalized method to make http requests to server
-   private request(method: 'post'|'get', type:'login'|'register', user?:TokenPayload) : Observable<any> {
+   private request(method: 'post'|'get', type:'login'|'signup', user?:TokenPayload) : Observable<any> {
       let base;
 
       if(method==='post') {
@@ -100,5 +102,10 @@ export class AuthenticationService {
     //login method
     public login(user: TokenPayload): Observable<any> {
       return this.request('post', 'login', user);
+    }
+
+    //signup method
+    public signup(user: TokenPayload): Observable<any> {
+      return this.request('post', 'signup', user);
     }
 }

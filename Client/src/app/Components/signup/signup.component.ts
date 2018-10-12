@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { first } from 'rxjs/operators';
-
+import { FormGroup, FormControl, Validators } from '../../../../node_modules/@angular/forms';
+import { TokenPayload, AuthenticationService } from '../../Services/authentication.service';
 import { User } from '../user.model';
 
 @Component({
@@ -13,41 +12,52 @@ import { User } from '../user.model';
 
 export class SignupComponent implements OnInit {
 
-//variable that binds with html form.
-signupForm: FormGroup;
-fnamePlaceholder: string;
-lnamePlaceholder: string;
-emailPlaceholder: string;
-passwordPlaceholder : string;
-requestedUser: User;
-loading = false;
-submitted = false;
+  credentials: TokenPayload = {
+    firstname: '',
+    lastname: '',
+    email: '',
+    password: '',
+    location: '' 
+  };
 
-  constructor(        
-    private formBuilder: FormBuilder,
-    private router: Router) { }
+  //variable that binds with html form.
+  signupForm: FormGroup;
+  fnamePlaceholder: string;
+  lnamePlaceholder: string;
+  emailPlaceholder1: string;
+  passwordPlaceholder1 : string;
+  requestedUser: User;
 
-  ngOnInit() {
-    this.signupForm = this.formBuilder.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
-  });
-  } 
 
-// convenience getter for easy access to form fields
-get f() { return this.signupForm.controls; }
+  constructor(private auth: AuthenticationService, private router: Router) {}
 
-  //method that handles login form submit button.
-  onSignupSubmit() {
-    this.submitted = true;
+  ngOnInit() {  
+    
+    this.signupForm = new FormGroup({
+      'signupData': new FormGroup({
+        'firstname': new FormControl(null,[Validators.required]),
+        'lastname': new FormControl(null,[Validators.required]),
+        'email': new FormControl(null,[Validators.required,Validators.email]),
+        'password': new FormControl(null,[Validators.required]),
+        'check': new FormControl(null, [Validators.required])
+      })
+    });
 
-    // stop here if form is invalid
-    if (this.signupForm.invalid) {
-      return;
-    }    
-
-    this.loading = true;
+    this.fnamePlaceholder = "Please enter your first name here";
+    this.lnamePlaceholder = "Please enter your last name here";
+    this.emailPlaceholder1 = "Please enter your email here";
+    this.passwordPlaceholder1 = "Please enter your password here";
   }
+
+/*   get check(){
+    return this.signupForm.get('signupData.check');
+  }
+ */
+  OnSignup(){
+    this.auth.signup(this.credentials).subscribe(
+          () => { this.router.navigateByUrl('/profile'); }, 
+          (err) => { console.error(err); }
+          );
+  }
+
 }
