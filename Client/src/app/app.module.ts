@@ -8,6 +8,7 @@ import { MatToolbarModule } from '@angular/material';
 import { HttpClientModule } from '../../node_modules/@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { MatTabsModule } from '@angular/material/tabs';
 
 import { AppComponent } from './app.component';
 import { MovieCardComponent } from './Components/MovieComponents/movie-card-component/movie-card.component';
@@ -24,6 +25,7 @@ import { AuthenticationService } from './Services/authentication.service';
 import { SignupComponent } from './Components/signup/signup.component';
 import { PreferencesComponent } from './Components/preferences/preferences.component';
 import { SimilarMoviesComponent } from './Components/similar-movies/similar-movies.component';
+import { TimeAndTheatreComponent } from './Components/time-and-theatre/time-and-theatre.component';
 
 const routes: Routes = [
     { path: 'coming_soon', component: HomeComponent },
@@ -51,7 +53,8 @@ const routes: Routes = [
         LoginComponent,
         SignupComponent,
         PreferencesComponent,
-        SimilarMoviesComponent
+        SimilarMoviesComponent,
+        TimeAndTheatreComponent
     ],
     imports: [
         BrowserModule,
@@ -63,7 +66,8 @@ const routes: Routes = [
         MatToolbarModule,
         HttpClientModule,
         FormsModule,
-        NgMultiSelectDropDownModule.forRoot()
+        NgMultiSelectDropDownModule.forRoot(),
+        MatTabsModule
     ],
     providers: [MovieService, AuthenticationService],
     bootstrap: [AppComponent]

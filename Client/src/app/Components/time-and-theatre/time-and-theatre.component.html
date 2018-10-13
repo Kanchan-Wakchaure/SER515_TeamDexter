@@ -1,0 +1,26 @@
+<div class="container"><mat-tab-group>
+  <mat-tab label="Today">
+    <br>
+    <div class="row container">
+    	<div class="col-md-2" *ngFor="let day of day1">
+    		{{ day.time }} {{ day.theatre }}
+    	</div>
+    </div>
+  </mat-tab>
+  <mat-tab label="Tomorrow">
+    <br>
+    <div class="row container">
+    	<div class="col-md-2" *ngFor="let day of day2">
+    		{{ day.time }} {{ day.theatre }}
+    	</div>
+    </div>
+  </mat-tab>
+  <mat-tab label="Day After">
+    <br>
+    <div class="row container">
+    	<div class="col-md-2" *ngFor="let day of day3">
+    		{{ day.time }} {{ day.theatre }}
+    	</div>
+    </div>
+  </mat-tab>
+</mat-tab-group></div>
