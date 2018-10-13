@@ -1,17 +1,17 @@
 <div class="container"><mat-tab-group>
   <mat-tab label="Today">
+    {{attachCinema(movie)}} 
     <br>
     <div class="row container">
-    	<div class="col-md-2" *ngFor="let day of day1">
+    	<div class="col-md-3" *ngFor="let day of day1">
     		{{ day.time }} {{ day.theatre }}
-        {{diagnostic}}
     	</div>
     </div>
   </mat-tab>
   <mat-tab label="Tomorrow">
     <br>
     <div class="row container">
-    	<div class="col-md-2" *ngFor="let day of day2">
+    	<div class="col-md-3" *ngFor="let day of day2">
     		{{ day.time }} {{ day.theatre }}
     	</div>
     </div>
@@ -19,7 +19,7 @@
   <mat-tab label="Day After">
     <br>
     <div class="row container">
-    	<div class="col-md-2" *ngFor="let day of day3">
+    	<div class="col-md-3" *ngFor="let day of day3">
     		{{ day.time }} {{ day.theatre }}
     	</div>
     </div>

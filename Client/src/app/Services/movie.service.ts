@@ -29,7 +29,7 @@ export class MovieService {
 
   /* A getter method to get movie details */
   getMovieDetails(id: number) {
-    return this.http.get("http://localhost:4241/movie/" + id, {
+    return this.http.get("http://localhost:4241/movies/" + id, {
       responseType: "json"
     });
   }
