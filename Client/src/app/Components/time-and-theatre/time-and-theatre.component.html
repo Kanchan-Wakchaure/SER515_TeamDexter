@@ -2,9 +2,16 @@
   <mat-tab label="Today">
     {{attachCinema(movie)}} 
     <br>
-    <div class="row container">
-    	<div class="col-md-3" *ngFor="let day of day1">
-    		{{ day.time }} {{ day.theatre }}
+    <div class="row container scroller">
+    	<div class="col-6 row" *ngFor="let day of day1">
+    		 <h6>{{ day.theatre }} </h6>
+          <div class="row container">
+            <p class="timings" *ngFor="let showTime of day['times']">
+             {{ showTime.time }}
+            </p>
+          </div>
+          <a class="maroon" href= "{{day.movie_link}}" >Book Tickets</a>
+          <!-- <p></p> -->
     	</div>
     </div>
   </mat-tab>

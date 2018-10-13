@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MovieService } from '../../Services/movie.service';
-import { Movie } from '../movie.model';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -15,21 +14,30 @@ export class TimeAndTheatreComponent implements OnInit {
   day1 = [];
   day2 = [];
   day3 = [];
+  tempTimes = [];
+  link;
 
   constructor(public movieService: MovieService, private route: ActivatedRoute) { }
 
   attachCinema(movie: any){
-    for(let show of movie["show_detail"]){
-      let tempTheatre: string;
-      for(let cinema of movie["cinema_detail"]){
+    for(let cinema of movie["cinema_detail"]){
+      this.tempTimes = [];
+      for(let show of movie["show_detail"]){
         if(cinema["id"] == show["cinema_id"]){
-          tempTheatre = cinema["name"];
-          break;
+          let x = show["time"].split("-");
+          let y = x[2].split("T");
+          let z = y[1].split(":");
+          let actualTime = z[0]+":"+z[1];
+          this.link = show["booking_link"];
+          this.tempTimes.push({
+            time: actualTime
+          });
         }
       }
       this.day1.push({
-        time: show["time"],
-        theatre: tempTheatre
+        theatre: cinema["name"],
+        movie_link: this.link,
+        times: this.tempTimes
       });
     }
   }
