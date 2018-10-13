@@ -1,6 +1,6 @@
 const request = require('request-promise');
 const keys = require('../config/keys');
-import MovieOverview from '../models/MovieOverview';
+const MovieOverview = require('../models/MovieOverview');
 
 module.exports = {
     getMovieSearch: (movieName) => {

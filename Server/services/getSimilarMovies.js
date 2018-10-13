@@ -1,6 +1,6 @@
 const request = require("request-promise");
 const keys = require("../config/keys");
-import MovieOverview from "../models/MovieOverview";
+const MovieOverview = require("../models/MovieOverview");
 
 /* 
  * This modules fetches the list of similar movies to the one selected, from themoviedb api. 

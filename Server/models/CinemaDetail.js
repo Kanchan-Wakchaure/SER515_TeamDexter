@@ -28,4 +28,4 @@ let CinemaDetail = new Schema({
     booking_type: String
 });
 
-export default mongoose.model('cinemas', CinemaDetail);
+module.exports = mongoose.model('cinemas', CinemaDetail);

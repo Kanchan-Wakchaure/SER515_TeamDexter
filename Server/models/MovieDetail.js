@@ -130,7 +130,11 @@ let MovieDetail = new Schema({
       time: String,
       booking_link: String
     }
-  ]
+  ],
+  cinema_detail: [{
+    id: String,
+    name: String
+  }]
 });
 
-export default mongoose.model("MovieDetail", MovieDetail);
+module.exports = mongoose.model("MovieDetail", MovieDetail);

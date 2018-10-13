@@ -21,4 +21,4 @@ let UserPreference = new Schema({
     },
 });
 
-export default mongoose.model('UserPreference', UserPreference);
+module.exports = mongoose.model('UserPreference', UserPreference);
