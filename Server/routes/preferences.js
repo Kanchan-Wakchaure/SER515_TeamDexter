@@ -1,4 +1,4 @@
-import UserPreference from '../models/UserPreference';
+const UserPreference = require('../models/UserPreference');
 
 var express = require("express");
 var router = express.Router();
