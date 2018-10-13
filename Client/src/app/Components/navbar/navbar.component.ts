@@ -49,4 +49,8 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['search', { name: movieName }]);
   }
 
+  navigateToHome() {
+    this.router.navigate(['home']);
+
+  }
 }

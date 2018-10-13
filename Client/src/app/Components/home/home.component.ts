@@ -10,19 +10,23 @@ import { MovieService } from "../../Services/movie.service";
 })
 export class HomeComponent implements OnInit {
   public movies: Movie[];
+  public showSlider: boolean = true;
 
   constructor(
     public movieService: MovieService,
     private router: Router,
     private activatedRoute: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit() {
     if (this.router.url.includes("/search")) {
+      this.showSlider = false;
       this.searchMovies();
     } else if (this.router.url.includes("/coming_soon")) {
+      this.showSlider = false;
       this.upcomingMovies();
     } else {
+      this.showSlider = true;
       this.movieService.getMovies().subscribe((response: Movie[]) => {
         this.movies = response;
       });
