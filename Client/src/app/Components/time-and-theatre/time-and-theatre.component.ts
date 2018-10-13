@@ -62,7 +62,10 @@ export class TimeAndTheatreComponent implements OnInit {
           break;
         }
       }
-      this.day1.push(time: show.time, theatre: tempTheatre);
+      this.day1.push({
+        time: show.time,
+        theatre: tempTheatre
+      });
     }
   }
 
