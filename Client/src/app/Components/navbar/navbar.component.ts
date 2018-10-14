@@ -7,6 +7,7 @@ import { LoginComponent } from '../login/login.component';
 import { SignupComponent } from '../signup/signup.component';
 import { FormControl } from '@angular/forms';
 import { MovieService } from '../../Services/movie.service';
+import { AuthenticationService } from '../../Services/authentication.service';
 
 @Component({
   selector: 'app-navbar',
@@ -16,8 +17,10 @@ import { MovieService } from '../../Services/movie.service';
 export class NavbarComponent implements OnInit {
 
   seachForm = new FormControl('');
+  
+  
   constructor(public dialog: MatDialog, private movieService: MovieService,
-    private router: Router) { }
+    private router: Router, private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
   }
@@ -27,12 +30,7 @@ export class NavbarComponent implements OnInit {
     const dialogReference = this.dialog.open(LoginComponent, {
       width: '600px'
     })
-
-    //action needed after dialog is closed.
-    dialogReference.afterClosed().subscribe(result => {
-      console.log("dialog was closed");
-    });
-
+    this.authenticationService.setDialogRef(dialogReference);
     return false;
   }
 

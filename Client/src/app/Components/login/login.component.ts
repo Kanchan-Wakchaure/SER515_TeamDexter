@@ -46,6 +46,7 @@ export class LoginComponent implements OnInit {
   onLoginSubmit() {
     this.authenticationService.login(this.credentials).subscribe(()=> {
       this.router.navigateByUrl('/home');
+      this.authenticationService.getDialogRef().close();
     }, (error) => {
       console.error(error);
     });

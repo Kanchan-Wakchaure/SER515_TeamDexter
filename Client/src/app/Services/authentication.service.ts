@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators/map';
+import { MatDialogRef } from '../../../node_modules/@angular/material';
+import { LoginComponent } from '../Components/login/login.component';
 
 export interface User {
   _id: string;
@@ -27,6 +29,7 @@ export interface TokenPayload {
 @Injectable()
 export class AuthenticationService {
   private token: string;
+  private dialogRef: MatDialogRef<LoginComponent>;
   
   constructor(private httpClient: HttpClient, private router: Router) {
 
@@ -83,7 +86,7 @@ export class AuthenticationService {
       let base;
 
       if(method==='post') {
-        base = this.httpClient.post("http://localhost:4241/auth/${type}",user);
+        base = this.httpClient.post("http://localhost:4241/auth/",user);
       } else {
         base = this.httpClient.get("http://localhost:4241/auth/${type}", { headers: { Authorization: `Bearer ${this.getToken()}` }});
       }
@@ -107,5 +110,15 @@ export class AuthenticationService {
     //signup method
     public signup(user: TokenPayload): Observable<any> {
       return this.request('post', 'signup', user);
+    }
+
+    //setter method for dialog reference
+    public setDialogRef(dialogRef){
+      this.dialogRef = dialogRef;
+    }
+
+    //getter method for dialog reference
+    public getDialogRef(){
+      return this.dialogRef;
     }
 }
