@@ -1,10 +1,10 @@
 import { Movie } from "../Components/movie.model";
-import { Injectable } from "../../../node_modules/@angular/core";
+import { Injectable } from "@angular/core";
 import {
   HttpClient,
   HttpHeaders,
   HttpParams
-} from "../../../node_modules/@angular/common/http";
+} from "@angular/common/http";
 // import { timingSafeEqual } from 'crypto';
 
 /*
