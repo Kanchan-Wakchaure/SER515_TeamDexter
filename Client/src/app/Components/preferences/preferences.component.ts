@@ -1,19 +1,21 @@
 import { Component, OnInit } from '@angular/core';
+import { PreferenceService } from '../../Services/preference.service';
+import { Preference } from '../../Components/preference.model';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-preferences',
   templateUrl: './preferences.component.html',
   styleUrls: ['./preferences.component.css']
 })
+
 export class PreferencesComponent implements OnInit {
 
-  email = "adfsdv";
+  public preference: Preference;
+  private user_id: number;
   genresList = [];
   languagesList = [];
   actorsList = [];
-  selectedGenres = [];
-  selectedLanguages = [];
-  selectedActors = [];
 
   dropdownSettings = {};
 
@@ -21,9 +23,12 @@ export class PreferencesComponent implements OnInit {
 
   onSubmit() { this.submitted = true; }
 
-  constructor() { }
+  constructor(public preferenceService: PreferenceService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+
+    this.preference = new Preference();
+    this.route.params.subscribe(params => { this.user_id = params['user_id'] });
 
     this.genresList = [
       { item_id: 1, item_text: 'Action' },
@@ -43,12 +48,8 @@ export class PreferencesComponent implements OnInit {
       { item_id: 1, item_text: 'Will Smith' },
       { item_id: 2, item_text: 'Tom Hanks' },
       { item_id: 3, item_text: 'Angelina Jolie' },
-      { item_id: 4, item_text: 'Tom Cruise' },
+      { item_id: 4, item_text: 'Tom Cruise' }
     ];
-
-    this.selectedGenres = [];
-    this.selectedLanguages = [];
-    this.selectedActors = [];
 
     this.dropdownSettings = {
       singleSelection: false,
@@ -57,22 +58,24 @@ export class PreferencesComponent implements OnInit {
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
       itemsShowLimit: 3,
-      allowSearchFilter: true
+      allowSearchFilter: true,
     };
   }
 
-  onItemSelect (item:any) {
-    console.log(item);
+  get diagnostic() { return JSON.stringify(this.preference); }
+
+
+  submitPreference(){
+    this.preferenceService.updatePreferences(this.user_id, this.preference);
   }
 
-  onSelectAll (items: any) {
-    console.log(items);
+  submitNewPreference(){
+    this.preferenceService.updateNewPreferences(this.preference);
   }
 
-  get diagnostic() { return JSON.stringify(this.selectedGenres); }
-
-  submitData(){
-    
+  getPreference(){
+    this.preferenceService.getPreferencesById(this.user_id).subscribe((response: any) => {
+      this.preference = response;
+    });
   }
-
 }

@@ -26,6 +26,7 @@ import { SignupComponent } from './Components/signup/signup.component';
 import { PreferencesComponent } from './Components/preferences/preferences.component';
 import { SimilarMoviesComponent } from './Components/similar-movies/similar-movies.component';
 import { TimeAndTheatreComponent } from './Components/time-and-theatre/time-and-theatre.component';
+import { PreferenceService } from './Services/preference.service';
 
 const routes: Routes = [
     { path: 'coming_soon', component: HomeComponent },
@@ -69,7 +70,7 @@ const routes: Routes = [
         NgMultiSelectDropDownModule.forRoot(),
         MatTabsModule
     ],
-    providers: [MovieService, AuthenticationService],
+    providers: [MovieService, AuthenticationService, PreferenceService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
