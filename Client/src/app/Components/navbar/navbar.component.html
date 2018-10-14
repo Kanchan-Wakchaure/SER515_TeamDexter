@@ -22,8 +22,22 @@
         <a class="nav-li" href="/wish_list">Wish List</a>
         <a class="nav-li" href="/latest">Latest</a>
       </nav>
-      <div class="log"><a class="btn btn-primary login-button" href="" (click)="openDialog()">Log In</a></div>
-      <div class="signup"><a class="btn btn-primary signup-button" href="" (click)="openSignUp()">Sign Up</a></div>
+      <div class="log"
+        *ngIf = "!this.authenticationService.isLoggedIn()">
+        <a class="btn btn-primary login-button" href="" (click)="openDialog()">Log In</a>
+      </div>
+      <div class="signup"
+      *ngIf = "!this.authenticationService.isLoggedIn()">
+        <a class="btn btn-primary signup-button" href="" (click)="openSignUp()">Sign Up</a>
+      </div>
+      <div
+      *ngIf = "this.authenticationService.isLoggedIn()">
+        <p class="nav-li">hi {{this.authenticationService.getUser().firstName}}</p>
+      </div>
+      <div class="log"
+        *ngIf = "this.authenticationService.isLoggedIn()">
+        <a class="btn btn-primary login-button" href="" (click)="logOut()">Log out</a>
+      </div>
     </div>
   </div>
 </div>
