@@ -24,7 +24,7 @@ export class MovieService {
     * @returns movies: Movie[].
     */
   getMovies() {
-    return this.http.get("http://localhost:4241/", { responseType: "json" });
+    return this.http.get("http://localhost:4241/movies", { responseType: "json" });
   }
 
   /* A getter method to get movie details */
