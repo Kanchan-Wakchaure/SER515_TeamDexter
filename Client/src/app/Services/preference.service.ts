@@ -1,4 +1,4 @@
-import { Preferences } from "../Components/preferences.model";
+import { Preference } from "../Components/preference.model";
 import { Injectable } from "../../../node_modules/@angular/core";
 import {
   HttpClient,
@@ -11,7 +11,7 @@ import {
 @Injectable()
 export class PreferenceService {
 
-  public preference: Preferences;
+  public preference: Preference;
 
   constructor(private http: HttpClient) {}
 
@@ -28,12 +28,12 @@ export class PreferenceService {
     });
   }
 
-  updatePreferences(id: number, preferences: Preferences) {
+  updatePreferences(id: number, preferences: Preference) {
     this.http.post("http://localhost:4241/preferences/"+ id, 
       preferences);
   }
 
-  updateNewPreferences(preferences: Preferences) {
+  updateNewPreferences(preferences: Preference) {
     this.http.post("http://localhost:4241/preferences/", preferences);
   }
 }

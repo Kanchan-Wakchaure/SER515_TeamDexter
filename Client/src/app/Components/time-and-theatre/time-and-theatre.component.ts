@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MovieService } from '../../Services/movie.service';
 import { ActivatedRoute } from '@angular/router';
+import { Movie } from '../../Components/movie.model';
+import { MovieDetailsComponent } from '../movie-details/movie-details.component';
 
 @Component({
   selector: 'app-time-and-theatre',
@@ -10,19 +11,25 @@ import { ActivatedRoute } from '@angular/router';
 export class TimeAndTheatreComponent implements OnInit {
   
   public movie_id: number;
-  public movie: any;
+  public movie: Movie;
   day1 = [];
   day2 = [];
   day3 = [];
   tempTimes = [];
   link;
 
-  constructor(public movieService: MovieService, private route: ActivatedRoute) { }
+  constructor(public movieDetails: MovieDetailsComponent) { }
 
-  attachCinema(movie: any){
-    for(let cinema of movie["cinema_detail"]){
+  ngOnInit() {
+
+  }
+
+  attachCinema(){
+    this.movie = this.movieDetails.movie;
+
+    for(let cinema of this.movie["cinema_detail"]){
       this.tempTimes = [];
-      for(let show of movie["show_detail"]){
+      for(let show of this.movie["show_detail"]){
         if(cinema["id"] == show["cinema_id"]){
           let x = show["time"].split("-");
           let y = x[2].split("T");
@@ -40,13 +47,5 @@ export class TimeAndTheatreComponent implements OnInit {
         times: this.tempTimes
       });
     }
-  }
-
-  ngOnInit() {
-
-    this.route.params.subscribe(params => { this.movie_id = params['movie_id'] });
-    this.movieService.getMovieDetails(this.movie_id).subscribe( (response: any) => {
-      this.movie = response;
-    });
   }
 }
