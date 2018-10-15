@@ -30,14 +30,22 @@
       *ngIf = "!this.authenticationService.isLoggedIn()">
         <a class="btn btn-primary signup-button" href="" (click)="openSignUp()">Sign Up</a>
       </div>
-      <div
-      *ngIf = "this.authenticationService.isLoggedIn()">
-        <p class="nav-li">hi {{this.authenticationService.getUser().firstName}}</p>
-      </div>
-      <div class="log"
-        *ngIf = "this.authenticationService.isLoggedIn()">
-        <a class="btn btn-primary login-button" href="" (click)="logOut()">Log out</a>
-      </div>
+      <ul class="nav navbar-nav navbar-right caret-text">
+          <li class="dropdown" appDropDown>
+              <a  *ngIf = "this.authenticationService.isLoggedIn()"
+              class="dropdown-toggle navset nav-li"
+              role="button"
+              style="cursor: pointer;">
+              hi {{this.authenticationService.getUser().firstName}}
+              <span class="caret open"></span>
+          </a>
+              <ul class = "dropdown-menu">
+                  <li><a style="cursor: pointer;">set favourites</a></li>
+                  <li><a style="cursor: pointer;" (click)="logOut()">Log out</a></li>
+              </ul>
+          </li>
+      </ul>
+      
     </div>
   </div>
 </div>
