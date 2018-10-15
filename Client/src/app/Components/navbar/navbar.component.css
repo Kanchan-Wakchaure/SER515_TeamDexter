@@ -33,9 +33,12 @@
 
 .navbar{
 	float: left;
-	padding: 0rem 35% !important;
+	padding: 0rem 30% !important;
 }
-
+.user-button{
+	background-color: maroon;
+	font-size: 10px;
+}
 .nav-li {
 	color: maroon;
 	display: block;
@@ -48,7 +51,7 @@
 	padding-left: 0;
 	margin-bottom: 0;
 	list-style: none;
-	width: auto;
+	max-width: auto;
 }
 
 .login-button{
@@ -77,6 +80,9 @@
 	 color: maroon;
  }
 
+ a:not([href]):not([tabindex]) {
+	 color: white;
+ }
 
 @media (min-width: 768px) and (max-width: 1199px) { 
 

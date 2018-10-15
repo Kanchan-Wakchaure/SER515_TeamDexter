@@ -24,28 +24,27 @@
       </nav>
       <div class="log"
         *ngIf = "!this.authenticationService.isLoggedIn()">
-        <a class="btn btn-primary login-button" href="" (click)="openDialog()">Log In</a>
+        <a class="btn btn-primary login-button"  (click)="openDialog()">Log In</a>
       </div>
       <div class="signup"
       *ngIf = "!this.authenticationService.isLoggedIn()">
-        <a class="btn btn-primary signup-button" href="" (click)="openSignUp()">Sign Up</a>
+        <a class="btn btn-primary signup-button"  (click)="openSignUp()">Sign Up</a>
       </div>
-      <ul class="nav navbar-nav navbar-right caret-text">
-          <li class="dropdown" appDropDown>
-              <a  *ngIf = "this.authenticationService.isLoggedIn()"
-              class="dropdown-toggle navset nav-li"
-              role="button"
-              style="cursor: pointer;">
-              hi {{this.authenticationService.getUser().firstName}}
-              <span class="caret open"></span>
-          </a>
-              <ul class = "dropdown-menu">
-                  <li><a style="cursor: pointer;">set favourites</a></li>
-                  <li><a style="cursor: pointer;" (click)="logOut()">Log out</a></li>
-              </ul>
-          </li>
-      </ul>
-      
+      <div class="dropdown navbar-right"
+      *ngIf = "this.authenticationService.isLoggedIn()">
+          <button class="btn btn-danger user-button dropdown-toggle" 
+          type="button" 
+          data-toggle="dropdown" 
+          aria-haspopup="true" 
+          aria-expanded="false"
+          (click)="toggleDropdown()">
+              hi, {{this.authenticationService.getUser().firstName}}!
+          </button>
+          <div class="dropdown-menu" id="dropdownMenuButton">
+            <a class="dropdown-item" href="#">Set favourites</a>
+            <a class="dropdown-item" href="#" (click)="logOut()">Log out</a>
+          </div>
+        </div>
     </div>
   </div>
 </div>

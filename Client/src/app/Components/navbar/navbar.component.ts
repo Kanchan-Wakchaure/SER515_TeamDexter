@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { Router } from "@angular/router";
 
 import { MatDialog } from '../../../../node_modules/@angular/material';
@@ -16,6 +16,7 @@ import { AuthenticationService } from '../../Services/authentication.service';
 })
 export class NavbarComponent implements OnInit {
 
+  
   seachForm = new FormControl('');
   
   
@@ -51,8 +52,13 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['home']);
 
   }
-
+  
+  //logs out the user
   logOut() {
     this.authenticationService.logout();
+  }
+  
+  toggleDropdown() {
+    document.getElementById('dropdownMenuButton').classList.toggle('show');
   }
 }

@@ -27,7 +27,7 @@ import { PreferencesComponent } from './Components/preferences/preferences.compo
 import { SimilarMoviesComponent } from './Components/similar-movies/similar-movies.component';
 import { TimeAndTheatreComponent } from './Components/time-and-theatre/time-and-theatre.component';
 import { PreferenceService } from './Services/preference.service';
-import { DropdownDirective } from './Directives/dropdown.directive';
+
 
 const routes: Routes = [
     { path: 'coming_soon', component: HomeComponent },
@@ -57,7 +57,6 @@ const routes: Routes = [
         PreferencesComponent,
         SimilarMoviesComponent,
         TimeAndTheatreComponent,
-        DropdownDirective
     ],
     imports: [
         BrowserModule,
