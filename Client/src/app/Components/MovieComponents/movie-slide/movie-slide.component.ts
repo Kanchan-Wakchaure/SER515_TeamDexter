@@ -33,10 +33,8 @@ export class MovieSlideComponent implements OnInit {
   startSliderInterval() {
     this.timeInterval = setInterval(()=> {
       if(this.currentMovie.sNumber==4) {
-        console.log(this.currentMovie.sNumber);
         this.currentMovie=this.popularMovies.find(x=>x.sNumber===1);
       } else {
-        console.log(this.currentMovie.sNumber);
         this.currentMovie = this.popularMovies.find(x=>x.sNumber===this.currentMovie.sNumber+1);
       }
     },5000);
