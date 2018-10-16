@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   emailPlaceholder: string;
   passwordPlaceholder : string;
-  
+  error: String = "";
   credentials: TokenPayload = {
     firstname: '',
     lastname: '',
@@ -46,9 +46,10 @@ export class LoginComponent implements OnInit {
   onLoginSubmit() {
     this.authenticationService.login(this.credentials).subscribe(()=> {
       this.router.navigateByUrl('/home');
+      console.log(this.authenticationService.getUser().location)
       this.authenticationService.getDialogRef().close();
     }, (error) => {
-      console.error(error);
+      this.error = "The username/password is invalid. Please try again"
     });
   }
 
