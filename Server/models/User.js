@@ -13,6 +13,9 @@ let userSchema = new Schema({
     type: String,
 
   },
+  city: {
+    type: String,
+  },
   hash: String,
   salt: String
 });
@@ -37,7 +40,8 @@ userSchema.methods.generateJwt = function () {
   return jwt.sign({
     _id: this._id,
     email: this.email,
-    firstName: this.firstName,
+    firstName: this.name,
+    location: this.city,
     exp: parseInt(expiry.getTime() / 1000)
   }, "MY_SECRET");
 };
