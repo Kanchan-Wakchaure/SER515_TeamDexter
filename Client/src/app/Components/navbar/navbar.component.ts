@@ -16,10 +16,10 @@ import { AuthenticationService } from '../../Services/authentication.service';
 })
 export class NavbarComponent implements OnInit {
 
-  
+
   seachForm = new FormControl('');
-  
-  
+
+
   constructor(public dialog: MatDialog, private movieService: MovieService,
     private router: Router, private authenticationService: AuthenticationService) { }
 
@@ -52,12 +52,12 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['home']);
 
   }
-  
+
   //logs out the user
   logOut() {
     this.authenticationService.logout();
   }
-  
+
   toggleDropdown() {
     document.getElementById('dropdownMenuButton').classList.toggle('show');
   }
