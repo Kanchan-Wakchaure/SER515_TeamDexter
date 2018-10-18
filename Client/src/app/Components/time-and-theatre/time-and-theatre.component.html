@@ -1,7 +1,6 @@
 <div class="container">
   <mat-tab-group>
   <mat-tab label="Today">
-    {{attachCinema()}} 
     <br>
     <div class="row container scroller">
     	<div class="col-6 row" *ngFor="let day of day1">
@@ -11,8 +10,7 @@
              {{ showTime.time }}
             </p>
           </div>
-          <a class="maroon" href= "{{day.movie_link}}" >Book Tickets</a>
-          <!-- <p></p> -->
+          <a class="maroon row container" href= "{{day.movie_link}}" >Book Tickets</a>
     	</div>
     </div>
   </mat-tab>

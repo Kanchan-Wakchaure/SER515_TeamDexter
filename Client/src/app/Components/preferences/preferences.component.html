@@ -6,8 +6,8 @@
 
   <ng-multiselect-dropdown
   [placeholder]="'Select Genres'"
-  [data]="genresList"
-  [(ngModel)]="preference.genres"
+  [data]="genreList"
+  [(ngModel)]="preference.genreList"
   [settings]="dropdownSettings"
   (onSelect)="onItemSelect($event)"
   (onSelectAll)="onSelectAll($event)" name="genres"></ng-multiselect-dropdown><br>
@@ -16,8 +16,8 @@
 
   <ng-multiselect-dropdown
   [placeholder]="'Select Languages'"
-  [data]="languagesList"
-  [(ngModel)]="preference.languages"
+  [data]="languageList"
+  [(ngModel)]="preference.languageList"
   [settings]="dropdownSettings"
   (onSelect)="onItemSelect($event)"
   (onSelectAll)="onSelectAll($event)" name="languages"></ng-multiselect-dropdown><br>
@@ -27,7 +27,7 @@
   <ng-multiselect-dropdown
   [placeholder]="'Select Actors'"
   [data]="actorsList"
-  [(ngModel)]="preference.actors"
+  [(ngModel)]="preference.actorsList"
   [settings]="dropdownSettings"
   (onSelect)="onItemSelect($event)"
   (onSelectAll)="onSelectAll($event)" name="actors"></ng-multiselect-dropdown><br>

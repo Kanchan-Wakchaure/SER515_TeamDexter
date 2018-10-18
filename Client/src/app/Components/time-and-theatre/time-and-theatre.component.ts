@@ -21,7 +21,7 @@ export class TimeAndTheatreComponent implements OnInit {
   constructor(public movieDetails: MovieDetailsComponent) { }
 
   ngOnInit() {
-
+    this.attachCinema()
   }
 
   attachCinema(){
