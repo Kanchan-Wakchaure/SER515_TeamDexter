@@ -85,9 +85,13 @@ export class AuthenticationService {
    private request(method: 'post'|'get', type:'login'|'signup', user?:TokenPayload) : Observable<any> {
       let base;
 
-      if(method==='post') {
+      if(method==='post' && type==='login') {
         base = this.httpClient.post("http://localhost:4241/auth/",user);
-      } else {
+      }
+      else if(method==='post' && type==='signup') {
+        base = this.httpClient.post("http://localhost:4241/users/",user);
+      }
+      else {
         base = this.httpClient.get("http://localhost:4241/auth/${type}", { headers: { Authorization: `Bearer ${this.getToken()}` }});
       }
 

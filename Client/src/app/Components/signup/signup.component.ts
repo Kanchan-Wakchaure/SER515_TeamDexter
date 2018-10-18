@@ -12,6 +12,8 @@ import { User } from '../user.model';
 
 export class SignupComponent implements OnInit {
 
+  isSignedUp: boolean;
+  isError: boolean;
   credentials: TokenPayload = {
     firstname: '',
     lastname: '',
@@ -19,6 +21,8 @@ export class SignupComponent implements OnInit {
     password: '',
     location: '' 
   };
+  error_msg: string;
+  success_msg: string;
 
   //variable that binds with html form.
   signupForm: FormGroup;
@@ -47,17 +51,16 @@ export class SignupComponent implements OnInit {
     this.lnamePlaceholder = "Please enter your last name here";
     this.emailPlaceholder1 = "Please enter your email here";
     this.passwordPlaceholder1 = "Please enter your password here";
+    this.isSignedUp = false;
+    this.isError = false;
+    this.error_msg = "User already exist with this email id";
+    this.success_msg = "You have registered successfully to FindMyShow application!";
   }
 
-/*   get check(){
-    return this.signupForm.get('signupData.check');
-  }
- */
   OnSignup(){
     this.auth.signup(this.credentials).subscribe(
-          () => { this.router.navigateByUrl('/profile'); }, 
-          (err) => { console.error(err); }
+          () => { this.isSignedUp = true; }, 
+          (err) => { this.isError = true; }
           );
   }
-
 }

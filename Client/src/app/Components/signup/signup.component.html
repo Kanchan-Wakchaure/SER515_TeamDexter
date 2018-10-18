@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <form [formGroup]="signupForm" (ngSubmit)="OnSignup()">
+      <form [formGroup]="signupForm" (ngSubmit)="OnSignup()" *ngIf = "!isSignedUp">
               
         <div formGroupName="signupData">
 
@@ -73,12 +73,13 @@
             <label for="location">Location:</label>
             <select class="form-control"
                     id="location" 
-                    name="location">
+                    name="location"
+                    [(ngModel)]="credentials.location">
               <option value="1">Select</option>                    
               <option value="2">Tempe</option>
               <option value="3">Chandler</option>
               <option value="4">Mesa</option>
-              <option value="5">Phoenix/option>
+              <option value="5">Phoenix</option>
               <option value="6">Scottsdale</option>
             </select>
           </div>        
@@ -94,10 +95,11 @@
           <p style="color: red">Please agree to terms and conditions for sign up</p>  
           </span>
               
-          <button [disabled]="!signupForm.valid" class="btn btn-danger">Sign Up</button> 
-        
-        </div>
-      </form>
-    </div>
+          <button [disabled]="!signupForm.valid" class="btn btn-danger" type="submit" >Sign Up</button>         
+        </div> 
+        <br><p *ngIf="isError" style="color: red">{{error_msg}}</p>               
+      </form>      
+    </div> 
+    <p *ngIf="isSignedUp">{{success_msg}}</p>         
   </div>
 </div>
