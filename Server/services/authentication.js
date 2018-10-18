@@ -5,13 +5,15 @@ const User = require('../models/User');
 
 
 
-module.exports.register = function (req, res) {
+module.exports.register= function (req, res) {
 
 
     var user = new User();
-    user.name = req.body.name;
+    user.firstname = req.body.firstname;
+    user.lastname = req.body.lastname;
     user.email = req.body.email;
-    console.log(user.name, user.email)
+    user.city = req.body.location;
+    console.log(user.firstname, user.email, user.city)
     user.setPassword(req.body.password);
     user.save(function (err) {
         if (err) {
