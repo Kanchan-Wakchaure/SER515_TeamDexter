@@ -9,9 +9,12 @@ let userSchema = new Schema({
     type: String,
 
   },
-  name: {
+  firstname: {
     type: String,
 
+  },
+  lastname:{
+    type: String,
   },
   city: {
     type: String,
@@ -40,7 +43,7 @@ userSchema.methods.generateJwt = function () {
   return jwt.sign({
     _id: this._id,
     email: this.email,
-    firstName: this.name,
+    firstName: this.firstname,
     location: this.city,
     exp: parseInt(expiry.getTime() / 1000)
   }, "MY_SECRET");
