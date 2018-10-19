@@ -24,6 +24,13 @@ export class SignupComponent implements OnInit {
   error_msg: string;
   success_msg: string;
 
+  cities = [
+    {id: 1, name: "Tempe"},
+    {id: 2, name: "Chandler"},
+    {id: 3, name: "Phoenix"},
+    {id: 4, name: "Mesa"}
+  ];
+
   //variable that binds with html form.
   signupForm: FormGroup;
   fnamePlaceholder: string;

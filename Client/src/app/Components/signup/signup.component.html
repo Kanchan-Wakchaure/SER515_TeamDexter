@@ -74,13 +74,9 @@
             <select class="form-control"
                     id="location" 
                     name="location"
-                    [(ngModel)]="credentials.location">
-              <option value="1">Select</option>                    
-              <option value="2">Tempe</option>
-              <option value="3">Chandler</option>
-              <option value="4">Mesa</option>
-              <option value="5">Phoenix</option>
-              <option value="6">Scottsdale</option>
+                    [(ngModel)]="credentials.location"
+                    [ngModelOptions]="{standalone: true}">
+                    <option *ngFor="let c of cities" [ngValue]="c.id">{{c.name}}</option>
             </select>
           </div>        
 
