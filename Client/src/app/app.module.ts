@@ -36,6 +36,7 @@ const routes: Routes = [
     { path: 'home', component: HomeComponent },
     { path: 'movie_details', component: MovieDetailsComponent },
     { path: 'search', component: HomeComponent },
+    { path: 'preferences', component: PreferencesComponent },
     { path: '', redirectTo: 'home', pathMatch: 'full' },
 ]
 

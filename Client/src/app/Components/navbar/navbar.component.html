@@ -29,12 +29,12 @@
         <button class="btn btn-primary login-button" (click)="openSignUp()">Sign Up</button>
       </div>
       <div class="nav dropdown" *ngIf="this.authenticationService.isLoggedIn()">
-        <button class="btn btn-danger user-button dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-          (click)="toggleDropdown()">
+        <button class="btn btn-danger user-button dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false" (click)="toggleDropdown()">
           hi, {{this.authenticationService.getUser().firstName}}!
         </button>
         <div class="dropdown-menu" id="dropdownMenuButton">
-          <a class="dropdown-item nav-li" href="#">Set favourites</a>
+          <a class="dropdown-item nav-li" [routerLink]="['preferences']">Set Preferences</a>
           <a class="dropdown-item nav-li" href="#" (click)="logOut()">Log out</a>
         </div>
       </div>
