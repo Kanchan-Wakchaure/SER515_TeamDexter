@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../user.model';
 import { FormGroup, FormControl, Validators } from '../../../../node_modules/@angular/forms';
+import { TokenPayload, AuthenticationService } from '../../Services/authentication.service';
+import { Router } from '@angular/router';
 
 
 
@@ -15,9 +16,17 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   emailPlaceholder: string;
   passwordPlaceholder : string;
-  requestedUser: User;
+  error: String = "";
+  credentials: TokenPayload = {
+    firstname: '',
+    lastname: '',
+    email: '',
+    password: '',
+    location: '' 
+  };
 
-  constructor() { }
+
+  constructor(private authenticationService: AuthenticationService, private router: Router) { }
 
   ngOnInit() {
     
@@ -30,14 +39,17 @@ export class LoginComponent implements OnInit {
 
     this.emailPlaceholder = "please enter your email here";
     this.passwordPlaceholder = "please enter your password here";
-    this.requestedUser = new User(); 
+     
   }
 
   //method that handles login form submit button.
   onLoginSubmit() {
-    this.requestedUser.eMail = this.loginForm.get('loginData.email').value;
-    this.requestedUser.password = this.loginForm.get('loginData.password').value;
-    console.log(this.requestedUser.eMail);
+    this.authenticationService.login(this.credentials).subscribe(()=> {
+      this.router.navigateByUrl('/home');
+      this.authenticationService.getDialogRef().close();
+    }, (error) => {
+      this.error = "The username/password is invalid. Please try again"
+    });
   }
 
 }

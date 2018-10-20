@@ -1,0 +1,33 @@
+<div class="container">
+  <mat-tab-group>
+  <mat-tab label="Today">
+    <br>
+    <div class="row container scroller">
+    	<div class="col-6 row" *ngFor="let day of day1">
+    		 <h6>{{ day.theatre }} </h6>
+          <div class="row container">
+            <p class="timings" *ngFor="let showTime of day['times']">
+             {{ showTime.time }}
+            </p>
+          </div>
+          <a class="maroon row container" href= "{{day.movie_link}}" >Book Tickets</a>
+    	</div>
+    </div>
+  </mat-tab>
+  <mat-tab label="Tomorrow">
+    <br>
+    <div class="row container">
+    	<div class="col-md-3" *ngFor="let day of day2">
+    		{{ day.time }} {{ day.theatre }}
+    	</div>
+    </div>
+  </mat-tab>
+  <mat-tab label="Day After">
+    <br>
+    <div class="row container">
+    	<div class="col-md-3" *ngFor="let day of day3">
+    		{{ day.time }} {{ day.theatre }}
+    	</div>
+    </div>
+  </mat-tab>
+</mat-tab-group></div>
