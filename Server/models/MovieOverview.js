@@ -25,4 +25,4 @@ let MovieOverview = new Schema({
     }
 });
 
-export default mongoose.model('MovieOverview', MovieOverview);
+module.exports = mongoose.model('MovieOverview', MovieOverview);

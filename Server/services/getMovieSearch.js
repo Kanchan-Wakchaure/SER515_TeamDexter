@@ -2,23 +2,16 @@ const request = require('request-promise');
 const keys = require('../config/keys');
 const MovieOverview = require('../models/MovieOverview');
 
-/* 
-*This modules fetches the list of top 20 recent movies from themoviedb api. 
-*@Author: Team Dexter.
-*/
 module.exports = {
-
-    getMovieList: (pageNumber) => {
-
+    getMovieSearch: (movieName) => {
         var options = {
-            uri: 'https://api.themoviedb.org/3/discover/movie/',
+            uri: 'https://api.themoviedb.org/3/search/movie',
             qs: {
                 api_key: keys.movieApiKey,
                 language: 'en-US',
-                sort_by: 'popularity.desc',
+                query: movieName,
+                page: 1,   // Increment @page to get next 20 movies
                 include_adult: 'false',
-                include_video: 'false',
-                page: pageNumber   // Increment @page to get next 20 movies
             },
             headers: {
                 'User-Agent': 'Request-Promise'
@@ -41,7 +34,4 @@ module.exports = {
             return movieList;
         });
     }
-
 }
-
-
