@@ -1,6 +1,6 @@
 const request = require('request-promise');
 const keys = require('../config/keys');
-import MovieOverview from '../models/MovieOverview';
+const MovieOverview = require('../models/MovieOverview');
 
 /* 
 *This modules fetches the list of top 20 recent movies from themoviedb api. 
@@ -8,7 +8,7 @@ import MovieOverview from '../models/MovieOverview';
 */
 module.exports = {
 
-    getMovieList: () => {
+    getMovieList: (pageNumber) => {
 
         var options = {
             uri: 'https://api.themoviedb.org/3/discover/movie/',
@@ -18,7 +18,7 @@ module.exports = {
                 sort_by: 'popularity.desc',
                 include_adult: 'false',
                 include_video: 'false',
-                page: 1   // Increment @page to get next 20 movies
+                page: pageNumber   // Increment @page to get next 20 movies
             },
             headers: {
                 'User-Agent': 'Request-Promise'

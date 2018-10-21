@@ -1,0 +1,12 @@
+.timings{
+	padding-left: 10px;
+}
+
+.scroller {
+    overflow: scroll;
+    height: 250px;
+}
+
+a {
+    color: maroon;
+}

@@ -3,3 +3,8 @@
     position: relative;
     top: 0px;
 }
+
+.scroller {
+    overflow: scroll;
+    height: 50px;
+}

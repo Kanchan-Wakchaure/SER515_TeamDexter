@@ -11,6 +11,8 @@ export class Movie {
     //public genre: String;
     public poster_path: String;
     public id: string;
+    public cinema_detail: [string, string];
+    public show_detail: [string, string, string, string];
 
     
 }

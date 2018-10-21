@@ -11,15 +11,14 @@ import { ActivatedRoute } from '@angular/router';
 export class MovieDetailsComponent implements OnInit {
   public movie: Movie;
   private movie_id: number;
-  constructor(public movieService: MovieService, private route: ActivatedRoute) { 
+  constructor(public movieService: MovieService, private route: ActivatedRoute) {
 
   }
 
   ngOnInit() {
-    this.route.params.subscribe(params=>{this.movie_id=params['movie_id']});
-    this.movieService.getMovieDetails(this.movie_id).subscribe((response: any)=>{
-     debugger;
+    this.route.params.subscribe(params => { this.movie_id = params['movie_id'] });
+    this.movieService.getMovieDetails(this.movie_id).subscribe((response: any) => {
       this.movie = response;
     });
-      }
+  }
 }

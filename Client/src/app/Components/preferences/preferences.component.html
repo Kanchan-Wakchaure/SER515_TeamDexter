@@ -1,0 +1,21 @@
+<div class="container prefer">
+  <p>Email</p>
+  <input type="text" class="form-control" id="email" required [(ngModel)]="preference.email" name="email"><br>
+  <p>Genre</p>
+
+  <ng-multiselect-dropdown [placeholder]="'Select Genres'" [data]="genreList" [(ngModel)]="preference.genreList"
+    [settings]="dropdownSettings" (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)" name="genres"></ng-multiselect-dropdown><br>
+
+  <p>Language</p>
+
+  <ng-multiselect-dropdown [placeholder]="'Select Languages'" [data]="languageList" [(ngModel)]="preference.languageList"
+    [settings]="dropdownSettings" (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)" name="languages"></ng-multiselect-dropdown><br>
+
+  <p>Actor</p>
+
+  <ng-multiselect-dropdown [placeholder]="'Select Actors'" [data]="actorsList" [(ngModel)]="preference.actorsList"
+    [settings]="dropdownSettings" (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)" name="actors"></ng-multiselect-dropdown><br>
+
+  <button type="submit" class="btn btn-success" (click)="submitNewPreference()">Submit</button><br><br>
+
+</div>

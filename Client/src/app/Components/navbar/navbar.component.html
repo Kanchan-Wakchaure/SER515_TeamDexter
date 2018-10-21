@@ -1,15 +1,16 @@
 <div class="container-fluid navigation">
   <div class="row">
     <div class="col-md-2 col-sm-2">
-      <div class="logo">FindMyShow</div>
+      <div class="logo" (click)="navigateToHome()">FindMyShow</div>
     </div>
     <div class="col-md-8 col-sm-8">
       <div class="form-group search-box">
-        <input type="text" class="form-control" id="search_subject" placeholder="Search">
+        <input type="text" class="form-control" id="search_subject" placeholder="Search for movies" (keyup.enter)="searchMovies(seachForm.value)"
+          [formControl]="seachForm">
       </div>
     </div>
     <div class="col-md-2 col-sm-2 search-content">
-        <a class="btn btn-primary search-button" href="/search" role="button">Search</a>
+      <a class="btn btn-primary search-button" role="button" (click)="searchMovies(seachForm.value)">Search</a>
     </div>
   </div>
 
@@ -21,7 +22,22 @@
         <a class="nav-li" href="/wish_list">Wish List</a>
         <a class="nav-li" href="/latest">Latest</a>
       </nav>
-      <div class="log"><a class="btn btn-primary login-button" href="" (click)="openDialog()">Log In</a></div>
+      <div class="log" *ngIf="!this.authenticationService.isLoggedIn()">
+        <button class="btn btn-primary login-button" (click)="openDialog()">Log In</button>
+      </div>
+      <div class="signup" *ngIf="!this.authenticationService.isLoggedIn()">
+        <button class="btn btn-primary login-button" (click)="openSignUp()">Sign Up</button>
+      </div>
+      <div class="nav dropdown" *ngIf="this.authenticationService.isLoggedIn()">
+        <button class="btn btn-danger user-button dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false" (click)="toggleDropdown()">
+          hi, {{this.authenticationService.getUser().firstName}}!
+        </button>
+        <div class="dropdown-menu" id="dropdownMenuButton">
+          <a class="dropdown-item nav-li" [routerLink]="['preferences']">Set Preferences</a>
+          <a class="dropdown-item nav-li" href="#" (click)="logOut()">Log out</a>
+        </div>
+      </div>
     </div>
   </div>
 </div>
