@@ -6,3 +6,12 @@
     grid-template-rows: auto;
     grid-gap: 20px;
   }
+
+ngb-pagination ::ng-deep ul > li > a {
+    color: black;
+}
+
+ngb-pagination ::ng-deep ul > li.active > a {
+    color: white;
+    background-color: #dc3545 !important;
+}

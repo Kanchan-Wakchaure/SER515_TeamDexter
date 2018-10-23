@@ -9,6 +9,7 @@ import { HttpClientModule } from '../../node_modules/@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { MatTabsModule } from '@angular/material/tabs';
+import {NgbPaginationModule, NgbPaginationConfig} from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { MovieCardComponent } from './Components/MovieComponents/movie-card-component/movie-card.component';
@@ -70,9 +71,15 @@ const routes: Routes = [
         HttpClientModule,
         FormsModule,
         NgMultiSelectDropDownModule.forRoot(),
-        MatTabsModule
+        MatTabsModule,
+        NgbPaginationModule
     ],
-    providers: [MovieService, AuthenticationService, PreferenceService],
+    providers: [
+        MovieService, 
+        AuthenticationService, 
+        PreferenceService,
+        NgbPaginationConfig
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
