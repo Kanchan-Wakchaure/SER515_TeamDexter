@@ -11,6 +11,7 @@ import { MovieService } from "../../Services/movie.service";
 export class HomeComponent implements OnInit {
   public movies: Movie[];
   public showSlider: boolean = true;
+  page: number = 1;
 
   constructor(
     public movieService: MovieService,
