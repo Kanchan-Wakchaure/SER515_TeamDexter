@@ -28,6 +28,7 @@ import { PreferencesComponent } from './Components/preferences/preferences.compo
 import { SimilarMoviesComponent } from './Components/similar-movies/similar-movies.component';
 import { TimeAndTheatreComponent } from './Components/time-and-theatre/time-and-theatre.component';
 import { PreferenceService } from './Services/preference.service';
+import { ActivationComponent } from './Components/activation/activation.component';
 
 
 const routes: Routes = [
@@ -38,8 +39,9 @@ const routes: Routes = [
     { path: 'movie_details', component: MovieDetailsComponent },
     { path: 'search', component: HomeComponent },
     { path: 'preferences', component: PreferencesComponent },
-    { path: '', redirectTo: 'home', pathMatch: 'full' },
-]
+    { path: 'activate', component: ActivationComponent },
+    { path: '', redirectTo: 'home', pathMatch: 'full' }
+];
 
 @NgModule({
     entryComponents: [
@@ -60,6 +62,7 @@ const routes: Routes = [
         PreferencesComponent,
         SimilarMoviesComponent,
         TimeAndTheatreComponent,
+        ActivationComponent,
     ],
     imports: [
         BrowserModule,
