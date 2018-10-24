@@ -49,7 +49,8 @@ router.get("/", function (req, res, next) {
       break;
     case 'search':
       let movieName = req.query.name;
-      getMovieSearch(movieName)
+      let details = req.query.details;
+      getMovieSearch(movieName, details)
         .then(movie => {
           res.json(movie);
         })

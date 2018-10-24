@@ -3,7 +3,7 @@ const keys = require('../config/keys');
 const MovieOverview = require('../models/MovieOverview');
 
 module.exports = {
-    getMovieSearch: (movieName) => {
+    getMovieSearch: (movieName, details) => {
         var options = {
             uri: 'https://api.themoviedb.org/3/search/movie',
             qs: {
@@ -21,16 +21,25 @@ module.exports = {
 
         return request(options).then(body => {
             var movieList = [];
-            body.results.map((item) => {
-                var overview = new MovieOverview();
-                overview.id = item.id;
-                overview.title = item.title;
-                overview.tagline = item.tagline;
-                overview.poster_path = keys.imageBaseURL + item.poster_path;
-                overview.overview = item.overview;
-                overview.vote_average = item.vote_average;
-                movieList.push(overview);
-            })
+            if (details == "full")
+                body.results.map((item) => {
+                    var overview = new MovieOverview();
+                    overview.id = item.id;
+                    overview.title = item.title;
+                    overview.tagline = item.tagline;
+                    overview.poster_path = keys.imageBaseURL + item.poster_path;
+                    overview.overview = item.overview;
+                    overview.vote_average = item.vote_average;
+                    movieList.push(overview);
+                })
+            else {
+                body.results.map((item) => {
+                    var overview = new MovieOverview();
+                    overview.id = item.id;
+                    overview.title = item.title;
+                    movieList.push(overview);
+                })
+            }
             return movieList;
         });
     }
