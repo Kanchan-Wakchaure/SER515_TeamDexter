@@ -11,7 +11,7 @@ export class MovieSlideComponent implements OnInit {
   timeInterval: any;
   
   //array of popular movies that needs to be seen on slider.
-  popularMovies: {sNumber: number, imageUrl: string}[] = [
+   popularMovies: {sNumber: number, imageUrl: string}[] = [
     {sNumber: 1 , imageUrl: "https://ohmy.disney.com/wp-content/uploads/2018/04/solo-thumb.jpg"},
     {sNumber: 2 , imageUrl: "https://i.ytimg.com/vi/XsGs_WvAQxw/maxresdefault.jpg" },
     {sNumber: 3 , imageUrl: "https://i2.wp.com/www.ageratingjuju.com/wp-content/uploads/2018/08/A-Simple-Favor-Age-Rating-2018-Movie-Poster-Images-and-Wallpapers.jpg?fit=1802%2C944&ssl=1"},

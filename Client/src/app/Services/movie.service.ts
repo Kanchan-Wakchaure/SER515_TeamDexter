@@ -15,6 +15,7 @@ import {
 */
 @Injectable()
 export class MovieService {
+
   //Sample data for movies.
   public movies: Movie[] = [];
 
@@ -23,8 +24,8 @@ export class MovieService {
   /* A getter method to get movies.
     * @returns movies: Movie[].
     */
-  getMovies() {
-    return this.http.get("http://localhost:4241/movies", { responseType: "json" });
+  getMovies(id: number) {
+    return this.http.get("http://localhost:4241/movies/?page="+id, { responseType: "json" });
   }
 
   /* A getter method to get movie details */
@@ -35,13 +36,14 @@ export class MovieService {
   }
 
   getSearchedMovieList(movieName: string, details: string) {
+    
     return this.http.get(
       "http://localhost:4241/movies/?type=search&name=" + movieName + "&details=" + details
     );
   }
 
-  getUpcomingMovieList() {
-    return this.http.get("http://localhost:4241/movies/?type=upcoming", {
+  getUpcomingMovieList(id: number) {
+    return this.http.get("http://localhost:4241/movies/?type=upcoming&page="+id, {
       responseType: "json"
     });
   }
