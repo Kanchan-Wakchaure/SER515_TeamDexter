@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Movie } from '../../Components/movie.model';
-import { MovieDetailsComponent } from '../movie-details/movie-details.component';
+//import { MovieDetailsComponent } from '../movie-details/movie-details.component';
 
 @Component({
   selector: 'app-time-and-theatre',
@@ -16,16 +16,15 @@ export class TimeAndTheatreComponent implements OnInit {
   day2 = [];
   day3 = [];
   tempTimes = [];
-  link;
 
-  constructor(public movieDetails: MovieDetailsComponent) { }
+  constructor() { }
 
   ngOnInit() {
     this.attachCinema()
   }
 
   attachCinema(){
-    this.movie = this.movieDetails.movie;
+    //this.movie = this.movieDetails.movie;
 
     for(let cinema of this.movie["cinema_detail"]){
       this.tempTimes = [];
@@ -35,15 +34,14 @@ export class TimeAndTheatreComponent implements OnInit {
           let y = x[2].split("T");
           let z = y[1].split(":");
           let actualTime = z[0]+":"+z[1];
-          this.link = show["booking_link"];
           this.tempTimes.push({
-            time: actualTime
+            time: actualTime,
+            booking_link: show["booking_link"]
           });
         }
       }
       this.day1.push({
         theatre: cinema["name"],
-        movie_link: this.link,
         times: this.tempTimes
       });
     }

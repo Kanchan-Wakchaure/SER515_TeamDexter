@@ -1,85 +1,49 @@
-<div style="display: flex;">
-    <div><img src={{movie.poster_path}}></div>
+    <div class="row">
+        <div class="col-md-3 poster"><img src={{movie.poster_path}}></div>
 
-    <div style="background-color:white;color: black;padding:10px;">
-        <table>
-            <tr>
-                <td align="right" class="td-config"><b>Movie name :</b></td>
-                <td>
-                    <font color="black">&nbsp;{{movie.original_title}}</font>
-                </td>
-            </tr>
-            <tr *ngIf="movie.tagline">
-                <td align="right" class="td-config"><b>Tag line :</b></td>
-                <td>
-                    <font color="black">&nbsp;{{movie.tagline}}</font>
-                </td>
-            </tr>
-            <tr>
-                <td align="right" class="td-config"><b>Genres :</b></td>
-                <td><span *ngFor="let genre of movie.genres; let isLast=last">
-                        <font color="black">{{genre.name}}{{isLast ? '' : '/'}}</font>
+        <div class="col-md-7">
+
+            <font size="18" color="black">&nbsp;{{movie.original_title}}</font>
+
+            <span class="language">&nbsp; {{movie.original_language}}</span>
+
+            <a class="btn btn-primar booking" role="button" (click)=openDialog()>Find Shows</a>
+
+            <div class="row tagline">
+                <p>{{movie.tagline}}</p>
+            </div>
+
+            <div class="row genres">
+                <span *ngFor="let genre of movie.genres; let isLast=last">
+                    <p>{{genre.name}}{{isLast ? '' : '/'}}</p>
+                </span>
+            </div>
+
+            <div class="row tagline">
+                <p>{{movie.overview}}</p>
+            </div>
+
+            <div class="row info">
+                <b>Release Date</b><p>&nbsp; {{movie.release_date | date}}</p>
+            </div>
+
+            <div class="row info">
+                <b>Votes</b><p>&nbsp; {{movie.vote_count}}</p>
+                <b>&nbsp; Average</b><p>&nbsp; {{movie.vote_average}}</p>
+            </div>
+
+            <div class="row info">
+                <b>Cast</b>
+                <div class="scroller">
+                    <span *ngFor="let cast of movie.cast; let isLast=last">
+                        <font>{{cast.name}}{{isLast ? '' : ', '}}</font>
                     </span>
-                </td>
-            </tr>
-            <tr>
-                <td align="right" class="td-config"><b>Original Language :</b></td>
-                <td>
-                    <font color="black">&nbsp;{{movie.original_language}}</font>
-                </td>
-            </tr>
-            <tr>
-                <td align="right" valign="top" class="td-config"><b>Star Cast :</b></td>
-                <td>
-                    <div class="scroller"><span *ngFor="let cast of movie.cast; let isLast=last">
-                            <font color="black">{{cast.name}}{{isLast ? '' : ', '}}</font>
-                        </span></div>
-                </td>
-            </tr>
-            <tr>
-                <td align="right" valign="top" class="td-config"><b>Producer :</b></td>
-                <td><span *ngFor="let crew of movie.crew">
-                        <font color="black" *ngIf="crew.job=='Producer'">{{crew.name}},</font>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td align="right" valign="top" class="td-config"><b>Director :</b></td>
-                <td><span *ngFor="let crew of movie.crew">
-                        <font color="black" *ngIf="crew.job=='Director'">{{crew.name}},</font>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td align="right" class="td-config"><b>Release Date :</b></td>
-                <td>
-                    <font color="black">&nbsp;{{movie.release_date | date}}</font>
-                </td>
-            </tr>
-            <tr>
-                <td align="right" class="td-config"><b>Vote average :</b></td>
-                <td>
-                    <font color="black">&nbsp;{{movie.vote_average}}</font>
-                </td>
-            </tr>
-            <tr>
-                <td align="right" class="td-config"><b>Vote count :</b></td>
-                <td>
-                    <font color="black">&nbsp;{{movie.vote_count}}</font>
-                </td>
-            </tr>
-        </table>
-        <br>
-        <b>Overview:</b>
-        <p>
-            <font color="black">{{movie.overview}}</font>
-        </p>
-        <div class="container row">
-            <app-time-and-theatre></app-time-and-theatre>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-
-<div>
-    <app-similar-movies [movieID]="movie_id"></app-similar-movies>
+<div class="row suggest">
+    <div class="scroll_vertical">
+        <app-similar-movies [movieID]="movie_id"></app-similar-movies>
+    </div>
 </div>

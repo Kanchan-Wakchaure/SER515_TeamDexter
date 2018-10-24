@@ -1,3 +1,39 @@
+ a:not([href]):not([tabindex]) {
+	 color: white;
+ }
+
+img {
+	width: 75%;
+}
+
+.poster {
+	margin-left: 6%;
+}
+
+.booking {
+	float: right;
+	margin-right: 10%;
+	margin-top: 3%;
+	background-color: maroon;
+	cursor: pointer;
+	font-size: 12px;
+	text-align: center;
+} 
+
+.genres {
+	font-family: "Times New Roman", Times, serif;
+	margin-left: 2%;
+}
+
+.tagline {
+	font-style: italic;
+	margin-left: 2%
+}
+
+.info {
+	margin-left: 2%;
+}
+
 .td-config{
     width: 200px;
     position: relative;
@@ -7,4 +43,18 @@
 .scroller {
     overflow: scroll;
     height: 50px;
+}
+
+.suggest {
+	margin-top: 2%;
+	margin-left: 6%;
+	margin-right: 6%;
+}
+
+.scroll_vertical{
+	overflow-y: auto;
+}
+
+#booker {
+	visibility: hidden;
 }
