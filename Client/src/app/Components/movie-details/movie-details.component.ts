@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MovieService } from '../../Services/movie.service';
 import { Movie } from '../../Components/movie.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 
 import { TimeAndTheatreComponent } from '../time-and-theatre/time-and-theatre.component';
@@ -14,7 +14,9 @@ import { TimeAndTheatreComponent } from '../time-and-theatre/time-and-theatre.co
 export class MovieDetailsComponent implements OnInit {
   public movie: Movie;
   private movie_id: number;
-  constructor(public movieService: MovieService, private route: ActivatedRoute, public dialog: MatDialog) {
+  constructor(public movieService: MovieService, private route: ActivatedRoute,
+    private router: Router, public dialog: MatDialog) {
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
 
   ngOnInit() {
