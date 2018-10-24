@@ -4,6 +4,7 @@ var moviesRoute = require("./routes/movies");
 var authUserRoute = require("./routes/auth");
 var usersRoute = require("./routes/users");
 var preferencesRoute = require("./routes/preferences");
+var activationRoute = require("./routes/activation");
 var passport = require('passport');
 var cors = require('cors');
 var cookieParser = require("cookie-parser");
@@ -31,6 +32,7 @@ app.use("/movies", moviesRoute);
 app.use("/auth", authUserRoute);    //uncomment this on usage. Use this for handling login 
 app.use("/users", usersRoute);      //uncomment this on usage. Use this for handling REGISTER,PROFILE INFO, UPDATING PROFILE INFO. Use post method to register and get for getting info under same route 
 app.use("/preferences", preferencesRoute);
+app.use("/activate", activationRoute);
 
 
 //error handlers

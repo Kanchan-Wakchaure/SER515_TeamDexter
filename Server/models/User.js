@@ -13,14 +13,18 @@ let userSchema = new Schema({
     type: String,
 
   },
-  lastname:{
+  lastname: {
     type: String,
   },
   city: {
     type: String,
   },
   hash: String,
-  salt: String
+  salt: String,
+  verified: {
+    type: Boolean,
+    default: false
+  }
 });
 
 //function to set password.

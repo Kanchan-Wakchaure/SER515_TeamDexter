@@ -2,10 +2,13 @@
 var passport = require('passport');
 var mongoose = require('mongoose');
 const User = require('../models/User');
+const Activation = require('../models/activationlog')
+const { generateOTP, encryptOTP } = require('./activation');
+const { sendEmail } = require('./mailer');
 
 
 
-module.exports.register= function (req, res) {
+module.exports.register = function (req, res) {
 
 
     var user = new User();
@@ -15,7 +18,7 @@ module.exports.register= function (req, res) {
     user.city = req.body.location;
     console.log(user.firstname, user.email, user.city)
     user.setPassword(req.body.password);
-    user.save(function (err) {
+    user.save(function (err, insertedDocument) {
         if (err) {
             res.status(500);
             res.json({
@@ -24,12 +27,37 @@ module.exports.register= function (req, res) {
             })
         }
         else {
-            var token;
+            var token, otp;
             token = user.generateJwt();
-            res.status(200);
-            res.json({
-                "token": token
-            });
+            //console.log("id of inserted doc", insertedDocument.id)
+            otp = encryptOTP(generateOTP(insertedDocument.id))
+            console.log(otp)
+            var activation = new Activation();
+            activation.userid = insertedDocument.id
+            activation.otp = otp
+            activation.save(function (err) {
+
+                if (err) {
+                    res.status(500);
+                    res.json({
+                        'message': "Internal server error",
+                        'status': 501
+                    })
+                }
+                else {
+                    var mailOptions = {
+                        from: 'findmyshow1@gmail.com',
+                        to: user.email,
+                        subject: 'Welcome to FindMyShow',
+                        html: `<h2>Welcome to FindMyShow<h2></br><h4>Please activate your account at following link <h4></br><a href = "http://localhost:4200/activate?code=${otp}">Activate</a>`
+                    };
+                    sendEmail(mailOptions)
+                    res.status(200);
+                    res.json({
+                        "token": token
+                    });
+                }
+            })
         }
     });
 
