@@ -7,10 +7,9 @@
     		 <h6>{{ day.theatre }} </h6>
           <div class="row container">
             <p class="timings" *ngFor="let showTime of day['times']">
-             {{ showTime.time }}
+             <a href= "{{showTime.booking_link}}"> {{ showTime.time }} </a>
             </p>
           </div>
-          <a class="maroon row container" href= "{{day.movie_link}}" >Book Tickets</a>
     	</div>
     </div>
   </mat-tab>

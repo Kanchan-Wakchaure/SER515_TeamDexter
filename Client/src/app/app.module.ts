@@ -44,7 +44,8 @@ const routes: Routes = [
 @NgModule({
     entryComponents: [
         LoginComponent,
-        SignupComponent
+        SignupComponent,
+        TimeAndTheatreComponent
     ],
     declarations: [
         AppComponent,
