@@ -18,7 +18,7 @@ export class MovieService {
   //Sample data for movies.
   public movies: Movie[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   /* A getter method to get movies.
     * @returns movies: Movie[].
@@ -34,9 +34,9 @@ export class MovieService {
     });
   }
 
-  getSearchedMovieList(movieName: string) {
+  getSearchedMovieList(movieName: string, details: string) {
     return this.http.get(
-      "http://localhost:4241/movies/?type=search&name=" + movieName
+      "http://localhost:4241/movies/?type=search&name=" + movieName + "&details=" + details
     );
   }
 

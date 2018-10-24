@@ -9,8 +9,8 @@ import { HttpClientModule } from '../../node_modules/@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { MatTabsModule } from '@angular/material/tabs';
-import {NgbPaginationModule, NgbPaginationConfig} from '@ng-bootstrap/ng-bootstrap';
-
+import { NgbPaginationModule, NgbPaginationConfig } from '@ng-bootstrap/ng-bootstrap';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { AppComponent } from './app.component';
 import { MovieCardComponent } from './Components/MovieComponents/movie-card-component/movie-card.component';
 import { NavbarComponent } from './Components/navbar/navbar.component';
@@ -67,17 +67,18 @@ const routes: Routes = [
         MatCardModule,
         MatDialogModule,
         ReactiveFormsModule,
-        RouterModule.forRoot(routes),
+        RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' }),
         MatToolbarModule,
         HttpClientModule,
         FormsModule,
         NgMultiSelectDropDownModule.forRoot(),
         MatTabsModule,
+        MatAutocompleteModule,
         NgbPaginationModule
     ],
     providers: [
-        MovieService, 
-        AuthenticationService, 
+        MovieService,
+        AuthenticationService,
         PreferenceService,
         NgbPaginationConfig
     ],
