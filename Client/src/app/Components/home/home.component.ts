@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
       this.upcomingMovies();
     } else {
       this.showSlider = true;
-      this.movieService.getMovies().subscribe((response: Movie[]) => {
+      this.movieService.getMovies(this.page).subscribe((response: Movie[]) => {
         this.movies = response;
       });
     }
@@ -47,8 +47,19 @@ export class HomeComponent implements OnInit {
   }
 
   private upcomingMovies() {
-    this.movieService.getUpcomingMovieList().subscribe((res: Movie[]) => {
+    this.movieService.getUpcomingMovieList(this.page).subscribe((res: Movie[]) => {
       this.movies = res;
     });
+  }
+
+  private loadPage(id: number) {
+    if(this.router.url.includes('/coming_soon'))
+      this.movieService.getUpcomingMovieList(id).subscribe((response: Movie[])=> {
+        this.movies = response;
+      })
+    else if(this.router.url.includes('/home'))
+      this.movieService.getMovies(id).subscribe((response: Movie[])=> {
+      this.movies = response;
+    }) 
   }
 }
