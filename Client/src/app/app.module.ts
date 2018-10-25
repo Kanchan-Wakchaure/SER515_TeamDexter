@@ -19,6 +19,7 @@ import { FooterComponent } from './Components/footer/footer.component';
 import { MovieDetailsComponent } from './Components/movie-details/movie-details.component';
 import { MovieSlideComponent } from './Components/MovieComponents/movie-slide/movie-slide.component';
 import { LoginComponent } from './Components/login/login.component';
+import { UserProfileComponent } from './Components/user-profile/user-profile.component';
 
 import { MovieService } from './Services/movie.service';
 import { ReactiveFormsModule } from '../../node_modules/@angular/forms';
@@ -40,6 +41,7 @@ const routes: Routes = [
     { path: 'search', component: HomeComponent },
     { path: 'preferences', component: PreferencesComponent },
     { path: 'activate', component: ActivationComponent },
+    { path: 'user_profile', component: UserProfileComponent },
     { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 
@@ -63,6 +65,7 @@ const routes: Routes = [
         SimilarMoviesComponent,
         TimeAndTheatreComponent,
         ActivationComponent,
+        UserProfileComponent
     ],
     imports: [
         BrowserModule,
