@@ -124,6 +124,11 @@ let MovieDetail = new Schema({
     job: String,
     name: String,
     profile_path: String
+  }],
+  trailer: String,
+  reviews: [{
+    author: String,
+    content: String
   }]
 });
 

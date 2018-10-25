@@ -24,9 +24,31 @@ module.exports = {
       json: true
     };
 
+    var options_trailer = {
+      method: "GET",
+      url: `https://api.themoviedb.org/3/movie/${id}/videos`,
+      qs: {
+        api_key: keys.movieApiKey
+      },
+      json: true
+    };
+
+
+    var options_reviews = {
+      method: "GET",
+      url: `https://api.themoviedb.org/3/movie/${id}/reviews`,
+      qs: {
+        page: 1,
+        api_key: keys.movieApiKey
+      },
+      json: true
+    };
+
+    var details = new MovieDetail();
+
 
     return request(options).then(item => {
-      var details = new MovieDetail();
+
       details.adult = item.adult;
       details.backdrop_path = item.backdrop_path;
       details.belongs_to_collection = item.belongs_to_collection;
@@ -53,10 +75,18 @@ module.exports = {
       details.vote_average = item.vote_average;
       details.vote_count = item.vote_count;
 
-      return request(options_credits).then(credits => {
-        details.cast = credits.cast;
-        details.crew = credits.crew;
-        return details;
+      return request(options_trailer).then(res => {
+        details.trailer = 'https://www.youtube.com/watch/' + res.results[0].key
+
+        return request(options_reviews).then(res => {
+          details.reviews = res.results
+
+          return request(options_credits).then(credits => {
+            details.cast = credits.cast;
+            details.crew = credits.crew;
+            return details;
+          })
+        })
       })
     })
   }
