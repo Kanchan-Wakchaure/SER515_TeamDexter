@@ -64,6 +64,10 @@ export class NavbarComponent implements OnInit {
 
   }
 
+  viewprofile(){
+    this.router.navigate(['user_profile']);
+  }
+
   //logs out the user
   logOut() {
     this.authenticationService.logout();
@@ -74,8 +78,7 @@ export class NavbarComponent implements OnInit {
   }
 
   findMovieNames(movieName: string, details: string) {
-    if (movieName && movieName.length >= 3) {
-      // debugger;
+    if (movieName && movieName.length >= 3) {      
       this.searchMovies(movieName, details);
     }
   }
