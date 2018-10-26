@@ -74,12 +74,16 @@
             <select class="form-control"
                     id="location" 
                     name="location"
-                    [(ngModel)]="credentials.location"
-                    [ngModelOptions]="{standalone: true}">
+                    formControlName="location"
+                    [(ngModel)]="credentials.location">
+                    <option value ="" disabled selected hidden [ngValue]="null">Select</option>
                     <option *ngFor="let c of cities" [ngValue]="c.id">{{c.name}}</option>
             </select>
+            <span class="help-block"
+                  *ngIf="!signupForm.get('signupData.location').valid && signupForm.get('signupData.location').touched">
+                  <p style="color: red">Please select your location</p>
+            </span>
           </div>        
-
           <div class="form-group">                    
           <input type = "checkbox"
                  name = "check"  formControlName = "check" id="check">
