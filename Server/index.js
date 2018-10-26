@@ -1,6 +1,7 @@
 var express = require("express");
 var app = express();
 var moviesRoute = require("./routes/movies");
+var citiesRoute = require("./routes/cities");
 var authUserRoute = require("./routes/auth");
 var usersRoute = require("./routes/users");
 var preferencesRoute = require("./routes/preferences");
@@ -33,6 +34,7 @@ app.use(passport.initialize());
 
 //Add routing routes here
 app.use("/movies", moviesRoute);
+app.use("/cities", citiesRoute);
 app.use("/auth", authUserRoute);
 app.use("/users", usersRoute);
 app.use("/preferences", preferencesRoute);
