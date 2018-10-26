@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '../../../../node_modules/@angular/forms';
 import { TokenPayload, AuthenticationService } from '../../Services/authentication.service';
 import { User } from '../user.model';
+import { City } from '../city.model';
+import { CityService } from '../../Services/city.service';
 
 @Component({
   selector: 'app-signup',
@@ -24,12 +26,7 @@ export class SignupComponent implements OnInit {
   error_msg: string;
   success_msg: string;
 
-  cities = [
-    {id: 1, name: "Tempe"},
-    {id: 2, name: "Chandler"},
-    {id: 3, name: "Phoenix"},
-    {id: 4, name: "Mesa"}
-  ];
+  public cities: City[];
 
   //variable that binds with html form.
   signupForm: FormGroup;
@@ -40,7 +37,9 @@ export class SignupComponent implements OnInit {
   requestedUser: User;
 
 
-  constructor(private auth: AuthenticationService, private router: Router) {}
+  constructor(private auth: AuthenticationService, 
+              private cityService: CityService,
+              private router: Router) {}
 
   ngOnInit() {  
     
@@ -50,6 +49,7 @@ export class SignupComponent implements OnInit {
         'lastname': new FormControl(null,[Validators.required]),
         'email': new FormControl(null,[Validators.required,Validators.email]),
         'password': new FormControl(null,[Validators.required]),
+        'location': new FormControl(null, [Validators.required]),
         'check': new FormControl(null, [Validators.required])
       })
     });
@@ -62,6 +62,9 @@ export class SignupComponent implements OnInit {
     this.isError = false;
     this.error_msg = "User already exist with this email id";
     this.success_msg = "You have registered successfully to FindMyShow application!";
+    
+    this.cityService.getCities().subscribe((response: City[]) => {
+                                          this.cities = response; } );
   }
 
   OnSignup(){

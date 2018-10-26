@@ -30,6 +30,7 @@ import { SimilarMoviesComponent } from './Components/similar-movies/similar-movi
 import { TimeAndTheatreComponent } from './Components/time-and-theatre/time-and-theatre.component';
 import { PreferenceService } from './Services/preference.service';
 import { ActivationComponent } from './Components/activation/activation.component';
+import { CityService } from './Services/city.service';
 
 
 const routes: Routes = [
@@ -85,6 +86,7 @@ const routes: Routes = [
     providers: [
         MovieService,
         AuthenticationService,
+        CityService,
         PreferenceService,
         NgbPaginationConfig
     ],
