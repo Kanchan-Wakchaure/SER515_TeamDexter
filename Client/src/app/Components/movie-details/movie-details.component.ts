@@ -28,7 +28,7 @@ export class MovieDetailsComponent implements OnInit {
 
   openDialog() {
     const dialogReference = this.dialog.open(TimeAndTheatreComponent, {
-      width: '800px',
+      width: '780px',
       height: '500px',
     })
     dialogReference.afterClosed().subscribe(result => { console.log("dialog was closed"); });

@@ -18,6 +18,7 @@ export class MovieService {
 
   //Sample data for movies.
   public movies: Movie[] = [];
+  private movie_id: number;
 
   constructor(private http: HttpClient) { }
 
@@ -30,6 +31,7 @@ export class MovieService {
 
   /* A getter method to get movie details */
   getMovieDetails(id: number) {
+    this.movie_id = id;
     return this.http.get("http://localhost:4241/movies/" + id, {
       responseType: "json"
     });
@@ -55,5 +57,11 @@ export class MovieService {
         responseType: "json"
       }
     );
+  }
+
+  getShowTimes(days: number){
+    return this.http.get("http://localhost:4241/showtimes/"+ this.movie_id +"?date="+days, {
+      responseType: "json"
+    });
   }
 }
