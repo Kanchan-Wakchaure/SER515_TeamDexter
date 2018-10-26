@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Movie } from '../../Components/movie.model';
-//import { MovieDetailsComponent } from '../movie-details/movie-details.component';
+import { TimeAndTheatre } from '../timeandtheatre.model'
+import { MovieService } from '../../Services/movie.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-time-and-theatre',
@@ -10,39 +10,76 @@ import { Movie } from '../../Components/movie.model';
 })
 export class TimeAndTheatreComponent implements OnInit {
   
-  public movie_id: number;
-  public movie: Movie;
+  public data: TimeAndTheatre;
+  public date: number = 0;
   day1 = [];
   day2 = [];
   day3 = [];
-  tempTimes = [];
+  tempTimes1 = [];
+  tempTimes2 = [];
+  tempTimes3 = [];
 
-  constructor() { }
+
+  constructor(public movieService: MovieService, private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit() {
-    this.attachCinema()
+    
+    this.movieService.getShowTimes(3).subscribe((response: any) => {
+      this.data = response;
+      this.attachCinema();
+    });
   }
 
-  attachCinema(){
-    //this.movie = this.movieDetails.movie;
+  get diagnostic() { return JSON.stringify(this.data['show_detail']); }
 
-    for(let cinema of this.movie["cinema_detail"]){
-      this.tempTimes = [];
-      for(let show of this.movie["show_detail"]){
+  attachCinema(){
+    for(let cinema of this.data.cinema_detail){
+      this.tempTimes1 = [];
+      this.tempTimes2 = [];
+      this.tempTimes3 = [];
+      for(let show of this.data.show_detail){
         if(cinema["id"] == show["cinema_id"]){
           let x = show["time"].split("-");
           let y = x[2].split("T");
           let z = y[1].split(":");
           let actualTime = z[0]+":"+z[1];
-          this.tempTimes.push({
-            time: actualTime,
-            booking_link: show["booking_link"]
-          });
+
+          if(this.date == 0)
+            this.date = +y[0];
+
+          if(y[0] == this.date){
+            this.tempTimes1.push({
+              time: actualTime,
+              booking_link: show["booking_link"]
+            });
+          }
+
+          else if(y[0] == (this.date+1)){
+            this.tempTimes2.push({
+              time: actualTime,
+              booking_link: show["booking_link"]
+            });
+          }
+
+          else if(y[0] == (this.date+2)){
+            this.tempTimes3.push({
+              time: actualTime,
+              booking_link: show["booking_link"]
+            });
+          }
         }
       }
       this.day1.push({
         theatre: cinema["name"],
-        times: this.tempTimes
+        times: this.tempTimes1
+      });
+      this.day2.push({
+        theatre: cinema["name"],
+        times: this.tempTimes2
+      });
+      this.day3.push({
+        theatre: cinema["name"],
+        times: this.tempTimes3
       });
     }
   }

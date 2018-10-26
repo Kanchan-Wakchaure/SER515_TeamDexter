@@ -4,9 +4,14 @@
 
 .scroller {
     overflow: scroll;
-    height: 250px;
+    height: 370px;
 }
 
 a {
     color: maroon;
+}
+
+.theatre {
+	padding-left: 5px;
+	padding-right: 5px;
 }
