@@ -60,6 +60,7 @@ export class HomeComponent implements OnInit {
     else if(this.router.url.includes('/home'))
       this.movieService.getMovies(id).subscribe((response: Movie[])=> {
       this.movies = response;
-    }) 
+      }) 
+    window.scrollTo(0, 0);
   }
 }
