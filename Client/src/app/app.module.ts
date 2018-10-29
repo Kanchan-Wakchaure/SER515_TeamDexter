@@ -32,8 +32,9 @@ import { PreferenceService } from './Services/preference.service';
 import { ActivationComponent } from './Components/activation/activation.component';
 import { CityService } from './Services/city.service';
 import { ErrorDialogComponent } from './Components/error-dialog/error-dialog.component';
-
-
+import { AdmminService } from './Services/admin.service';
+import { MatButtonModule } from '@angular/material/button';
+import { AdminManageComponent } from './Components/admin-manage/admin-manage.component';
 const routes: Routes = [
     { path: 'coming_soon', component: HomeComponent },
     { path: 'wish_list/:id', component: HomeComponent },
@@ -44,6 +45,7 @@ const routes: Routes = [
     { path: 'preferences', component: PreferencesComponent },
     { path: 'activate', component: ActivationComponent },
     { path: 'user_profile', component: UserProfileComponent },
+    { path: 'manage', component: AdminManageComponent },
     { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 
@@ -68,7 +70,8 @@ const routes: Routes = [
         TimeAndTheatreComponent,
         ActivationComponent,
         UserProfileComponent,
-        ErrorDialogComponent
+        AdminManageComponent,
+		ErrorDialogComponent
     ],
     imports: [
         BrowserModule,
@@ -83,14 +86,16 @@ const routes: Routes = [
         NgMultiSelectDropDownModule.forRoot(),
         MatTabsModule,
         MatAutocompleteModule,
-        NgbPaginationModule
+        NgbPaginationModule,
+        MatButtonModule
     ],
     providers: [
         MovieService,
         AuthenticationService,
         CityService,
         PreferenceService,
-        NgbPaginationConfig
+        NgbPaginationConfig,
+        AdmminService
     ],
     bootstrap: [AppComponent]
 })
