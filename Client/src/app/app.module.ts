@@ -31,6 +31,7 @@ import { TimeAndTheatreComponent } from './Components/time-and-theatre/time-and-
 import { PreferenceService } from './Services/preference.service';
 import { ActivationComponent } from './Components/activation/activation.component';
 import { CityService } from './Services/city.service';
+import { ErrorDialogComponent } from './Components/error-dialog/error-dialog.component';
 
 
 const routes: Routes = [
@@ -66,7 +67,8 @@ const routes: Routes = [
         SimilarMoviesComponent,
         TimeAndTheatreComponent,
         ActivationComponent,
-        UserProfileComponent
+        UserProfileComponent,
+        ErrorDialogComponent
     ],
     imports: [
         BrowserModule,
