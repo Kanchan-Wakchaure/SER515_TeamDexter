@@ -5,7 +5,7 @@ const UserPreference = require('../models/UserPreference');
 module.exports.sendEmail = function (req, res) {
     var emailList = [];
     fetchID().then(function (IdList) {
-        for (var i = 0; i < 1; i++) {
+        for (var i = 0; i < IdList.length; i++) {
             fetchPreferences(IdList[i]).then(function (preferences) {
                 var email = preferences.email;
                 var myPreferences = preferences.genreList;
