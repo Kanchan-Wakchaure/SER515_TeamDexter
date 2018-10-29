@@ -15,10 +15,17 @@ module.exports = {
             },
             json: true
         }
-
+        console.log("showtime called")
         var reqDate = Number(dateNum);
-        var date = new Date();
-        var dateString = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + (date.getDate() + reqDate);
+        var olddate = new Date();
+        //console.log("old date----->", olddate);
+
+
+        var date = new Date(olddate);
+        date.setDate(date.getDate() + reqDate);
+        //var new_date = date.addDays(date, reqDate)
+        //console.log("new date today is", date)
+        var dateString = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + (date.getDate());
         var option_showtime = {
             method: "GET",
             url: `https://api.internationalshowtimes.com/v4/showtimes`,
@@ -71,7 +78,7 @@ module.exports = {
                 return query.exec().then(function (data) {
                     details.cinema_detail = data
                     details.show_detail = showDetails
-                    //console.log(details)
+                    console.log(details)
                     return details;
                 })
             })
