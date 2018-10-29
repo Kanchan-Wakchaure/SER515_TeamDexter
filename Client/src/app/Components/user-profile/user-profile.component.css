@@ -1,0 +1,11 @@
+input.ng-invalid.ng-touched {
+    border-color: red;
+}
+
+.profile{
+    width: 50%;
+}
+
+.prefer{
+	width: 50%;
+}

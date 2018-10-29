@@ -77,7 +77,7 @@
                     formControlName="location"
                     [(ngModel)]="credentials.location">
                     <option value ="" disabled selected hidden [ngValue]="null">Select</option>
-                    <option *ngFor="let c of cities" [ngValue]="c.id">{{c.name}}</option>
+                    <option *ngFor="let c of cities" [ngValue]="c.name">{{c.name}}</option>
             </select>
             <span class="help-block"
                   *ngIf="!signupForm.get('signupData.location').valid && signupForm.get('signupData.location').touched">

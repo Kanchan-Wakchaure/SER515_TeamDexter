@@ -9,7 +9,8 @@ import { LoginComponent } from '../Components/login/login.component';
 export interface User {
   _id: string;
   email: string;
-  name: string;
+  firstname: string;
+  lastname: string;
   exp: number;
   iat: number;
 }
@@ -65,7 +66,7 @@ export class AuthenticationService {
     if (token) {
       payLoad = token.split('.')[1];
       payLoad = window.atob(payLoad);
-      return JSON.parse(payLoad);
+      return JSON.parse(payLoad);     
     } else {
       return null;
     }
