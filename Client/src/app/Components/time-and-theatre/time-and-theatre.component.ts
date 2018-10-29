@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TimeAndTheatre } from '../timeandtheatre.model'
 import { MovieService } from '../../Services/movie.service';
-import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-time-and-theatre',
@@ -20,7 +19,7 @@ export class TimeAndTheatreComponent implements OnInit {
   tempTimes3 = [];
 
 
-  constructor(public movieService: MovieService, private route: ActivatedRoute, private router: Router) {}
+  constructor(public movieService: MovieService) {}
 
   ngOnInit() {
     
@@ -69,18 +68,27 @@ export class TimeAndTheatreComponent implements OnInit {
           }
         }
       }
-      this.day1.push({
-        theatre: cinema["name"],
-        times: this.tempTimes1
-      });
-      this.day2.push({
-        theatre: cinema["name"],
-        times: this.tempTimes2
-      });
-      this.day3.push({
-        theatre: cinema["name"],
-        times: this.tempTimes3
-      });
+      if(this.tempTimes1.length != 0){
+        this.day1.push({
+          theatre: cinema["name"],
+          times: this.tempTimes1
+        });
+      }
+      
+      if(this.tempTimes2.length != 0){
+        this.day2.push({
+          theatre: cinema["name"],
+          times: this.tempTimes2
+        });
+      }
+      
+      if(this.tempTimes3.length != 0){
+        this.day3.push({
+          theatre: cinema["name"],
+          times: this.tempTimes3
+        });
+      }
+      
     }
   }
 }
