@@ -7,7 +7,7 @@ import { LoginComponent } from '../login/login.component';
 import { SignupComponent } from '../signup/signup.component';
 import { FormControl } from '@angular/forms';
 import { MovieService } from '../../Services/movie.service';
-import { AuthenticationService } from '../../Services/authentication.service';
+import { AuthenticationService, User } from '../../Services/authentication.service';
 import { Movie } from '../movie.model';
 
 @Component({
@@ -23,12 +23,14 @@ export class NavbarComponent implements OnInit {
   full: string = "full";
   movies: Movie[];
   loggedIn: boolean = false;
-
+  user: User;
+  adminEmail: string = "shi.g.bhat@gmail.com"
   constructor(public dialog: MatDialog, private movieService: MovieService,
     private router: Router, private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
     this.loggedIn = this.authenticationService.isLoggedIn();
+    this.user = this.authenticationService.getUser();
   }
 
   //opens pop up when login is clicked.
@@ -64,7 +66,7 @@ export class NavbarComponent implements OnInit {
 
   }
 
-  viewprofile(){
+  viewprofile() {
     this.router.navigate(['user_profile']);
   }
 
@@ -78,7 +80,7 @@ export class NavbarComponent implements OnInit {
   }
 
   findMovieNames(movieName: string, details: string) {
-    if (movieName && movieName.length >= 3) {      
+    if (movieName && movieName.length >= 3) {
       this.searchMovies(movieName, details);
     }
   }
