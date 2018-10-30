@@ -6,19 +6,19 @@
               <div formGroupName="profileData">
       
                 <div class="form-group">
-                <h3>User Profile:</h3>
+                <h3 align ="center">User Profile</h3>
                 </div>
       
                 <div class="form-group">
+                <br><h5><u>User Details: </u></h5>
                 <label for="firstname">First Name:</label>
                 <input class="form-control" 
                        type="string" 
                        name="firstname" 
                        id="firstname" 
-                       formControlName="firstname"
-                       value = "{{fnameholder}}"
-                       readonly
-                       placeholder="{{fnameholder}}">
+                       formControlName="firstname"                                                                   
+                       [(ngModel)]="profile.firstName"
+                       [readonly] = "readonly">
                 </div> 
                       
                 <div class="form-group">
@@ -28,9 +28,8 @@
                        name="lastname"                        
                        id="lastname" 
                        formControlName="lastname"
-                       value = "{{lnameholder}}"
-                       readonly
-                       placeholder="{{lnameholder}}">
+                       [(ngModel)]="profile.lastname"
+                       [readonly]="readonly">
                 </div>
                 <div class="form-group">
                 <label for="email">Email:</label>
@@ -38,28 +37,70 @@
                        type="email" 
                        name="email" 
                        id="email" 
-                       formControlName="email"
                        readonly
-                       value="{{emailholder}}"
-                       placeholder="{{emailholder}}">
+                       formControlName="email"                       
+                       [(ngModel)]="profile.email">
                 </div>                                
                     
                 <div class="form-group">
                   <label for="location">Location:</label>
-                  <input class="form-control" 
-                         type="string" 
+                  <input *ngIf = "readonly"
+                         class="form-control" 
+                         type="location" 
                          name="location" 
                          id="location" 
-                         formControlName="location"
                          readonly
-                         value="{{locationholder}}"                         
-                         placeholder="{{locationholder}}">
-                </div>                                
+                         formControlName="location"                       
+                         [(ngModel)]="profile.location">                 
+                   <select *ngIf="!readonly"
+                         class="form-control"
+                         id="location" 
+                         name="location"
+                         formControlName="location"                         
+                         [(ngModel)]="profile.location">                        
+                         <option *ngFor="let c of cities" [ngValue]="c.name">{{c.name}}</option>
+                 </select>
+                </div>            
               </div>               
-            </form>      
+            </form>                
         </div>       
     </div>
+    <!-- <app-preferences>Set Preferenecs:</app-preferences> -->
+    <div>
+            <br><h5><u>Preferences: </u></h5>
+            <label for="genre">Genre</label>
+            <ng-multiselect-dropdown [placeholder]="'Select Genres'" 
+                                     [data]="genreList" 
+                                     [(ngModel)]="preference.genres"
+                                     [settings]="dropdownSettings" 
+                                     (onSelect)="onItemSelect($event)" 
+                                     (onSelectAll)="onSelectAll($event)" 
+                                     name="genres"
+                                     [disabled]="readonly">
+            </ng-multiselect-dropdown><br>
+            <label for="language">Language</label>
+            <ng-multiselect-dropdown [placeholder]="'Select Languages'" 
+                                     [data]="languageList" 
+                                     [(ngModel)]="preference.languages"
+                                     [settings]="dropdownSettings"
+                                     (onSelect)="onItemSelect($event)" 
+                                     (onSelectAll)="onSelectAll($event)"
+                                     name="languages"
+                                     [disabled]="readonly">
+            </ng-multiselect-dropdown><br>                    
+            <label for="actor">Actor</label>                    
+            <ng-multiselect-dropdown [placeholder]="'Select Actors'" 
+                                     [data]="actorsList" 
+                                     [(ngModel)]="preference.actors"
+                                     [settings]="dropdownSettings" 
+                                     (onSelect)="onItemSelect($event)" 
+                                     (onSelectAll)="onSelectAll($event)" 
+                                     name="actors"
+                                     [disabled] ="readonly">
+            </ng-multiselect-dropdown><br>
+        </div>
+   <button *ngIf="readonly" type="submit" class="btn btn-danger" (click)="editProfile()">Edit Profile</button>     
+   <button *ngIf="!readonly" type="submit" class="btn btn-success" (click)="saveChanges()">Save Changes</button><br><br><br>     
 </div>
-<div>
-    <app-preferences>Set Preferenecs:</app-preferences>
-</div>
+
+

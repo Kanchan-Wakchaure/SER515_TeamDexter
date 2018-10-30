@@ -30,8 +30,8 @@ export class PreferenceService {
     });
   }
 
-  getPreferencesByEmail() {
-    return this.http.get("http://localhost:4241/preferences/", {
+  getPreferencesByEmail(email: string) {
+    return this.http.get("http://localhost:4241/preferences/?email=" +email, {
       responseType: "json"
     });
   }
