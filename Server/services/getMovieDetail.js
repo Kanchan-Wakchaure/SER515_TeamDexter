@@ -85,9 +85,15 @@ module.exports = {
             details.cast = credits.cast;
             details.crew = credits.crew;
             return details;
-          })
-        })
-      })
+          }).catch(function (err) {
+            throw err;
+          });
+        }).catch(function (err) {
+          throw err;
+        });
+      }).catch(function (err) {
+        throw err;
+      });
     })
   }
 };

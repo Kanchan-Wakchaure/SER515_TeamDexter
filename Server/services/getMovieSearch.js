@@ -10,7 +10,7 @@ module.exports = {
                 api_key: keys.movieApiKey,
                 language: 'en-US',
                 query: movieName,
-                page: 1,   // Increment @page to get next 20 movies
+                page: 1, // Increment @page to get next 20 movies
                 include_adult: 'false',
             },
             headers: {
@@ -41,6 +41,8 @@ module.exports = {
                 })
             }
             return movieList;
+        }).catch(function (err) {
+            throw err;
         });
     }
 }

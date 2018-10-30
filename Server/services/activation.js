@@ -27,7 +27,9 @@ module.exports = {
         //const activation = new Activation();
         //activation.user_id = code
         //console.log(activation)
-        var query = Activation.findOne({ 'userid': code });
+        var query = Activation.findOne({
+            'userid': code
+        });
         //query.select('name occupation');
 
         return query.exec().then(function (activation) {
@@ -43,15 +45,15 @@ module.exports = {
                 return query3.then(function (updatedUser) {
                     console.log("hurray", updatedUser)
                     return true
-                }).catch(function () {
-                    return handleError()
+                }).catch(function (err) {
+                    throw err
                 });
-            }).catch(function () {
-                return handleError()
+            }).catch(function (err) {
+                throw err
             });
         }).catch(function (err) {
-            console.log(err)
-            return handleError(err)
+            //console.log(err)
+            throw err
         });
     }
 }

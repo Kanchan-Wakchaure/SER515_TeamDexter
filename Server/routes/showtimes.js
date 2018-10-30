@@ -19,7 +19,8 @@ router.get("/:id", function (req, res, next) {
                     res.send(movie);
                 })
                 .catch(err => {
-                    console.log("Error fetching movie showtimes", err);
+                    next(err);
+                    //console.log("Error fetching movie showtimes");
                 });
             break;
         default:

@@ -45,19 +45,63 @@ app.use("/showtimes", showtimesRoute);
 //error handlers
 
 // catch 404 and forward to error handler
-app.use(function (request, response, next) {
-  var error = new Error('Not Found');
-  error.status = 404;
-  next(error);
-});
+//app.use(function (request, response, next) {
+//  var error = new Error('Not Found');
+//  error.status = 404;
+//  next(error);
+//});
 
-// Catch unauthorised errors
+// Error handlers
 app.use(function (error, request, response, next) {
-  if (error.name === 'UnauthorizedError') {
-    response.status(401);
+  var errorStatusCode = error.statusCode;
+  if (errorStatusCode >= 300 && errorStatusCode < 400) {
+    response.status(errorStatusCode);
     response.json({
-      "message": error.name + ": " + error.message
+      "error code": errorStatusCode,
+      "message": "Additional action required in order to complete this request."
     });
+  } else if (errorStatusCode >= 400 && errorStatusCode < 500) {
+    if (errorStatusCode === 401) {
+      response.status(401);
+      response.json({
+        "error code": errorStatusCode,
+        "message": "Unauthorized Access - Wrong Credentials"
+      });
+    } else if (errorStatusCode === 403) {
+      response.status(404);
+      response.json({
+        "error code": errorStatusCode,
+        "message": "Unauthorized Access - Access forbidden"
+      })
+    } else if (errorStatusCode === 404) {
+      response.status(404);
+      response.json({
+        "error code": errorStatusCode,
+        "message": "Resource not found"
+      })
+    } else {
+      response.status(errorStatusCode);
+      response.json({
+        "error code": errorStatusCode,
+        "message": "Bad Request - Request cannot be fulfilled"
+      })
+    }
+  } else if (errorStatusCode >= 500 && errorStatusCode < 600) {
+    if (errorStatusCode === 501) {
+      response.status(errorStatusCode);
+      response.json({
+        "error code": errorStatusCode,
+        "message": "Unable to fulfill this request"
+      })
+    } else {
+      response.status(errorStatusCode);
+      response.json({
+        "error code": errorStatusCode,
+        "message": "Internal Server Error"
+      })
+    }
+  } else {
+    response.json(error); // Remove this after handling custom errors
   }
 });
 

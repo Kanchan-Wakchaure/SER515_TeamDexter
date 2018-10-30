@@ -15,7 +15,7 @@ module.exports = {
             },
             json: true
         }
-        console.log("showtime called")
+        //console.log("showtime called")
         var reqDate = Number(dateNum);
         var olddate = new Date();
         //console.log("old date----->", olddate);
@@ -78,10 +78,16 @@ module.exports = {
                 return query.exec().then(function (data) {
                     details.cinema_detail = data
                     details.show_detail = showDetails
-                    console.log(details)
+                    // console.log(details)
                     return details;
+                }).catch(function (err) {
+                    throw err;
                 })
+            }).catch(function (err) {
+                throw err;
             })
-        })
+        }).catch(function (err) {
+            throw err;
+        });
     }
 };

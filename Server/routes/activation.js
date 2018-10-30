@@ -1,7 +1,9 @@
-
 var express = require('express');
 var router = express.Router();
-var { decryptOTP, activateAccount } = require('../services/activation')
+var {
+    decryptOTP,
+    activateAccount
+} = require('../services/activation')
 
 router.get("/:id", function (req, res, next) {
     console.log("this is param", req.params.id)
@@ -14,13 +16,16 @@ router.get("/:id", function (req, res, next) {
     console.log("final", code)
     activateAccount(code).then(function () {
         console.log('successful')
-        res.json({ 'status': '200', 'message': 'Account activated successfully' })
-    }).catch(function () {
-        console.log('successful')
-        res.json({ 'error': 'error' })
+        res.json({
+            'status': '200',
+            'message': 'Account activated successfully'
+        })
+    }).catch(function (err) {
+        console.log('Error')
+        //res.json({ 'error': 'error' })
+        next(err);
     })
     //     res.send("done")
     // }
 })
 module.exports = router;
-
