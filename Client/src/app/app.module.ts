@@ -4,13 +4,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { RouterModule, Routes } from '@angular/router';
-import { MatToolbarModule } from '@angular/material';
+import { MatToolbarModule, MatProgressSpinnerModule } from '@angular/material';
 import { HttpClientModule } from '../../node_modules/@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { MatTabsModule } from '@angular/material/tabs';
 import { NgbPaginationModule, NgbPaginationConfig } from '@ng-bootstrap/ng-bootstrap';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+
 import { AppComponent } from './app.component';
 import { MovieCardComponent } from './Components/MovieComponents/movie-card-component/movie-card.component';
 import { NavbarComponent } from './Components/navbar/navbar.component';
@@ -35,6 +36,7 @@ import { ErrorDialogComponent } from './Components/error-dialog/error-dialog.com
 import { AdmminService } from './Services/admin.service';
 import { MatButtonModule } from '@angular/material/button';
 import { AdminManageComponent } from './Components/admin-manage/admin-manage.component';
+
 const routes: Routes = [
     { path: 'coming_soon', component: HomeComponent },
     { path: 'wish_list/:id', component: HomeComponent },
@@ -87,7 +89,8 @@ const routes: Routes = [
         MatTabsModule,
         MatAutocompleteModule,
         NgbPaginationModule,
-        MatButtonModule
+        MatButtonModule,
+        MatProgressSpinnerModule
     ],
     providers: [
         MovieService,

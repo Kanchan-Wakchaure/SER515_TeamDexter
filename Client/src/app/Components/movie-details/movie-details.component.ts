@@ -12,6 +12,7 @@ import { TimeAndTheatreComponent } from '../time-and-theatre/time-and-theatre.co
   styleUrls: ['./movie-details.component.css']
 })
 export class MovieDetailsComponent implements OnInit {
+  public color = "warn";
   public movie: Movie;
   private movie_id: number;
   constructor(public movieService: MovieService, private route: ActivatedRoute,
