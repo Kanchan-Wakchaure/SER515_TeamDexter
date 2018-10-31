@@ -17,7 +17,7 @@ var router = express.Router();
 // });
 
 router.post("/", function (req, res, next) {
-    UserPreference.findById(req.params.id, (err, preferences) => {
+    UserPreference.find({ email: req.body.email }, (err, preferences) => {
         if (!preferences) {
             let preference = new UserPreference(req.body);
             preference.save()

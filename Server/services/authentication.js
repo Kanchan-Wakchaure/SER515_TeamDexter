@@ -6,11 +6,7 @@ const Activation = require('../models/activationlog')
 const { generateOTP, encryptOTP } = require('./activation');
 const { sendEmail } = require('./mailer');
 
-
-
 module.exports.register = function (req, res) {
-
-
   var user = new User();
   user.firstname = req.body.firstname;
   user.lastname = req.body.lastname;
@@ -104,4 +100,22 @@ module.exports.login = function (request, response) {
       response.status(401).json(info);
     }
   })(request, response);
+};
+
+module.exports.updateUser = function(request, response){
+  if (!request.payload._id) {
+    response.status(401).json({
+      "message": "UnauthorizedError: private profile"
+    });
+  }
+  else{
+    console.log("inside user update");
+    User.findById(request.payload._id, (err, user) => {
+      user = (User)(req.body);
+      user.save().then(response => {
+        res.status(200).json({ 'message': "User details are updated successfully"})
+      });
+    }      
+    );
+  }
 };
