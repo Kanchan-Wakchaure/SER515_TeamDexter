@@ -33,7 +33,7 @@ export class PreferencesComponent implements OnInit {
     this.route.params.subscribe(params => { this.user_id = params['user_id'] });
     //this.getPreference();    
     this.preference.email = this.authService.getUser().email;
-    this.getPreferences();
+    //this.getPreferences();
     
     this.genreList = [
       { id: 1, item_text: 'Action' },
@@ -95,7 +95,6 @@ export class PreferencesComponent implements OnInit {
   getPreferences(){
     this.preferenceService.getPreferencesByEmail(this.email).subscribe((response: any) => {
       this.preference = response;
-      debugger;
     });    
   }
 }
