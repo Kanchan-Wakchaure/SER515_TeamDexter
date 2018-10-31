@@ -1,5 +1,14 @@
+<div class="container">
+    <div class="row justify-content-center spinner" *ngIf="!movie">
+        <mat-spinner [color]="color" [diameter]="50"></mat-spinner>
+    </div>
+</div>
+
+<div *ngIf="movie" class="container">
     <div class="row">
-        <div class="col-md-3 poster"><img src={{movie.poster_path}}></div>
+        <div class="col-md-3 poster">
+            <img src={{movie.poster_path}}>
+        </div>
 
         <div class="col-md-7">
 
@@ -22,12 +31,15 @@
             </div>
 
             <div class="row info">
-                <b>Release Date</b><p>&nbsp; {{movie.release_date | date}}</p>
+                <b>Release Date</b>
+                <p>&nbsp; {{movie.release_date | date}}</p>
             </div>
-
             <div class="row info">
-                <b>Votes</b><p>&nbsp; {{movie.vote_count}}</p>
-                <b>&nbsp; Average</b><p>&nbsp; {{movie.vote_average}}</p>
+                <b>Votes</b>
+                <p>&nbsp; {{movie.vote_count}}</p>
+
+                <b>&nbsp; Average</b>
+                <p>&nbsp; {{movie.vote_average}}</p>
             </div>
 
             <div class="row info">
@@ -43,8 +55,9 @@
 
         </div>
     </div>
-<div class="row suggest">
-    <div class="scroll_vertical">
-        <app-similar-movies [movieID]="movie_id"></app-similar-movies>
+    <div class="row suggest">
+        <div class="scroll_vertical">
+            <app-similar-movies [movieID]="movie_id"></app-similar-movies>
+        </div>
     </div>
 </div>

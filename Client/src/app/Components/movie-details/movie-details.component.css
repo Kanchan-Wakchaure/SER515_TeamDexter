@@ -2,6 +2,12 @@
 	 color: white;
  }
 
+.spinner {
+	height: 1250px;
+	top: 50%;
+	justify-content: center;
+}
+
 img {
 	width: 90%;
 }
