@@ -83,7 +83,7 @@ export class AuthenticationService {
   }
 
   // generalized method to make http requests to server
-  private request(method: 'post' | 'get', type: 'login' | 'signup', user?: TokenPayload): Observable<any> {
+  private request(method: 'post' | 'get', type: 'login' | 'signup' | 'updateProfile', user?: TokenPayload): Observable<any> {
     let base;
 
     if (method === 'post' && type === 'login') {
@@ -134,4 +134,11 @@ export class AuthenticationService {
   public getDialogRef() {
     return this.dialogRef;
   }
+
+  public updateProfile(user: TokenPayload): Observable<any> {
+    debugger;
+    return this.httpClient.put('http://localhost:4241/users/', user);
+   
+  }
+
 }
