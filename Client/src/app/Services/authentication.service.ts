@@ -136,7 +136,6 @@ export class AuthenticationService {
   }
 
   public updateProfile(user: TokenPayload): Observable<any> {
-    debugger;
     return this.httpClient.put('http://localhost:4241/users/', user);
    
   }

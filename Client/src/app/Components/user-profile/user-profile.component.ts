@@ -53,7 +53,6 @@ export class UserProfileComponent implements OnInit {
   saveChanges(){    
     this.readonly = true;
     this.credentials = this.profile;
-    debugger;
     this.authService.updateProfile(this.credentials).subscribe(
       () => { console.log("user updated successfully") }, 
       (err) => { console.log("error in update") }
