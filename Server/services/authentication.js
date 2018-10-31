@@ -109,9 +109,10 @@ module.exports.updateUser = function(request, response){
       response.json({ "message": "UnauthorizedError: private profile" });
     }
     else{
+      console.log(request.body);
       user.firstname = request.body.firstName;
       user.lastname = request.body.lastname;
-      user.location = request.body.city;
+      user.location = request.body.location;
       user.save(function(err) {
         if (err)
           console.log('Could not update the user profile')
