@@ -11,6 +11,9 @@ export class TimeAndTheatreComponent implements OnInit {
   
   public data: TimeAndTheatre;
   public date: number = 0;
+  public today: Date;
+  public tomorrow: Date;
+  public day_after: Date;
   day1 = [];
   day2 = [];
   day3 = [];
@@ -22,9 +25,8 @@ export class TimeAndTheatreComponent implements OnInit {
   constructor(public movieService: MovieService) {}
 
   ngOnInit() {
-    
     this.movieService.getShowTimes(3).subscribe((response: any) => {
-      this.data = response;
+      this.data = response;      
       this.attachCinema();
     });
   }
@@ -42,25 +44,32 @@ export class TimeAndTheatreComponent implements OnInit {
           let y = x[2].split("T");
           let z = y[1].split(":");
           let actualTime = z[0]+":"+z[1];
+          let temp_date = new Date(show['time']);
 
-          if(this.date == 0)
-            this.date = +y[0];
+          if(this.date == 0){
+            this.date = 1;
+            this.today = new Date(show['time']);
+            this.tomorrow = new Date(this.today);
+            this.tomorrow.setDate(this.tomorrow.getDate()+1);
+            this.day_after = new Date(this.today);
+            this.day_after.setDate(this.day_after.getDate()+2);
+          }
 
-          if(y[0] == this.date){
+          if(temp_date.getDate() == this.today.getDate()){
             this.tempTimes1.push({
               time: actualTime,
               booking_link: show["booking_link"]
             });
           }
 
-          else if(y[0] == (this.date+1)){
+          else if(temp_date.getDate() == this.tomorrow.getDate()){
             this.tempTimes2.push({
               time: actualTime,
               booking_link: show["booking_link"]
             });
           }
 
-          else if(y[0] == (this.date+2)){
+          else if(temp_date.getDate() == this.day_after.getDate()){
             this.tempTimes3.push({
               time: actualTime,
               booking_link: show["booking_link"]
