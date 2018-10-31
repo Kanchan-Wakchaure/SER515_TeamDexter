@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from "@angular/router";
-import { AuthenticationService } from '../../Services/authentication.service';
+import { TokenPayload, AuthenticationService } from '../../Services/authentication.service';
 import { FormGroup, FormControl, Validators } from '../../../../node_modules/@angular/forms';
 import { City } from '../city.model';
 import { CityService } from '../../Services/city.service';
-import { PreferenceService } from '../../Services/preference.service';
-import { Preference } from '../../Components/preference.model';
+import { Router } from "@angular/router";
+import { User } from '../user.model';
 
 @Component({
   selector: 'app-user-profile',
@@ -18,18 +17,17 @@ export class UserProfileComponent implements OnInit {
   readonly: boolean=true;
   
   public cities: City[];
+ 
+  credentials: TokenPayload = {
+    firstname: '',
+    lastname: '',
+    email: '',
+    password: '',
+    location: '' 
+  };
 
-  
-  public preference: Preference;
-  genreList = [];
-  languageList = [];
-  actorsList = [];
-
-  dropdownSettings = {};
-
-  constructor(private router: Router,
+  constructor(private route: Router,
               private cityService: CityService,
-              private preferenceService: PreferenceService,
               private authService: AuthenticationService) { }
 
   ngOnInit() {
@@ -46,54 +44,20 @@ export class UserProfileComponent implements OnInit {
     this.cityService.getCities().subscribe((response: City[]) => {
       this.cities = response; } );
 
-      this.preference = new Preference();
-      this.genreList = [
-        { id: 1, item_text: 'Action' },
-        { id: 2, item_text: 'Drama' },
-        { id: 3, item_text: 'Romance' },
-        { id: 4, item_text: 'Thriller' },
-        { id: 5, item_text: 'Comedy' }
-      ];
-  
-      this.languageList = [
-        { id: 1, item_text: 'English' },
-        { id: 2, item_text: 'Spanish' },
-        { id: 3, item_text: 'Hindi' }
-      ];
-  
-      this.actorsList = [
-        { id: 1, item_text: 'Will Smith' },
-        { id: 2, item_text: 'Tom Hanks' },
-        { id: 3, item_text: 'Angelina Jolie' },
-        { id: 4, item_text: 'Tom Cruise' }
-      ];
-  
-      this.dropdownSettings = {
-        singleSelection: false,
-        idField: 'id',
-        textField: 'item_text',
-        selectAllText: 'Select All',
-        unSelectAllText: 'UnSelect All',
-        itemsShowLimit: 3,
-        allowSearchFilter: true,
-      };
-
-      this.getPreference();
   }
 
   editProfile(){
     this.readonly = false;
   }
 
-  saveChanges(){
+  saveChanges(){    
     this.readonly = true;
-    
-  }
-
-  getPreference(){
-    this.preferenceService.getPreferencesByEmail(this.profile.email).subscribe((response: any) => {
-      this.preference = response;
-    });
+    this.credentials = this.profile;
+    debugger;
+    this.authService.updateProfile(this.credentials).subscribe(
+      () => { console.log("user updated successfully") }, 
+      (err) => { console.log("error in update") }
+      );
   }
 
 }
