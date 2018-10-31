@@ -23,6 +23,6 @@ var ctrlAuth = require('../services/authentication');
 router.route('/')
     .get(auth, ctrlProfile.profileRead)
     .post(ctrlAuth.register)
-    .put(auth, ctrlAuth.updateUser);
+    .put(ctrlAuth.updateUser);
 
 module.exports = router;

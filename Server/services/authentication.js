@@ -103,19 +103,22 @@ module.exports.login = function (request, response) {
 };
 
 module.exports.updateUser = function(request, response){
-  if (!request.payload._id) {
-    response.status(401).json({
-      "message": "UnauthorizedError: private profile"
-    });
-  }
-  else{
-    console.log("inside user update");
-    User.findById(request.payload._id, (err, user) => {
-      user = (User)(req.body);
-      user.save().then(response => {
-        res.status(200).json({ 'message': "User details are updated successfully"})
+  User.findById(request.body._id, (err, user) => {
+    if (!user) {
+      response.status(401);
+      response.json({ "message": "UnauthorizedError: private profile" });
+    }
+    else{
+      user.firstname = request.body.firstName;
+      user.lastname = request.body.lastname;
+      user.location = request.body.city;
+      user.save(function(err) {
+        if (err)
+          console.log('Could not update the user profile')
+        else
+          console.log('User profile is updated successfully')
       });
-    }      
-    );
-  }
+    }
+  } );
+  
 };
