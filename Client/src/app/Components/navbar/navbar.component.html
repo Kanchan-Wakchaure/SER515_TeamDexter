@@ -5,15 +5,20 @@
     </div>
     <div class="col-md-8 col-sm-8">
       <div class="form-group search-box">
-        <input type="text" class="form-control" id="search_subject" placeholder="Search for movies" (keyup.enter)="searchMovies(seachForm.value)"
-          [formControl]="seachForm">
+        <input matInput [matAutocomplete]="auto" type="text" class="form-control" (keyup)="findMovieNames(seachForm.value,partial)"
+          id="search_subject" placeholder="Search for movies" [formControl]="seachForm">
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option (keyup.enter)="getDetails(movie.id)" (click)="getDetails(movie.id)" *ngFor=" let movie of movies"
+            [value]="movies.title">
+            {{movie.title}}
+          </mat-option>
+        </mat-autocomplete>
       </div>
     </div>
     <div class="col-md-2 col-sm-2 search-content">
-      <a class="btn btn-primary search-button" role="button" (click)="searchMovies(seachForm.value)">Search</a>
+      <a class="btn btn-primary search-button" role="button" (click)="searchMovies(seachForm.value,full)">Search</a>
     </div>
   </div>
-
   <div class="row">
     <div class="navbar">
       <nav class="navset">
@@ -22,19 +27,21 @@
         <a class="nav-li" href="/wish_list">Wish List</a>
         <a class="nav-li" href="/latest">Latest</a>
       </nav>
-      <div class="log" *ngIf="!this.authenticationService.isLoggedIn()">
+      <div class="log" *ngIf="!loggedIn">
         <button class="btn btn-primary login-button" (click)="openDialog()">Log In</button>
       </div>
-      <div class="signup" *ngIf="!this.authenticationService.isLoggedIn()">
+      <div class="signup" *ngIf="!loggedIn">
         <button class="btn btn-primary login-button" (click)="openSignUp()">Sign Up</button>
       </div>
-      <div class="nav dropdown" *ngIf="this.authenticationService.isLoggedIn()">
+      <div class="nav dropdown" *ngIf="loggedIn">
         <button class="btn btn-danger user-button dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
           aria-expanded="false" (click)="toggleDropdown()">
           hi, {{this.authenticationService.getUser().firstName}}!
         </button>
         <div class="dropdown-menu" id="dropdownMenuButton">
-          <a class="dropdown-item nav-li" [routerLink]="['preferences']">Set Preferences</a>
+          <!-- <a class="dropdown-item nav-li" [routerLink]="['preferences']">Set Preferences</a> -->
+          <a class="dropdown-item nav-li" href="/user_profile" (click)="viewprofile()">View Profile</a>
+          <a *ngIf="user.email==adminEmail" class="dropdown-item nav-li" href="/manage">Manage</a>
           <a class="dropdown-item nav-li" href="#" (click)="logOut()">Log out</a>
         </div>
       </div>

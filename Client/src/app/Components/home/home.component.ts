@@ -11,6 +11,7 @@ import { MovieService } from "../../Services/movie.service";
 export class HomeComponent implements OnInit {
   public movies: Movie[];
   public showSlider: boolean = true;
+  page: number = 1;
 
   constructor(
     public movieService: MovieService,
@@ -27,7 +28,7 @@ export class HomeComponent implements OnInit {
       this.upcomingMovies();
     } else {
       this.showSlider = true;
-      this.movieService.getMovies().subscribe((response: Movie[]) => {
+      this.movieService.getMovies(this.page).subscribe((response: Movie[]) => {
         this.movies = response;
       });
     }
@@ -36,8 +37,9 @@ export class HomeComponent implements OnInit {
   private searchMovies() {
     this.activatedRoute.params.subscribe(params => {
       let movieName: string = params["name"];
+      let details: string = params["details"];
       this.movieService
-        .getSearchedMovieList(movieName)
+        .getSearchedMovieList(movieName, details)
         .subscribe((res: Movie[]) => {
           this.movies = res;
         });
@@ -45,8 +47,20 @@ export class HomeComponent implements OnInit {
   }
 
   private upcomingMovies() {
-    this.movieService.getUpcomingMovieList().subscribe((res: Movie[]) => {
+    this.movieService.getUpcomingMovieList(this.page).subscribe((res: Movie[]) => {
       this.movies = res;
     });
+  }
+
+  private loadPage(id: number) {
+    if(this.router.url.includes('/coming_soon'))
+      this.movieService.getUpcomingMovieList(id).subscribe((response: Movie[])=> {
+        this.movies = response;
+      })
+    else if(this.router.url.includes('/home'))
+      this.movieService.getMovies(id).subscribe((response: Movie[])=> {
+      this.movies = response;
+      }) 
+    window.scrollTo(0, 0);
   }
 }

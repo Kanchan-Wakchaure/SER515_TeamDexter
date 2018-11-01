@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PreferenceService } from '../../Services/preference.service';
 import { Preference } from '../../Components/preference.model';
 import { ActivatedRoute } from '@angular/router';
+import { AuthenticationService } from '../../Services/authentication.service';
 
 @Component({
   selector: 'app-preferences',
@@ -13,6 +14,7 @@ export class PreferencesComponent implements OnInit {
 
   public preference: Preference;
   private user_id: number;
+  private email: string;
   genreList = [];
   languageList = [];
   actorsList = [];
@@ -23,14 +25,16 @@ export class PreferencesComponent implements OnInit {
 
   onSubmit() { this.submitted = true; }
 
-  constructor(public preferenceService: PreferenceService, private route: ActivatedRoute) { }
+  constructor(public preferenceService: PreferenceService, private route: ActivatedRoute,
+              private authService: AuthenticationService) { }
 
-  ngOnInit() {
-
+  ngOnInit() {      
     this.preference = new Preference();
     this.route.params.subscribe(params => { this.user_id = params['user_id'] });
-    this.getPreference();
-
+    //this.getPreference();    
+    this.preference.email = this.authService.getUser().email;
+    //this.getPreferences();
+    
     this.genreList = [
       { id: 1, item_text: 'Action' },
       { id: 2, item_text: 'Drama' },
@@ -86,5 +90,11 @@ export class PreferencesComponent implements OnInit {
     this.preferenceService.getPreferencesById(this.user_id).subscribe((response: any) => {
       this.preference = response;
     });
+  }
+
+  getPreferences(){
+    this.preferenceService.getPreferencesByEmail(this.email).subscribe((response: any) => {
+      this.preference = response;
+    });    
   }
 }

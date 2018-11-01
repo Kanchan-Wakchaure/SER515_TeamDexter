@@ -1,6 +1,7 @@
 <div class="container prefer">
+  <h4>Set preferences:</h4>
   <p>Email</p>
-  <input type="text" class="form-control" id="email" required [(ngModel)]="preference.email" name="email"><br>
+  <input type="text" class="form-control" id="email" required [(ngModel)]="this.authService.getUser().email" name="email" disabled><br>
   <p>Genre</p>
 
   <ng-multiselect-dropdown [placeholder]="'Select Genres'" [data]="genreList" [(ngModel)]="preference.genreList"

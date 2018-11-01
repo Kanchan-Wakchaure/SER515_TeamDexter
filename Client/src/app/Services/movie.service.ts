@@ -15,33 +15,37 @@ import {
 */
 @Injectable()
 export class MovieService {
+
   //Sample data for movies.
   public movies: Movie[] = [];
+  private movie_id: number;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   /* A getter method to get movies.
     * @returns movies: Movie[].
     */
-  getMovies() {
-    return this.http.get("http://localhost:4241/movies", { responseType: "json" });
+  getMovies(id: number) {
+    return this.http.get("http://localhost:4241/movies/?page="+id, { responseType: "json" });
   }
 
   /* A getter method to get movie details */
   getMovieDetails(id: number) {
+    this.movie_id = id;
     return this.http.get("http://localhost:4241/movies/" + id, {
       responseType: "json"
     });
   }
 
-  getSearchedMovieList(movieName: string) {
+  getSearchedMovieList(movieName: string, details: string) {
+    
     return this.http.get(
-      "http://localhost:4241/movies/?type=search&name=" + movieName
+      "http://localhost:4241/movies/?type=search&name=" + movieName + "&details=" + details
     );
   }
 
-  getUpcomingMovieList() {
-    return this.http.get("http://localhost:4241/movies/?type=upcoming", {
+  getUpcomingMovieList(id: number) {
+    return this.http.get("http://localhost:4241/movies/?type=upcoming&page="+id, {
       responseType: "json"
     });
   }
@@ -53,5 +57,11 @@ export class MovieService {
         responseType: "json"
       }
     );
+  }
+
+  getShowTimes(days: number){
+    return this.http.get("http://localhost:4241/showtimes/"+ this.movie_id +"?date="+days, {
+      responseType: "json"
+    });
   }
 }
