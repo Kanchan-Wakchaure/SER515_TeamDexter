@@ -3,9 +3,9 @@ const keys = require('../config/keys');
 const MovieOverview = require('../models/MovieOverview');
 
 /* 
-*This modules fetches the list of top 20 recent movies from themoviedb api. 
-*@Author: Team Dexter.
-*/
+ *This modules fetches the list of top 20 recent movies from themoviedb api. 
+ *@Author: Team Dexter.
+ */
 module.exports = {
 
     getMovieList: (pageNumber) => {
@@ -18,12 +18,12 @@ module.exports = {
                 sort_by: 'popularity.desc',
                 include_adult: 'false',
                 include_video: 'false',
-                page: pageNumber   // Increment @page to get next 20 movies
+                page: pageNumber // Increment @page to get next 20 movies
             },
             headers: {
                 'User-Agent': 'Request-Promise'
             },
-            json: true // Automatically parses the JSON string in the response
+            json: true
         };
 
         return request(options).then(body => {
@@ -39,9 +39,8 @@ module.exports = {
                 movieList.push(overview);
             })
             return movieList;
+        }).catch(function (err) {
+            throw err;
         });
     }
-
 }
-
-

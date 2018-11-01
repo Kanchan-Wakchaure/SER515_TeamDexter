@@ -16,14 +16,13 @@ module.exports = {
         };
 
         request(options).then(body => {
-            console.log(body.cinemas)
+            //console.log(body.cinemas)
             for (var i = 0; i < body.cinemas.length; i++) {
                 const cinema = new Cinema(body.cinemas[i])
                 cinema.save(function (err) {
                     if (err) {
-                        console.log("error in db operation");
-                    }
-                    else {
+                        throw err;
+                    } else {
                         console.log('saved');
                     }
 
@@ -33,4 +32,3 @@ module.exports = {
     }
 
 }
-

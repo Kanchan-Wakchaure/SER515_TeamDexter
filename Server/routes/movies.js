@@ -35,7 +35,8 @@ router.get("/", function (req, res, next) {
           res.json(movie);
         })
         .catch(err => {
-          console.log("Error fetching from movies list", err);
+          //console.log("Error fetching from movies list");
+          next(err);
         });
       break;
     case 'upcoming':
@@ -44,17 +45,20 @@ router.get("/", function (req, res, next) {
           res.json(movie);
         })
         .catch(err => {
-          console.log("Error fetching from upcoming movies list", err);
+          //console.log("Error fetching from upcoming movies list", err);
+          next(err);
         })
       break;
     case 'search':
       let movieName = req.query.name;
-      getMovieSearch(movieName)
+      let details = req.query.details;
+      getMovieSearch(movieName, details)
         .then(movie => {
           res.json(movie);
         })
         .catch(err => {
-          console.log("Error while retrieving search result", err);
+          next(err);
+          //console.log("Error while retrieving search result", err);
         })
       break;
 
@@ -77,7 +81,8 @@ router.get("/:id", function (req, res, next) {
           res.send(movie);
         })
         .catch(err => {
-          console.log("Error fetching movie details", err);
+          //console.log("Error fetching movie details", err);
+          next(err);
         });
       break;
     case 'similar':
@@ -86,7 +91,8 @@ router.get("/:id", function (req, res, next) {
           res.send(movie);
         })
         .catch(err => {
-          console.log("Error fetching  similar movies list", err);
+          next(err);
+          //console.log("Error fetching  similar movies list", err);
         });
       break;
     default:

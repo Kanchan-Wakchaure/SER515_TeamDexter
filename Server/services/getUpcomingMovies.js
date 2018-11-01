@@ -33,6 +33,8 @@ module.exports = {
                 movieList.push(movie);
             });
             return movieList;
+        }).catch(function (err) {
+            throw err;
         });
     }
 };

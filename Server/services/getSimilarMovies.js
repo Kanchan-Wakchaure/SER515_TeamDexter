@@ -34,6 +34,8 @@ module.exports = {
                 movieList.push(overview);
             });
             return movieList;
+        }).catch(function (err) {
+            throw err;
         });
     }
 };
