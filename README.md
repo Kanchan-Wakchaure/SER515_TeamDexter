@@ -13,7 +13,7 @@
         https://evincedev.com/blog/mean-stack-architecture/
 
 # Deployed version:
-      https://findmyshow.herokuapp.com
+      http://findmyshow.herokuapp.com 
 
 # Installations:
   (Pre-Requisite :Node.js => https://nodejs.org/en/download/)
