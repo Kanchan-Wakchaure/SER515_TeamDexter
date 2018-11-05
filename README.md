@@ -12,7 +12,8 @@
   - Reference for MEAN architecture:
         https://evincedev.com/blog/mean-stack-architecture/
 
-# Deployed at https://findmyshow.herokuapp.com
+# Deployed version:
+      https://findmyshow.herokuapp.com
 
 # Installations:
   (Pre-Requisite :Node.js => https://nodejs.org/en/download/)
