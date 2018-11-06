@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '../../../../node_modules/@angular/forms';
 import { TokenPayload, AuthenticationService } from '../../Services/authentication.service';
-import { Router } from '@angular/router';
+import { Router} from '@angular/router';
 
 
 
@@ -26,7 +26,8 @@ export class LoginComponent implements OnInit {
   };
 
 
-  constructor(private authenticationService: AuthenticationService, private router: Router) { }
+  constructor(private authenticationService: AuthenticationService, 
+              private router: Router) { }
 
   ngOnInit() {
     
@@ -45,7 +46,7 @@ export class LoginComponent implements OnInit {
   //method that handles login form submit button.
   onLoginSubmit() {
     this.authenticationService.login(this.credentials).subscribe(()=> {
-      this.router.navigateByUrl('/home');
+      this.router.navigateByUrl(this.router.url);
       this.authenticationService.getDialogRef().close();
     }, (error) => {
       this.error = "The username/password is invalid. Please try again"
