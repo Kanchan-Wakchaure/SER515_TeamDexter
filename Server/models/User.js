@@ -24,7 +24,15 @@ let userSchema = new Schema({
   verified: {
     type: Boolean,
     default: false
-  }
+  },
+  genreList: {
+    type: [],
+    default: null
+  },
+  actorsList: {
+    type: [],
+    default: null
+  },
 });
 
 //function to set password.

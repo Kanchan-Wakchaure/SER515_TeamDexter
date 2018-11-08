@@ -1,76 +1,33 @@
 
-const UserPreference = require('../models/UserPreference');
+const User = require('../models/User');
 
 var express = require("express");
 var router = express.Router();
 
-//save a new preference
-// router.post("/", function (req, res, next) {
-//     let preference = new UserPreference(req.body);
-//     preference.save()
-//         .then(response => {
-//             res.status(200).json({ 'preference': 'saved successfully' });
-//         })
-//         .catch(err => {
-//             res.status(400).send('Failed to create new record');
-//         });
-// });
-
-router.post("/", function (req, res, next) {
-    UserPreference.find({ email: req.body.email }, (err, preferences) => {
-        if (!preferences) {
-            let preference = new UserPreference(req.body);
-            preference.save()
-                .then(response => {
-                    res.status(200).json({ 'preference': 'saved successfully' });
-                })
-                .catch(err => {
-                    res.status(400).send('Failed to create new record');
-                });
-        } else {
-            preferences = (UserPreference)(req.body);
-            preferences.save().then(respose => {
-                res.status(200).json({ 'preference': 'update successfully' });
-            })
-                .catch(err => {
-                    console.log(err);
-                    return next((err));
-                });
-        }
-    });
-
-});
-
-
-//get with email
-router.get("/", function (req, res, next) {
-    UserPreference.find({ email: req.query.email }, (err, preferences) => {
-        if (err)
-            return next(err);
-        else
-            return res.json(preferences);
-    })
-});
-
 //get with id
 router.get("/:id", function (req, res, next) {
-    UserPreference.findById(req.params.id, (err, preferences) => {
+    User.findById(req.params.id, (err, user) => {
         if (err) {
             return next(err);
         }
-        else
-            return res.json(preferences);
+        else {
+            var userPreference = { genreList: [], actorsList: [] };
+            userPreference.genreList = user.genreList;
+            userPreference.actorsList = user.actorsList;
+            return res.json(userPreference);
+        }
     })
 });
 
 //update user preference
 router.put('/:id', function (req, res, next) {
-    UserPreference.findById(req.params.id, (err, preferences) => {
-        if (!preferences) {
-            return next(new Error("No user Preference found"));
+    User.findById(req.params.id, (err, user) => {
+        if (!user) {
+            return next(new Error("User not found"));
         } else {
-            preferences = (UserPreference)(req.body);
-            preferences.save().then(respose => {
+            user.genreList = req.body.genreList;
+            user.actorsList = req.body.actorsList;
+            user.save().then(respose => {
                 res.status(200).json({ 'preference': 'update successfully' });
             })
                 .catch(err => {
