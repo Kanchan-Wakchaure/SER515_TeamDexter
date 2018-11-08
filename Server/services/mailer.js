@@ -1,8 +1,6 @@
 var nodemailer = require('nodemailer');
 var keys = require('../config/keys');
 
-
-
 module.exports = {
 
     sendEmail: (mailOptions) => {
@@ -15,10 +13,9 @@ module.exports = {
             }
         });
 
-
         transporter.sendMail(mailOptions, function (error, info) {
             if (error) {
-                console.log(error);
+                throw error;
             } else {
                 console.log('Email sent: ' + info.response);
             }
