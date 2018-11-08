@@ -26,15 +26,15 @@ export class PreferencesComponent implements OnInit {
   onSubmit() { this.submitted = true; }
 
   constructor(public preferenceService: PreferenceService, private route: ActivatedRoute,
-              private authService: AuthenticationService) { }
+    private authService: AuthenticationService) { }
 
-  ngOnInit() {      
+  ngOnInit() {
     this.preference = new Preference();
-    this.route.params.subscribe(params => { this.user_id = params['user_id'] });
-    //this.getPreference();    
-    this.preference.email = this.authService.getUser().email;
-    //this.getPreferences();
-    
+    let user: any = this.authService.getUser();
+    this.preference.email = user.email;
+    this.user_id = user._id;
+    this.getPreference();
+
     this.genreList = [
       { id: 1, item_text: 'Action' },
       { id: 2, item_text: 'Drama' },
@@ -67,34 +67,13 @@ export class PreferencesComponent implements OnInit {
     };
   }
 
-  onItemSelect (item:any) {
-    console.log(item);
+  submitPreference() {
+    this.preferenceService.updatePreferences(this.user_id, this.preference);
   }
 
-  onSelectAll (items: any) {
-    console.log(items);
-  }
-
-  get diagnostic() { return JSON.stringify(this.preference); }
-
-
-  submitPreference(){
-    this.preferenceService.updatePreferences(this.user_id , this.preference);
-  }
-
-  submitNewPreference(){
-    this.preferenceService.updateNewPreferences(this.preference);
-  }
-
-  getPreference(){
+  getPreference() {
     this.preferenceService.getPreferencesById(this.user_id).subscribe((response: any) => {
       this.preference = response;
     });
-  }
-
-  getPreferences(){
-    this.preferenceService.getPreferencesByEmail(this.email).subscribe((response: any) => {
-      this.preference = response;
-    });    
   }
 }
