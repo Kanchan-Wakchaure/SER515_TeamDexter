@@ -57,32 +57,32 @@ app.use(function (error, request, response, next) {
   if (errorStatusCode >= 300 && errorStatusCode < 400) {
     response.status(errorStatusCode);
     response.json({
-      "error code": errorStatusCode,
+      "errorCode": errorStatusCode,
       "message": "Additional action required in order to complete this request."
     });
   } else if (errorStatusCode >= 400 && errorStatusCode < 500) {
     if (errorStatusCode === 401) {
       response.status(401);
       response.json({
-        "error code": errorStatusCode,
+        "errorCode": errorStatusCode,
         "message": "Unauthorized Access - Wrong Credentials"
       });
     } else if (errorStatusCode === 403) {
       response.status(404);
       response.json({
-        "error code": errorStatusCode,
+        "errorCode": errorStatusCode,
         "message": "Unauthorized Access - Access forbidden"
       })
     } else if (errorStatusCode === 404) {
       response.status(404);
       response.json({
-        "error code": errorStatusCode,
+        "errorCode": errorStatusCode,
         "message": "Resource not found"
       })
     } else {
       response.status(errorStatusCode);
       response.json({
-        "error code": errorStatusCode,
+        "errorCode": errorStatusCode,
         "message": "Bad Request - Request cannot be fulfilled"
       })
     }
@@ -90,13 +90,13 @@ app.use(function (error, request, response, next) {
     if (errorStatusCode === 501) {
       response.status(errorStatusCode);
       response.json({
-        "error code": errorStatusCode,
+        "errorCode": errorStatusCode,
         "message": "Unable to fulfill this request"
       })
     } else {
       response.status(errorStatusCode);
       response.json({
-        "error code": errorStatusCode,
+        "errorCode": errorStatusCode,
         "message": "Internal Server Error"
       })
     }
