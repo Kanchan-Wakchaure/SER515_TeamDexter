@@ -14,13 +14,14 @@ var cookieParser = require("cookie-parser");
 
 require('./config/passport');
 require('./services/db');
-
+//var { getRefresh } = require('./services/getNewMovie')
 
 //Created server at port 4241
 const PORT = process.env.PORT || 4241;
 app.listen(PORT, () => {
   console.log("Connected to port:" + PORT);
 });
+
 
 
 app.use(cors())
