@@ -11,10 +11,12 @@ router.get("/:id", function (req, res, next) {
         } else {
             var userPreference = {
                 genreList: [],
+                languageList: [],
                 actorsList: []
             };
             userPreference.genreList = user.genreList;
-            userPreference.actorsList = user.actorsList;
+            userPreference.languageList = user.languageList;
+            userPreference.actorsList = user.actorsList;                        
             return res.json(userPreference);
         }
     })
@@ -27,14 +29,14 @@ router.put('/:id', function (req, res, next) {
             next(new Error("User not found"));
         } else {
             user.genreList = req.body.genreList;
+            user.languageList = req.body.languageList;
             user.actorsList = req.body.actorsList;
             user.save().then(respose => {
                     res.status(200).json({
                         'preference': 'updated successfully'
                     });
                 })
-                .catch(err => {
-                    //console.log(err);
+                .catch(err => {                    
                     next(err);
                 });
         }
