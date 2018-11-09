@@ -47,7 +47,6 @@ export class AuthenticationService {
     if (!this.token) {
       this.token = localStorage.getItem('token');
     }
-
     return this.token;
   }
 
@@ -135,9 +134,14 @@ export class AuthenticationService {
     return this.dialogRef;
   }
 
+  public getUserDetailsById(id: number) {
+    return this.httpClient.get("http://localhost:4241/users/" + id, {
+      responseType: "json"
+    });
+  }
+
   public updateProfile(user: TokenPayload): Observable<any> {
     return this.httpClient.put('http://localhost:4241/users/', user);
-   
   }
 
 }

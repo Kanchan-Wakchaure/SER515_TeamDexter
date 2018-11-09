@@ -1,3 +1,11 @@
 .prefer{
 	width: 50%;
 }
+
+input.ng-invalid.ng-touched {
+    border-color: red;
+}
+
+.profile{
+    width: 50%;
+}

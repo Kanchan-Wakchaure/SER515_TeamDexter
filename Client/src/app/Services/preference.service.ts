@@ -24,14 +24,7 @@ export class PreferenceService {
   constructor(private http: HttpClient) { }
 
   getPreferencesById(id: number) {
-
     return this.http.get("http://localhost:4241/preferences/" + id, {
-      responseType: "json"
-    });
-  }
-
-  getPreferencesByEmail(email: string) {
-    return this.http.get("http://localhost:4241/preferences/?email=" + email, {
       responseType: "json"
     });
   }
@@ -41,8 +34,4 @@ export class PreferenceService {
       preferences, httpOptions).subscribe(results => this.var = results);
   }
 
-  updateNewPreferences(preferences: Preference) {
-    this.http.post("http://localhost:4241/preferences/", preferences, httpOptions)
-      .subscribe(results => this.var = results);
-  }
 }
