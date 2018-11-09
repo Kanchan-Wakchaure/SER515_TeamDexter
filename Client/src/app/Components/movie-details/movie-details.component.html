@@ -4,54 +4,64 @@
     </div>
 </div>
 
-<div *ngIf="movie" class="container">
+<div *ngIf="movie">
     <div class="row">
-        <div class="col-md-3 poster">
+        <div class="col-md-1"></div>
+        <div class="col-md-2 poster">
             <img src={{movie.poster_path}}>
+            <a class="btn btn-primar booking info" role="button" (click)=openDialog()>Find Shows</a>
+            <a class="btn btn-primar trailer info" role="button" href="{{movie.trailer}}" target="_blank">View Trailer</a>
         </div>
 
-        <div class="col-md-7">
+        <div class="col-md-8">
 
             <font size="18" color="black">&nbsp;{{movie.original_title}}</font>
 
             <span class="language">&nbsp; {{movie.original_language}}</span>
 
-            <div class="row tagline">
-                <p>{{movie.tagline}}</p>
-            </div>
-
             <div class="row genres">
-                <span *ngFor="let genre of movie.genres; let isLast=last">
-                    <p>{{genre.name}}{{isLast ? '' : '/'}}</p>
-                </span>
-            </div>
+                <mat-chip-list *ngFor="let genre of movie.genres">
+                    <mat-chip>{{genre.name}}</mat-chip>&nbsp;
+                </mat-chip-list>
+            </div><br>
 
-            <div class="row tagline">
-                <p>{{movie.overview}}</p>
-            </div>
-
-            <div class="row info">
-                <b>Release Date</b>
-                <p>&nbsp; {{movie.release_date | date}}</p>
-            </div>
-            <div class="row info">
-                <b>Votes</b>
-                <p>&nbsp; {{movie.vote_count}}</p>
-
-                <b>&nbsp; Average</b>
-                <p>&nbsp; {{movie.vote_average}}</p>
-            </div>
-
-            <div class="row info">
-                <b>Cast</b>
-                <div class="scroller">
-                    <span *ngFor="let cast of movie.cast; let isLast=last">
-                        <font>{{cast.name}}{{isLast ? '' : ', '}}</font>
-                    </span>
+            <div class="row">
+                <div class="col-md-4" align="center">
+                    <mat-icon>calendar_today</mat-icon>
+                    <p>{{movie.release_date | date}}</p>
+                </div>
+                <div class="col-md-4" align="center">
+                    <mat-icon>thumb_up_alt</mat-icon>
+                    <p>{{movie.vote_count}} &nbsp;</p>
+                </div>
+                <div class="col-md-4" align="center">
+                    <mat-icon>star_rate</mat-icon>
+                    <p>{{movie.vote_average}}/10</p>
                 </div>
             </div>
 
-            <a class="btn btn-primar booking info" role="button" (click)=openDialog()>Find Shows</a>
+            <mat-tab-group>
+              <mat-tab label="About">
+                <br>
+                    <h5>Summary</h5>
+                    <font size="2">{{movie.overview}}</font><br>
+
+                    <br><h5>Cast</h5>
+                    <div class="scroller">
+                        <span *ngFor="let cast of movie.cast; let isLast=last; let i=index">
+                            <font size="2" *ngIf="i<10">{{cast.name}}{{isLast ? '' : ', '}}</font>
+                        </span>
+                    </div>
+              </mat-tab>
+              <mat-tab label="Reviews">
+                <div class="scroller">
+                    <span *ngFor="let review of movie.reviews; let isLast=last">
+                        <br><h5>{{review.author}}</h5>
+                        <font size="2">{{review.content}}</font><br>
+                    </span>
+                </div>
+              </mat-tab>
+            </mat-tab-group>
 
         </div>
     </div>

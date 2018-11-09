@@ -1,4 +1,6 @@
- a:not([href]):not([tabindex]) {
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+ 
+ a:not([tabindex]) {
 	 color: white;
  }
 
@@ -9,35 +11,39 @@
 }
 
 img {
-	width: 90%;
-}
-
-.poster {
-	margin-left: 8%;
+	width: 100%;
 }
 
 .booking {
-	float: left;
-	margin-right: 10%;
-	margin-top: 3%;
+	float: right;
+	margin-right: 15%;
+	margin-top: 20%;
 	background-color: maroon;
 	cursor: pointer;
 	font-size: 12px;
 	text-align: center;
+	width: 70%;
 } 
+
+.trailer {
+	float: right;
+	margin-right: 15%;
+	margin-top: 10%;
+	background-color: maroon;
+	cursor: pointer;
+	font-size: 12px;
+	font-color: white;
+	text-align: center;
+	width: 70%;
+}
 
 .genres {
 	font-family: "Times New Roman", Times, serif;
-	margin-left: 2%;
+	margin-left: 1%;
 }
 
 .tagline {
-	font-style: italic;
-	margin-left: 2%
-}
-
-.info {
-	margin-left: 2%;
+	margin-left: 1%;
 }
 
 .td-config{
@@ -48,7 +54,7 @@ img {
 
 .scroller {
     overflow: scroll;
-    height: 50px;
+    height: auto;
 }
 
 .suggest {
@@ -59,8 +65,4 @@ img {
 
 .scroll_vertical{
 	overflow-y: auto;
-}
-
-#booker {
-	visibility: hidden;
 }

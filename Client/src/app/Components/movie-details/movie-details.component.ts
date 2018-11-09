@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material';
 
 import { TimeAndTheatreComponent } from '../time-and-theatre/time-and-theatre.component';
 
+
 @Component({
   selector: 'app-movie-details',
   templateUrl: './movie-details.component.html',
@@ -13,8 +14,9 @@ import { TimeAndTheatreComponent } from '../time-and-theatre/time-and-theatre.co
 })
 export class MovieDetailsComponent implements OnInit {
   public color = "warn";
-  public movie: Movie;
+  public movie: any;
   private movie_id: number;
+
   constructor(public movieService: MovieService, private route: ActivatedRoute,
     private router: Router, public dialog: MatDialog) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
@@ -25,6 +27,10 @@ export class MovieDetailsComponent implements OnInit {
     this.movieService.getMovieDetails(this.movie_id).subscribe((response: any) => {
       this.movie = response;
     });
+  }
+
+  get diagnostic(){
+    return JSON.stringify(this.movie);
   }
 
   openDialog() {
