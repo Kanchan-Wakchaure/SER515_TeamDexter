@@ -1,8 +1,8 @@
 export class Preference {
 
 	public email: string;
-	public genres: [number, string];
+	public genreList: [number, string];
 	public languages: [number, string];
-	public actors: [number, string];
+	public actorsList: [number, string];
 
 }

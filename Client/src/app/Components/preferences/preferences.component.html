@@ -1,22 +1,88 @@
-<div class="container prefer">
-  <h4>Set preferences:</h4>
-  <p>Email</p>
-  <input type="text" class="form-control" id="email" required [(ngModel)]="this.authService.getUser().email" name="email" disabled><br>
-  <p>Genre</p>
+<div class="container prefer">          
+          <div class="form-group">
+          <h3 align ="center">User Profile</h3>
+          </div>
 
-  <ng-multiselect-dropdown [placeholder]="'Select Genres'" [data]="genreList" [(ngModel)]="preference.genreList"
-    [settings]="dropdownSettings" (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)" name="genres"></ng-multiselect-dropdown><br>
+          <div class="form-group">
+          <br><h5><u>User Details </u></h5>
+          <label for="firstname">First Name:</label>
+          <input class="form-control" 
+                 type="string" 
+                 name="firstname" 
+                 id="firstname"                                                                                    
+                 [(ngModel)]="profile.firstName"
+                 [readonly] = "readonly">
+          </div> 
+                
+          <div class="form-group">
+          <label for="lastname">Last Name:</label>
+          <input class="form-control" 
+                 type="string" 
+                 name="lastname"                        
+                 id="lastname"                  
+                 [(ngModel)]="profile.lastname"
+                 [readonly]="readonly">
+          </div>
+          
+          <div class="form-group">
+          <label for="email">Email:</label>
+          <input class="form-control" 
+                 type="email" 
+                 name="email" 
+                 id="email" 
+                 readonly                                      
+                 [(ngModel)]="profile.email">
+          </div>                                
+              
+          <div class="form-group">
+            <label for="location">Location:</label>
+            <input *ngIf = "readonly"
+                   class="form-control" 
+                   type="location" 
+                   name="location" 
+                   id="location" 
+                   readonly                   
+                   [(ngModel)]="profile.location">                 
+             <select *ngIf="!readonly"
+                   class="form-control"
+                   id="location" 
+                   name="location"                                       
+                   [(ngModel)]="profile.location">                        
+                   <option *ngFor="let c of cities" [ngValue]="c.name">{{c.name}}</option>
+           </select>
+          </div>      
+          
+          <div class="form-group">
+            <h5><u>Set Preferences </u></h5>
+            <label for="genres">Genre:</label>         
+            <ng-multiselect-dropdown [placeholder]="'Select Genres'" 
+                                     [data]="genreList" 
+                                     [(ngModel)]="preference.genreList"
+                                     [settings]="dropdownSettings"                                      
+                                     name="genres">
+            </ng-multiselect-dropdown>
+          </div>    
 
-  <p>Language</p>
+          <div class="form-group">
+            <label for="languages">Language:</label>
+            <ng-multiselect-dropdown [placeholder]="'Select Languages'" 
+                                     [data]="languageList" 
+                                     [(ngModel)]="preference.languageList"
+                                     [settings]="dropdownSettings"                                     
+                                     name="languages">
+            </ng-multiselect-dropdown>
+          </div>
 
-  <ng-multiselect-dropdown [placeholder]="'Select Languages'" [data]="languageList" [(ngModel)]="preference.languageList"
-    [settings]="dropdownSettings" (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)" name="languages"></ng-multiselect-dropdown><br>
-
-  <p>Actor</p>
-
-  <ng-multiselect-dropdown [placeholder]="'Select Actors'" [data]="actorsList" [(ngModel)]="preference.actorsList"
-    [settings]="dropdownSettings" (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)" name="actors"></ng-multiselect-dropdown><br>
-
-  <button type="submit" class="btn btn-success" (click)="submitNewPreference()">Submit</button><br><br>
-
+          <div class="form-group">
+            <label for="actors">Actor:</label>
+            <ng-multiselect-dropdown [placeholder]="'Select Actors'" 
+                                     [data]="actorsList" 
+                                     [(ngModel)]="preference.actorsList"
+                                     [settings]="dropdownSettings"                                      
+                                     name="actors">   
+            </ng-multiselect-dropdown> 
+          </div>                    
+  
+        <button *ngIf="readonly" type="submit" class="btn btn-danger" (click)="editProfile()">Edit Profile</button>     
+        <button *ngIf="!readonly" type="submit" class="btn btn-success" (click)="saveChanges()">Save Changes</button><br><br><br>             
 </div>

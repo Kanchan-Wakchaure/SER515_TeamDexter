@@ -29,8 +29,7 @@ export class NavbarComponent implements OnInit {
     private router: Router, private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
-    this.loggedIn = this.authenticationService.isLoggedIn();
-    this.user = this.authenticationService.getUser();
+    this.loadUser();
   }
 
   //opens pop up when login is clicked.
@@ -39,6 +38,9 @@ export class NavbarComponent implements OnInit {
       width: '600px'
     })
     this.authenticationService.setDialogRef(dialogReference);
+    dialogReference.afterClosed().subscribe(result => { 
+      this.loadUser();  
+    });
     return false;
   }
 
@@ -47,7 +49,9 @@ export class NavbarComponent implements OnInit {
     const dialogReference = this.dialog.open(SignupComponent, { width: '600px' })
 
     //action needed after dialog is closed.
-    dialogReference.afterClosed().subscribe(result => { console.log("dialog was closed"); });
+    dialogReference.afterClosed().subscribe(result => { 
+      this.loggedIn = this.authenticationService.isLoggedIn();
+     });
     return false;
   }
 
@@ -61,13 +65,18 @@ export class NavbarComponent implements OnInit {
     }
   }
 
+  loadUser() {
+    this.loggedIn = this.authenticationService.isLoggedIn();
+    this.user = this.authenticationService.getUser();
+  }
+
   navigateToHome() {
     this.router.navigate(['home']);
 
   }
 
   viewprofile() {
-    this.router.navigate(['user_profile']);
+    this.router.navigate(['preferences']);
   }
 
   //logs out the user

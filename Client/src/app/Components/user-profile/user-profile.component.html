@@ -67,36 +67,6 @@
             <br>           
         </div>       
     </div>
-
-<!--     <div>
-            <br><h5><u>Preferences: </u></h5>
-            <label for="email">Email</label>
-            <input type="text" class="form-control" id="email" required [(ngModel)]="preference.email" name="email"><br>
-            <label for="genre">Genre</label>
-            <ng-multiselect-dropdown [placeholder]="'Select Genres'" 
-                                     [data]="genreList" 
-                                     [(ngModel)]="preference.genreList"
-                                     [settings]="dropdownSettings" 
-                                     name="genres"
-                                     [disabled]="readonly">
-            </ng-multiselect-dropdown><br>
-            <label for="language">Language</label>
-            <ng-multiselect-dropdown [placeholder]="'Select Languages'" 
-                                     [data]="languageList" 
-                                     [(ngModel)]="preference.languageList"
-                                     [settings]="dropdownSettings"
-                                     name="languages"
-                                     [disabled]="readonly">
-            </ng-multiselect-dropdown><br>                    
-            <label for="actor">Actor</label>                    
-            <ng-multiselect-dropdown [placeholder]="'Select Actors'" 
-                                     [data]="actorsList" 
-                                     [(ngModel)]="preference.actorsList"
-                                     [settings]="dropdownSettings" 
-                                     name="actors"
-                                     [disabled] ="readonly">
-            </ng-multiselect-dropdown><br>
-        </div> -->
    <button *ngIf="readonly" type="submit" class="btn btn-danger" (click)="editProfile()">Edit Profile</button>     
    <button *ngIf="!readonly" type="submit" class="btn btn-success" (click)="saveChanges()">Save Changes</button><br><br><br>     
 </div>
