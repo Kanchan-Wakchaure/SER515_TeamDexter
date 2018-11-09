@@ -76,7 +76,7 @@ export class NavbarComponent implements OnInit {
   }
 
   viewprofile() {
-    this.router.navigate(['user_profile']);
+    this.router.navigate(['preferences']);
   }
 
   //logs out the user
