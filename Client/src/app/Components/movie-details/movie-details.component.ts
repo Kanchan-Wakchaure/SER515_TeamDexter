@@ -14,8 +14,9 @@ import { TimeAndTheatreComponent } from '../time-and-theatre/time-and-theatre.co
 })
 export class MovieDetailsComponent implements OnInit {
   public color = "warn";
-  public movie: any;
+  public movie: Movie;
   private movie_id: number;
+  public link = "https://image.tmdb.org/t/p/w500/";
 
   constructor(public movieService: MovieService, private route: ActivatedRoute,
     private router: Router, public dialog: MatDialog) {
