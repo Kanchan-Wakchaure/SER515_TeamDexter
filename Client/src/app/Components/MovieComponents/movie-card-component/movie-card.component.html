@@ -1,14 +1,17 @@
-<mat-card class="movie-card">
-  <mat-card-header>
-    <div mat-card-avatar class="movie-header-image"></div>
-    <mat-card-title> <strong>{{movie.title}}</strong></mat-card-title>
-    <mat-card-subtitle> {{movie.id}}</mat-card-subtitle>
-  </mat-card-header>
-  <img mat-card-image src= {{movie.poster_path}}  alt="Movie Image">
-  
-  <mat-card-actions>
-    <button class = "btn btn-danger" (click)="getDetails()">Details</button>
-  </mat-card-actions>
-</mat-card>
+<a style = "cursor: pointer"
+(click) = "getDetails()">
+  <mat-card class="movie-card">
+    <mat-card-header>
+      <div mat-card-avatar class="movie-header-image"></div>
+      <mat-card-title> <strong>{{movie.title}}</strong></mat-card-title>
+    </mat-card-header>
+    <img mat-card-image src= {{movie.poster_path}}  alt="Movie Image">
+    <div class = "card-hover-style">
+      <div class = "text">
+        <strong>Click for Details</strong>
+      </div>  
+    </div>
+  </mat-card>
+</a>
 
 
