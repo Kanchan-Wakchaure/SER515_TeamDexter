@@ -66,3 +66,22 @@ img {
 .scroll_vertical{
 	overflow-y: auto;
 }
+
+.user {
+  display: inline-block;
+  width: 116px;
+  height: 116px;
+  border-radius: 50%;
+}
+
+.quick_info {
+	padding-top: 2%;
+	background-color: rgba(163, 163, 163, 0.3);
+	margin-bottom: 2%;
+	margin-left: 1%;
+	border-radius: 25px;
+}
+
+.cast_name {
+	margin-top: 5%;
+}
