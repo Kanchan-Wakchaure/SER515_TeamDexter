@@ -1,16 +1,19 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatCardModule } from '@angular/material/card';
-import { MatDialogModule } from '@angular/material/dialog';
-import { RouterModule, Routes } from '@angular/router';
-import { MatToolbarModule, MatProgressSpinnerModule } from '@angular/material';
-import { HttpClientModule } from '../../node_modules/@angular/common/http';
-import { FormsModule } from '@angular/forms';
-import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
-import { MatTabsModule } from '@angular/material/tabs';
-import { NgbPaginationModule, NgbPaginationConfig } from '@ng-bootstrap/ng-bootstrap';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { MatCardModule } from "@angular/material/card";
+import { MatDialogModule } from "@angular/material/dialog";
+import { RouterModule, Routes } from "@angular/router";
+import { MatToolbarModule, MatProgressSpinnerModule } from "@angular/material";
+import { HttpClientModule } from "../../node_modules/@angular/common/http";
+import { FormsModule } from "@angular/forms";
+import { NgMultiSelectDropDownModule } from "ng-multiselect-dropdown";
+import { MatTabsModule } from "@angular/material/tabs";
+import {
+  NgbPaginationModule,
+  NgbPaginationConfig
+} from "@ng-bootstrap/ng-bootstrap";
+import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { MatIconModule } from "@angular/material/icon";
 import { MatChipsModule } from "@angular/material/chips";
 
@@ -54,56 +57,57 @@ const routes: Routes = [
 ];
 
 @NgModule({
-    entryComponents: [
-        LoginComponent,
-        SignupComponent,
-        TimeAndTheatreComponent
-    ],
-    declarations: [
-        AppComponent,
-        MovieCardComponent,
-        NavbarComponent,
-        HomeComponent,
-        FooterComponent,
-        MovieDetailsComponent,
-        MovieSlideComponent,
-        LoginComponent,
-        SignupComponent,
-        PreferencesComponent,
-        SimilarMoviesComponent,
-        TimeAndTheatreComponent,
-        ActivationComponent,
-        UserProfileComponent,
-        AdminManageComponent,
-		ErrorDialogComponent
-    ],
-    imports: [
-        BrowserModule,
-        BrowserAnimationsModule,
-        MatCardModule,
-        MatDialogModule,
-        ReactiveFormsModule,
-        RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' }),
-        MatToolbarModule,
-        HttpClientModule,
-        FormsModule,
-        NgMultiSelectDropDownModule.forRoot(),
-        MatTabsModule,
-        MatAutocompleteModule,
-        NgbPaginationModule,
-        MatButtonModule,
-        MatProgressSpinnerModule,
-        MatIconModule,
-        MatChipsModule
-    ],
-    providers: [
-        MovieService,
-        AuthenticationService,
-        CityService,
-        PreferenceService,
-        NgbPaginationConfig,
-        AdmminService
-    ],
-    bootstrap: [AppComponent]
+  entryComponents: [
+    LoginComponent,
+    SignupComponent,
+    TimeAndTheatreComponent,
+    ErrorDialogComponent
+  ],
+  declarations: [
+    AppComponent,
+    MovieCardComponent,
+    NavbarComponent,
+    HomeComponent,
+    FooterComponent,
+    MovieDetailsComponent,
+    MovieSlideComponent,
+    LoginComponent,
+    SignupComponent,
+    PreferencesComponent,
+    SimilarMoviesComponent,
+    TimeAndTheatreComponent,
+    ActivationComponent,
+    UserProfileComponent,
+    AdminManageComponent,
+    ErrorDialogComponent
+  ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    MatCardModule,
+    MatDialogModule,
+    ReactiveFormsModule,
+    RouterModule.forRoot(routes, { onSameUrlNavigation: "reload" }),
+    MatToolbarModule,
+    HttpClientModule,
+    FormsModule,
+    NgMultiSelectDropDownModule.forRoot(),
+    MatTabsModule,
+    MatAutocompleteModule,
+    NgbPaginationModule,
+    MatButtonModule,
+    MatProgressSpinnerModule,
+    MatIconModule,
+    MatChipsModule
+  ],
+  providers: [
+    MovieService,
+    AuthenticationService,
+    CityService,
+    PreferenceService,
+    NgbPaginationConfig,
+    AdmminService
+  ],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}
