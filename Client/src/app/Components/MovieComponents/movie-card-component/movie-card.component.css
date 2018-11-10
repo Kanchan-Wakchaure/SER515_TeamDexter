@@ -13,7 +13,7 @@
     position: relative;
     top: 0;
     transition: all .2s ease-in;
-    
+    backface-visibility: hidden; 
   }
 
   .mat-card-header{
@@ -21,8 +21,32 @@
   }
   /*A CSS Class that handles styling of hovered card*/
   .movie-card:hover {
+    opacity: 0.8;
     top: -10px;
     box-shadow: 0 4px 5px rgba(0,0,0,0.5)
+  }
+
+  .card-hover-style{
+    background-color: rgba(100, 100, 100, 0);
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+    font-weight: bolder;
+  }
+
+  .text {
+    color:black;
+    font-size: 16px;
+    padding: 16px 32px;
+  }
+  
+  .movie-card:hover .card-hover-style {
+    opacity: 1;
   }
   
 /* A CSS class for each image*/
