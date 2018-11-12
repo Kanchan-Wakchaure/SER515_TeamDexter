@@ -4,25 +4,27 @@
     </div>
 </div>
 
+<iframe class="trailer_frame" [src]="video | safe" frameborder="0" allowfullscreen></iframe>
+
 <div *ngIf="movie">
     <div class="row">
         <div class="col-md-1"></div>
-        <div class="col-md-2 poster">
-            <img src={{movie.poster_path}}>
-            <a class="btn btn-primar booking info" role="button" (click)=openDialog()>Find Shows</a>
-            <a class="btn btn-primar trailer info" role="button" href="{{movie.trailer}}" target="_blank">View Trailer</a>
+        <div class="col-md-2">
+            <img class="poster" src={{movie.poster_path}}>
         </div>
 
         <div class="col-md-7">
 
-            <font size="18" color="black">&nbsp;{{movie.original_title}}</font>
+            <font face="georgia" size="18" color="black">&nbsp;{{movie.original_title}}</font>
 
             <span class="language">&nbsp; {{movie.original_language}}</span>
 
             <div class="row genres">
-                <mat-chip-list *ngFor="let genre of movie.genres">
-                    <mat-chip>{{genre.name}}</mat-chip>&nbsp;
-                </mat-chip-list>
+                    <mat-chip-list *ngFor="let genre of movie.genres">
+                        <mat-chip>{{genre.name}}</mat-chip>&nbsp;
+                    </mat-chip-list>
+
+                    <a class="btn btn-primar booking" role="button" (click)=openDialog()>Find Shows</a>
             </div><br>
 
             <div class="row quick_info">
@@ -50,7 +52,7 @@
                     <div class="row" align="center">
                         <span *ngFor="let cast of movie.cast; let isLast=last; let i=index">
                             <div class="col-md-12" align="center">
-                                <img class="user" src={{link}}{{cast.profile_path}} *ngIf="i<10">
+                                <img class="user" src={{get_image(cast.profile_path)}} *ngIf="i<10" alt="Sorry, No image">
                                 <br><font size="3" color="maroon"><p class="cast_name" *ngIf="i<10">{{cast.name}}</p></font>
                             </div>
                         </span>

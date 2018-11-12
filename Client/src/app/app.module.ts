@@ -22,7 +22,7 @@ import { MovieCardComponent } from "./Components/MovieComponents/movie-card-comp
 import { NavbarComponent } from "./Components/navbar/navbar.component";
 import { HomeComponent } from "./Components/home/home.component";
 import { FooterComponent } from "./Components/footer/footer.component";
-import { MovieDetailsComponent } from "./Components/movie-details/movie-details.component";
+import { MovieDetailsComponent, SafePipe } from "./Components/movie-details/movie-details.component";
 import { MovieSlideComponent } from "./Components/MovieComponents/movie-slide/movie-slide.component";
 import { LoginComponent } from "./Components/login/login.component";
 import { UserProfileComponent } from "./Components/user-profile/user-profile.component";
@@ -79,7 +79,8 @@ const routes: Routes = [
     ActivationComponent,
     UserProfileComponent,
     AdminManageComponent,
-    ErrorDialogComponent
+    ErrorDialogComponent,
+    SafePipe
   ],
   imports: [
     BrowserModule,
