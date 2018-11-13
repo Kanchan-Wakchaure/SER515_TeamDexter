@@ -88,6 +88,10 @@
 	border-radius: 25px;
 }
 
+.cast {
+	width: 100%;
+}
+
 .cast_name {
 	margin-top: 5%;
 }

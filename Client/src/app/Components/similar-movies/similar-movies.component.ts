@@ -40,4 +40,8 @@ export class SimilarMoviesComponent implements OnInit {
       }
     );
   }
+  getDetails(id: string){
+    if(id != '')
+      this.router.navigate(['movie_details', {movie_id: id}]);
+  }
 }

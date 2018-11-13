@@ -4,7 +4,7 @@
     </div>
 </div>
 
-<iframe class="trailer_frame" [src]="video | safe" frameborder="0" allowfullscreen></iframe>
+<iframe *ngIf="video" class="trailer_frame" [src]="video | safe" frameborder="0" allowfullscreen></iframe>
 
 <div *ngIf="movie">
     <div class="row">
@@ -49,7 +49,7 @@
                     <font size="2">{{movie.overview}}</font><br>
 
                     <br><h5>Cast</h5>
-                    <div class="row" align="center">
+                    <div class="row cast" align="center">
                         <span *ngFor="let cast of movie.cast; let isLast=last; let i=index">
                             <div class="col-md-12" align="center">
                                 <img class="user" src={{get_image(cast.profile_path)}} *ngIf="i<10" alt="Sorry, No image">

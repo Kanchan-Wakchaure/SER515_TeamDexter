@@ -33,6 +33,7 @@ export class MovieDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
+    window.scrollTo(0, 0)
     this.route.params.subscribe(params => { this.movie_id = params['movie_id'] });
     this.movieService.getMovieDetails(this.movie_id).subscribe((response: any) => {
       this.movie = response;
