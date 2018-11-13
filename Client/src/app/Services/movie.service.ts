@@ -5,6 +5,7 @@ import {
   HttpHeaders,
   HttpParams
 } from "@angular/common/http";
+import { City } from "../Components/city.model";
 // import { timingSafeEqual } from 'crypto';
 
 /*
@@ -60,8 +61,11 @@ export class MovieService {
   }
 
   getShowTimes(days: number){
-    return this.http.get("http://localhost:4241/showtimes/"+ this.movie_id +"?date="+days, {
+    const city: City = <City>JSON.parse(window.localStorage.getItem('city'));
+    return this.http.get(
+      "http://localhost:4241/showtimes/"+ this.movie_id + "?date=" + days + "&city=" + city.id, 
+      {
       responseType: "json"
-    });
+      });
   }
 }

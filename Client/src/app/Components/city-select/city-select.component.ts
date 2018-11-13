@@ -37,6 +37,11 @@ export class CitySelectComponent implements OnInit {
   }
 
   OnSelect() {
-  
+    let citySelected = this.cities.find( city => 
+        city.name == this.selectedLocation
+    );
+    
+    window.localStorage.setItem('city', JSON.stringify(citySelected));
+    this.cityService.getCityDialogRef().close();
   }
 }
