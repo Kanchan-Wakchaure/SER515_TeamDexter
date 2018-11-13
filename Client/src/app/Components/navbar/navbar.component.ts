@@ -10,6 +10,7 @@ import { MovieService } from '../../Services/movie.service';
 import { AuthenticationService, User } from '../../Services/authentication.service';
 import { Movie } from '../movie.model';
 import { CitySelectComponent } from '../city-select/city-select.component';
+import { CityService } from '../../Services/city.service';
 
 @Component({
   selector: 'app-navbar',
@@ -27,7 +28,8 @@ export class NavbarComponent implements OnInit {
   user: User;
   adminEmail: string = "shi.g.bhat@gmail.com"
   constructor(public dialog: MatDialog, private movieService: MovieService,
-    private router: Router, private authenticationService: AuthenticationService) { }
+    private router: Router, private authenticationService: AuthenticationService,
+    private cityService: CityService) { }
 
   ngOnInit() {
     this.loadUser();
@@ -60,6 +62,7 @@ export class NavbarComponent implements OnInit {
     const cityDialogReference = this.dialog.open(CitySelectComponent,{
       width: '600px'
     })
+    this.cityService.setCityDialogRef(cityDialogReference);
   }
 
   searchMovies(movieName: string, details: string) {
