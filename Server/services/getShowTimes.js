@@ -5,7 +5,7 @@ const Cinemas = require("../models/CinemaDetail");
 const CinemaDetail = require("../models/CinemaDetail");
 
 module.exports = {
-    getShowTimes: (id, dateNum) => {
+    getShowTimes: (id, dateNum,city_id) => {
         var option_movie = {
             method: "GET",
             url: `https://api.internationalshowtimes.com/v4/movies`,
@@ -31,7 +31,7 @@ module.exports = {
             url: `https://api.internationalshowtimes.com/v4/showtimes`,
             qs: {
                 apikey: keys.showTimeApiKey,
-                city_ids: '1901, 1912', //currently will only work for Tempe AZ. Later, pass selected city_id here
+                city_ids: city_id, //currently will only work for Tempe AZ. Later, pass selected city_id here
                 time_to: dateString + 'T00:00:00-08:00'
             },
             json: true
