@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <form [formGroup]="cityForm" (ngSubmit)="OnSelect()">
+              
+        <div formGroupName="cityData">
+      
+          <div class="form-group">
+            <label for="location">Select City:</label>
+            <select class="form-control"
+                    id="location" 
+                    name="location"
+                    formControlName="location"
+                    [(ngModel)]="selectedLocation">
+                    <option value ="" disabled selected hidden [ngValue]="null">Select</option>
+                    <option *ngFor="let c of cities" [ngValue]="c.name">{{c.name}}</option>
+            </select>
+            <span class="help-block"
+                  *ngIf="!cityForm.get('cityData.location').valid && cityForm.get('cityData.location').touched">
+                  <p style="color: red">Please select your location</p>
+            </span>
+          </div>        
+              
+          <button [disabled]="!cityForm.valid" class="btn btn-danger" type="submit" >Select</button>         
+        </div> 
+                       
+      </form>      
+    </div> 
+             
+  </div>
+</div>

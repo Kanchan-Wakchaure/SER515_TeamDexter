@@ -1,7 +1,6 @@
 .navigation{
 	width: 100%;
 	background-color: black;
-
 }
 
 .logo{
@@ -64,8 +63,10 @@
 	font-size: 9px;
  	border: 1px solid black;
  	text-align: center;
- 	vertical-align: center;
+	vertical-align: center;
+	outline: none; 
  }
+
 
  .log{
  	padding-left: 1%;
@@ -132,13 +133,8 @@
 	 	height: 2%;
 	 }
 
-	 .signup-button{
-		background-color: maroon;
-		font-size: 8px;
-		border: 1px solid black;
-		text-align: center;
-		vertical-align: center;
-		height: 2%;
+	button{
+		outline: none;
 	}	 
 }
 
