@@ -24,13 +24,14 @@
       <nav class="navset">
         <a class="nav-li" href="/home">Home</a>
         <a class="nav-li" href="/coming_soon">Coming Soon</a>
-        <a class="nav-li" href="/wish_list">Wish List</a>
-        <a class="nav-li" href="/latest">Latest</a>
-      </nav>
+        </nav>
+      <div class="log">
+        <button class="btn btn-primary login-button" (click)="openCityDialog()">Select City</button>
+      </div>
       <div class="log" *ngIf="!loggedIn">
         <button class="btn btn-primary login-button" (click)="openDialog()">Log In</button>
       </div>
-      <div class="signup" *ngIf="!loggedIn">
+      <div class="log" *ngIf="!loggedIn">
         <button class="btn btn-primary login-button" (click)="openSignUp()">Sign Up</button>
       </div>
       <div class="nav dropdown" *ngIf="loggedIn">

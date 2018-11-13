@@ -9,6 +9,7 @@ import { FormControl } from '@angular/forms';
 import { MovieService } from '../../Services/movie.service';
 import { AuthenticationService, User } from '../../Services/authentication.service';
 import { Movie } from '../movie.model';
+import { CitySelectComponent } from '../city-select/city-select.component';
 
 @Component({
   selector: 'app-navbar',
@@ -53,6 +54,12 @@ export class NavbarComponent implements OnInit {
       this.loggedIn = this.authenticationService.isLoggedIn();
      });
     return false;
+  }
+
+  openCityDialog() {
+    const cityDialogReference = this.dialog.open(CitySelectComponent,{
+      width: '600px'
+    })
   }
 
   searchMovies(movieName: string, details: string) {

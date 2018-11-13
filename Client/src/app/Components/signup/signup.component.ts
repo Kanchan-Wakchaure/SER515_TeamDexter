@@ -73,7 +73,9 @@ export class SignupComponent implements OnInit {
 
     this.cityService.getCities().subscribe((response: City[]) => {
       this.cities = response;
+      this.cities.sort((one, two) => (one.name < two.name ? -1 : 1));
     });
+    
   }
 
   OnSignup() {

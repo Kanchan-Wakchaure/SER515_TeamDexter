@@ -41,6 +41,7 @@ import { ErrorDialogComponent } from "./Components/error-dialog/error-dialog.com
 import { AdmminService } from "./Services/admin.service";
 import { MatButtonModule } from "@angular/material/button";
 import { AdminManageComponent } from "./Components/admin-manage/admin-manage.component";
+import { CitySelectComponent } from './Components/city-select/city-select.component';
 
 const routes: Routes = [
   { path: "coming_soon", component: HomeComponent },
@@ -61,7 +62,8 @@ const routes: Routes = [
     LoginComponent,
     SignupComponent,
     TimeAndTheatreComponent,
-    ErrorDialogComponent
+    ErrorDialogComponent,
+    CitySelectComponent
   ],
   declarations: [
     AppComponent,
@@ -80,7 +82,8 @@ const routes: Routes = [
     UserProfileComponent,
     AdminManageComponent,
     ErrorDialogComponent,
-    SafePipe
+    SafePipe,
+    CitySelectComponent
   ],
   imports: [
     BrowserModule,
