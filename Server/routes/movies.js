@@ -15,6 +15,9 @@ var {
 var {
   getSimilarMovies
 } = require("../services/getSimilarMovies");
+var {
+  getRecommendation
+} = require("../services/getRecommendation");
 
 // GET home page and show list of movies.
 router.get("/", function (req, res, next) {
@@ -27,7 +30,6 @@ router.get("/", function (req, res, next) {
   if (typeof (page) === 'undefined') {
     page = 1
   }
-
   switch (type) {
     case 'popular':
       getMovieList(page)
@@ -35,7 +37,6 @@ router.get("/", function (req, res, next) {
           res.json(movie);
         })
         .catch(err => {
-          //console.log("Error fetching from movies list");
           next(err);
         });
       break;
@@ -45,7 +46,6 @@ router.get("/", function (req, res, next) {
           res.json(movie);
         })
         .catch(err => {
-          //console.log("Error fetching from upcoming movies list", err);
           next(err);
         })
       break;
@@ -58,10 +58,17 @@ router.get("/", function (req, res, next) {
         })
         .catch(err => {
           next(err);
-          //console.log("Error while retrieving search result", err);
         })
       break;
-
+    case 'recommended':
+      let uid = req.query.userId;
+      getRecommendation(uid)
+        .then(movies => {
+          res.json(movies);
+        }).catch(err => {
+          next(err);
+        })
+      break;
     default:
       res.send("bye")
   }
@@ -81,7 +88,6 @@ router.get("/:id", function (req, res, next) {
           res.send(movie);
         })
         .catch(err => {
-          //console.log("Error fetching movie details", err);
           next(err);
         });
       break;
@@ -92,7 +98,6 @@ router.get("/:id", function (req, res, next) {
         })
         .catch(err => {
           next(err);
-          //console.log("Error fetching  similar movies list", err);
         });
       break;
     default:

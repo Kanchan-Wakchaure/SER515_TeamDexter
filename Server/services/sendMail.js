@@ -151,27 +151,38 @@ function fetchMovies(myGenreList, myActorList) {
     var upperRangeDate = new Date();
     upperRangeDate.setDate(upperRangeDate.getDate() + 10);
 
-    var query = MovieList.find({
-        release_date: {
-            $gt: formatDate(lowerRangeDate),
-            $lt: formatDate(upperRangeDate)
-        },
-        original_language: "en",
-        $or: [{
-                genre_list: {
-                    $in: myGenreList
-                }
+    if (myGenreList.length === 0 && myActorList.length === 0) {
+        query = MovieList.find({
+            release_date: {
+                $gt: formatDate(lowerRangeDate),
+                $lt: formatDate(upperRangeDate)
             },
-            {
-                'cast.0.name': {
-                    $in: myActorList
+            original_language: "en",
+        }).sort({
+            release_date: -1
+        });
+    } else {
+        var query = MovieList.find({
+            release_date: {
+                $gt: formatDate(lowerRangeDate),
+                $lt: formatDate(upperRangeDate)
+            },
+            original_language: "en",
+            $or: [{
+                    genre_list: {
+                        $in: myGenreList
+                    }
+                },
+                {
+                    'cast.0.name': {
+                        $in: myActorList
+                    }
                 }
-            }
-        ]
-    }).sort({
-        release_date: -1
-    }).limit(10);
-
+            ]
+        }).sort({
+            release_date: -1
+        }).limit(10);
+    }
     return query.exec().then(function (movies) {
         for (var i = 0; i < movies.length; i++) {
             var details = {}
