@@ -1,36 +1,47 @@
 var nodemailer = require('nodemailer');
 var mailer = require('../services/mailer');
 const User = require('../models/User');
+const MovieList = require('../models/MovieList');
+const keys = require("../config/keys");
 
 module.exports.sendEmail = function (req, res) {
     var emailList = [];
-    var src1, src2, src3, src4, src5, src6;
+    //var src1, src2, src3, src4, src5, src6;
+    var sources = []
     fetchID().then(function (IdList) {
         for (var i = 0; i < IdList.length; i++) {
             fetchPreferences(IdList[i]).then(function (users) {
                 var email = users.email;
                 var firstName = users.firstname;
-                var lastName = users.lastname;
+
                 var myGenreList = [];
                 var myActorList = [];
+
                 for (var j = 0; j < users.genreList.length; j++) {
                     myGenreList.push(users.genreList[j].item_text);
                 }
                 for (var k = 0; k < users.actorsList.length; k++) {
                     myActorList.push(users.actorsList[k].item_text);
                 }
+
                 emailList.push(email);
-                src1 = "https://image.tmdb.org/t/p/w500//wrFpXMNBRj2PBiN4Z5kix51XaIZ.jpg";
-                src2 = "https://image.tmdb.org/t/p/w500//i91mfvFcPPlaegcbOyjGgiWfZzh.jpg";
-                src3 = "https://image.tmdb.org/t/p/w500//x1txcDXkcM65gl7w20PwYSxAYah.jpg";
-                src4 = "https://image.tmdb.org/t/p/w500//2uNW4WbgBXL25BAbXGLnLqX71Sw.jpg";
-                src5 = "https://image.tmdb.org/t/p/w500//ptSrT1JwZFWGhjSpYUtJaasQrh.jpg";
-                src6 = "https://image.tmdb.org/t/p/w500//lNkDYKmrVem1J0aAfCnQlJOCKnT.jpg";
-                var mailOptions = {
-                    from: 'findmyshow1@gmail.com',
-                    to: email,
-                    subject: 'Find My Show - Notifications',
-                    html: `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+                fetchMovies(myGenreList, myActorList).then(function (myMovies) {
+                    for (var l = 0; l < myMovies.length; l++) {
+                        var srcx = myMovies[l].poster_path;
+                        sources.push(srcx);
+                    }
+                    //console.log(sources);
+                    //src1 = "https://image.tmdb.org/t/p/w500//wrFpXMNBRj2PBiN4Z5kix51XaIZ.jpg";
+                    //src2 = "https://image.tmdb.org/t/p/w500//i91mfvFcPPlaegcbOyjGgiWfZzh.jpg";
+                    //src3 = "https://image.tmdb.org/t/p/w500//x1txcDXkcM65gl7w20PwYSxAYah.jpg";
+                    //src4 = "https://image.tmdb.org/t/p/w500//2uNW4WbgBXL25BAbXGLnLqX71Sw.jpg";
+                    //src5 = "https://image.tmdb.org/t/p/w500//ptSrT1JwZFWGhjSpYUtJaasQrh.jpg";
+                    //src6 = "https://image.tmdb.org/t/p/w500//lNkDYKmrVem1J0aAfCnQlJOCKnT.jpg";
+                    var mailOptions = {
+                        from: 'findmyshow1@gmail.com',
+                        to: email,
+                        subject: 'Find My Show - Notifications',
+                        html: `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                         <html style="width:100%;font-family:arial, 'helvetica neue', helvetica, sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;padding:0;Margin:0;"> 
                         <head> <meta charset="UTF-8"> <meta content="width=device-width, initial-scale=1" name="viewport"> <meta name="x-apple-disable-message-reformatting"> 
                         <meta http-equiv="X-UA-Compatible" content="IE=edge"> <meta content="telephone=no" name="format-detection"> <title>New email</title> <!--[if (mso 16)]>
@@ -58,12 +69,12 @@ module.exports.sendEmail = function (req, res) {
                         <a href="http://findmyshow.herokuapp.com">FindMyShow</a> and book your tickets now!!</p>
                         <div width=500px height=250px>
                             <ul>
-                            <img src=${src1}  width=150 height =250px/>
-                            <img src=${src2}  width=150 height =250px/>
-                            <img src=${src3}  width=150 height =250px/>
-                            <img src=${src4}  width=150 height =250px/>
-                            <img src=${src5}  width=150 height =250px/>
-                            <img src=${src6}  width=150 height =250px/>
+                            <img src=${sources[0]}  width=150 height =250px/>
+                            <img src=${sources[1]}  width=150 height =250px/>
+                            <img src=${sources[2]}  width=150 height =250px/>
+                            <img src=${sources[3]}  width=150 height =250px/>
+                            <img src=${sources[4]}  width=150 height =250px/>
+                            <img src=${sources[5]}  width=150 height =250px/>
                             </ul>
                         </div>
                         <div>
@@ -85,8 +96,9 @@ module.exports.sendEmail = function (req, res) {
                         <table width="100%" cellspacing="0" cellpadding="0" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;"> <tr style="border-collapse:collapse;"> <td align="center" style="padding:0;Margin:0;"> 
                         <p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:14px;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:150%;color:#FFFFFF;">FindMyShow</p><p
                         style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:14px;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:150%;color:#FFFFFF;">All rights reserved&nbsp;2018</p> </td> </tr> </table> </td> </tr> </table> </td> </tr> </table> </td> </tr> </table> </td> </tr> </table> </div> </body></html>`
-                };
-                mailer.sendEmail(mailOptions);
+                    };
+                    mailer.sendEmail(mailOptions);
+                })
             });
         }
     })
@@ -115,5 +127,61 @@ function fetchPreferences(myID) {
         details.lastname = users.lastname;
         details.city = users.city;
         return details;
+    })
+}
+
+function formatDate(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+
+    return [year, month, day].join('-');
+}
+
+function fetchMovies(myGenreList, myActorList) {
+    var mdetails = [];
+
+    var lowerRangeDate = new Date();
+    lowerRangeDate.setDate(lowerRangeDate.getDate() - 30);
+
+    var upperRangeDate = new Date();
+    upperRangeDate.setDate(upperRangeDate.getDate() + 10);
+
+    var query = MovieList.find({
+        release_date: {
+            $gt: formatDate(lowerRangeDate),
+            $lt: formatDate(upperRangeDate)
+        },
+        original_language: "en",
+        $or: [{
+                genre_list: {
+                    $in: myGenreList
+                }
+            },
+            {
+                'cast.0.name': {
+                    $in: myActorList
+                }
+            }
+        ]
+    }).sort({
+        release_date: -1
+    }).limit(10);
+
+    return query.exec().then(function (movies) {
+        for (var i = 0; i < movies.length; i++) {
+            var details = {}
+            if (movies[i].poster_path != null) {
+                details["title"] = movies[i].title;
+                details["poster_path"] = keys.imageBaseURL + movies[i].poster_path;
+                details["release_date"] = movies[i].release_date;
+                mdetails.push(details);
+            }
+        }
+        return mdetails;
     })
 }
