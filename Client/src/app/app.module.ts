@@ -45,6 +45,7 @@ import { CitySelectComponent } from './Components/city-select/city-select.compon
 
 const routes: Routes = [
   { path: "coming_soon", component: HomeComponent },
+  {path: "recommended", component: HomeComponent},
   { path: "wish_list/:id", component: HomeComponent },
   { path: "latest", component: HomeComponent },
   { path: "home", component: HomeComponent },

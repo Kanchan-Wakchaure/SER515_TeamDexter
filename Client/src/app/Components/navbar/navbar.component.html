@@ -24,6 +24,7 @@
       <nav class="navset">
         <a class="nav-li" href="/home">Home</a>
         <a class="nav-li" href="/coming_soon">Coming Soon</a>
+        <a class="nav-li" href="/recommended" *ngIf="loggedIn">Recommended</a>
         </nav>
       <div class="log">
         <button class="btn btn-primary login-button" (click)="openCityDialog()">Select City</button>
