@@ -169,15 +169,15 @@ function fetchMovies(myGenreList, myActorList) {
             },
             original_language: "en",
             $or: [{
-                    genre_list: {
-                        $in: myGenreList
-                    }
-                },
-                {
-                    'cast.0.name': {
-                        $in: myActorList
-                    }
+                genre_list: {
+                    $in: myGenreList
                 }
+            },
+            {
+                'cast.0.name': {
+                    $in: myActorList
+                }
+            }
             ]
         }).sort({
             release_date: -1

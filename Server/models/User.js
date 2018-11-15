@@ -7,11 +7,9 @@ const Schema = mongoose.Schema;
 let userSchema = new Schema({
   email: {
     type: String,
-
   },
   firstname: {
     type: String,
-
   },
   lastname: {
     type: String,
@@ -59,7 +57,7 @@ userSchema.methods.generateJwt = function () {
   return jwt.sign({
     _id: this._id,
     email: this.email,
-    firstName: this.firstname,
+    firstname: this.firstname,
     lastname: this.lastname,
     location: this.city,
     exp: parseInt(expiry.getTime() / 1000)
