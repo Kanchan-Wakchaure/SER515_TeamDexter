@@ -7,11 +7,9 @@
     	<div class="col-6 theatre" *ngFor="let day of day1">
     		 <h6>{{ day.theatre }} </h6>
           <div class="row container">
-            <mat-chip-list *ngFor="let showTime of day['times']">
-                <a class="chips" href= "{{showTime.booking_link}}">
-                  <mat-chip>{{showTime.time}}</mat-chip>&nbsp;
-                </a>
-            </mat-chip-list>
+            <p class="timings chip" *ngFor="let showTime of day['times']">
+             <a style = "cursor: pointer" target="_blank" href= "{{showTime.booking_link}}">{{ showTime.time }} </a>         
+            </p>&nbsp;
           </div>
     	</div>
     </div>
@@ -23,11 +21,9 @@
       <div class="col-6 theatre" *ngFor="let day of day2">
          <h6>{{ day.theatre }} </h6>
           <div class="row container">
-            <mat-chip-list *ngFor="let showTime of day['times']">
-                <a class="chips" href= "{{showTime.booking_link}}">
-                  <mat-chip>{{showTime.time}}</mat-chip>&nbsp;
-                </a>
-            </mat-chip-list>
+            <p class="timings chip" *ngFor="let showTime of day['times']">
+             <a style = "cursor: pointer" target="_blank" href= "{{showTime.booking_link}}">{{ showTime.time }} </a>
+            </p>
           </div>
       </div>
     </div>
@@ -39,11 +35,9 @@
       <div class="col-6 theatre" *ngFor="let day of day3">
          <h6>{{ day.theatre }} </h6>
           <div class="row container">
-            <mat-chip-list *ngFor="let showTime of day['times']">
-                <a class="chips" href= "{{showTime.booking_link}}">
-                  <mat-chip>{{showTime.time}}</mat-chip>&nbsp;
-                </a>
-            </mat-chip-list>
+            <p class="timings chip" *ngFor="let showTime of day['times']">
+             <a style = "cursor: pointer" target="_blank" href= "{{showTime.booking_link}}">{{ showTime.time }} </a>
+            </p>
           </div>
       </div>
     </div>
