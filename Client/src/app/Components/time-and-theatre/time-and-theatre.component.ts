@@ -21,6 +21,9 @@ export class TimeAndTheatreComponent implements OnInit {
   tempTimes1 = [];
   tempTimes2 = [];
   tempTimes3 = [];
+  one = '';
+  two = '';
+  three = '';
 
 
   constructor(public movieService: MovieService, private dialog: MatDialog) {}
@@ -30,6 +33,12 @@ export class TimeAndTheatreComponent implements OnInit {
       (response: any) => {
         this.data = response;
         this.attachCinema();
+        if (this.tempTimes1.length == 0)
+          this.one = 'a';
+        if (this.tempTimes2.length == 0)
+          this.two = 'a';
+        if (this.tempTimes3.length == 0)
+          this.three = 'a';
       },
       error => {
         this.dialog.open(ErrorDialogComponent, {

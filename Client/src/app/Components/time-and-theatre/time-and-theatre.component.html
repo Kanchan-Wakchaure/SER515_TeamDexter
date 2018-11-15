@@ -2,8 +2,8 @@
   <mat-tab-group>
   <mat-tab label="Today">
     <br>
-    <div class="row container scroller" *ngIf="day1">
-      <p>Sorry, no movies today</p>
+    <div class="row container" *ngIf="day1">
+      <p *ngIf="one == 'a'">Sorry, no movies today</p>
     	<div class="col-6 theatre" *ngFor="let day of day1">
     		 <h6>{{ day.theatre }} </h6>
           <div class="row container">
@@ -19,7 +19,7 @@
   <mat-tab label="Tomorrow">
     <br>
     <div class="row container scroller" *ngIf="day2">
-      <p>Sorry, no movies for tomorrow</p>
+      <p *ngIf="two == 'a'">Sorry, no movies for tomorrow</p>
       <div class="col-6 theatre" *ngFor="let day of day2">
          <h6>{{ day.theatre }} </h6>
           <div class="row container">
@@ -35,7 +35,7 @@
   <mat-tab label="Day After">
     <br>
     <div class="row container scroller" *ngIf="day3">
-      <p>Sorry, no movies for day after</p>
+      <p *ngIf="three == 'a'">Sorry, no movies for day after</p>
       <div class="col-6 theatre" *ngFor="let day of day3">
          <h6>{{ day.theatre }} </h6>
           <div class="row container">
