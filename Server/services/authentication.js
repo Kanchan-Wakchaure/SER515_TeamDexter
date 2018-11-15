@@ -102,24 +102,24 @@ module.exports.login = function (request, response) {
   })(request, response);
 };
 
-module.exports.updateUser = function(request, response){
+module.exports.updateUser = function (request, response) {
   User.findById(request.body._id, (err, user) => {
     if (!user) {
       response.status(401);
       response.json({ "message": "UnauthorizedError: private profile" });
     }
-    else{
+    else {
       console.log(request.body);
-      user.firstname = request.body.firstName;
+      user.firstname = request.body.firstname;
       user.lastname = request.body.lastname;
-      user.location = request.body.location;
-      user.save(function(err) {
+      user.city = request.body.location;
+      user.save(function (err) {
         if (err)
           console.log('Could not update the user profile')
         else
           console.log('User profile is updated successfully')
       });
     }
-  } );
-  
+  });
+
 };

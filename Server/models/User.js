@@ -7,11 +7,9 @@ const Schema = mongoose.Schema;
 let userSchema = new Schema({
   email: {
     type: String,
-
   },
   firstname: {
     type: String,
-
   },
   lastname: {
     type: String,
@@ -24,7 +22,19 @@ let userSchema = new Schema({
   verified: {
     type: Boolean,
     default: false
-  }
+  },
+  genreList: {
+    type: [],
+    default: null
+  },
+  languageList: {
+    type: [],
+    default: null
+  },
+  actorsList: {
+    type: [],
+    default: null
+  },
 });
 
 //function to set password.
@@ -47,7 +57,7 @@ userSchema.methods.generateJwt = function () {
   return jwt.sign({
     _id: this._id,
     email: this.email,
-    firstName: this.firstname,
+    firstname: this.firstname,
     lastname: this.lastname,
     location: this.city,
     exp: parseInt(expiry.getTime() / 1000)

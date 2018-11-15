@@ -1,81 +1,45 @@
-
-const UserPreference = require('../models/UserPreference');
-
+const User = require('../models/User');
+const {verifyToken} = require('../middlewares/verifyToken')
 var express = require("express");
 var router = express.Router();
 
-//save a new preference
-// router.post("/", function (req, res, next) {
-//     let preference = new UserPreference(req.body);
-//     preference.save()
-//         .then(response => {
-//             res.status(200).json({ 'preference': 'saved successfully' });
-//         })
-//         .catch(err => {
-//             res.status(400).send('Failed to create new record');
-//         });
-// });
-
-router.post("/", function (req, res, next) {
-    UserPreference.find({ email: req.body.email }, (err, preferences) => {
-        if (!preferences) {
-            let preference = new UserPreference(req.body);
-            preference.save()
-                .then(response => {
-                    res.status(200).json({ 'preference': 'saved successfully' });
-                })
-                .catch(err => {
-                    res.status(400).send('Failed to create new record');
-                });
-        } else {
-            preferences = (UserPreference)(req.body);
-            preferences.save().then(respose => {
-                res.status(200).json({ 'preference': 'update successfully' });
-            })
-                .catch(err => {
-                    console.log(err);
-                    return next((err));
-                });
-        }
-    });
-
-});
-
-
-//get with email
-router.get("/", function (req, res, next) {
-    UserPreference.find({ email: req.query.email }, (err, preferences) => {
-        if (err)
-            return next(err);
-        else
-            return res.json(preferences);
-    })
-});
-
 //get with id
-router.get("/:id", function (req, res, next) {
-    UserPreference.findById(req.params.id, (err, preferences) => {
+router.get("/",verifyToken, function (req, res, next) {
+    User.findById(req.userid, (err, user) => {
         if (err) {
-            return next(err);
+            next(err);
+        } else {
+            var userPreference = {
+                genreList: [],
+                languageList: [],
+                actorsList: []
+            };
+            userPreference.genreList = user.genreList;
+            userPreference.languageList = user.languageList;
+            userPreference.actorsList = user.actorsList;
+            return res.json(userPreference);
         }
-        else
-            return res.json(preferences);
     })
 });
 
 //update user preference
-router.put('/:id', function (req, res, next) {
-    UserPreference.findById(req.params.id, (err, preferences) => {
-        if (!preferences) {
-            return next(new Error("No user Preference found"));
+router.put('/',verifyToken, function (req, res, next) {
+    //console.log(req.userid)
+    User.findById(req.userid, (err, user) => {
+        if (!user) {
+            next(new Error("User not found"));
         } else {
-            preferences = (UserPreference)(req.body);
-            preferences.save().then(respose => {
-                res.status(200).json({ 'preference': 'update successfully' });
+            user.genreList = req.body.genreList;
+            user.languageList = req.body.languageList;
+            user.actorsList = req.body.actorsList;
+            console.log(user.genreList,user.languageList,user.actorsList)
+            user.save().then(respose => {
+                res.status(200).json({
+                    'preference': 'updated successfully'
+                });
             })
                 .catch(err => {
-                    console.log(err);
-                    return next((err));
+                    next(err);
                 });
         }
     });
