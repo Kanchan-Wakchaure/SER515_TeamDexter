@@ -10,6 +10,8 @@ import { ErrorDialogComponent } from "../error-dialog/error-dialog.component";
   styleUrls: ["./time-and-theatre.component.css"]
 })
 export class TimeAndTheatreComponent implements OnInit {
+  private color = "warn";
+  private timingsLoaded = false;
   public data: TimeAndTheatre;
   public date: number = 0;
   public today: Date;
@@ -31,6 +33,7 @@ export class TimeAndTheatreComponent implements OnInit {
   ngOnInit() {
     this.movieService.getShowTimes(3).subscribe(
       (response: any) => {
+        this.timingsLoaded = true;
         this.data = response;
         this.attachCinema();
         if (this.tempTimes1.length == 0)
