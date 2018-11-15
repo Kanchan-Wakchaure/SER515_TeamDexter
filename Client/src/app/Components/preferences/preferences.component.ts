@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { PreferenceService } from "../../Services/preference.service";
 import { Preference } from "../../Components/preference.model";
-import {TokenPayload, AuthenticationService } from "../../Services/authentication.service";
+import { TokenPayload, AuthenticationService } from "../../Services/authentication.service";
 import { MatDialog } from "@angular/material";
 import { ErrorDialogComponent } from "../error-dialog/error-dialog.component";
 import { City } from '../city.model';
@@ -24,16 +24,16 @@ export class PreferencesComponent implements OnInit {
 
   profile: any;
 
-  readonly: boolean=true;
-  
+  readonly: boolean = true;
+
   public cities: City[];
- 
+
   credentials: TokenPayload = {
     firstname: '',
     lastname: '',
     email: '',
     password: '',
-    location: '' 
+    location: ''
   };
 
   constructor(
@@ -41,7 +41,7 @@ export class PreferencesComponent implements OnInit {
     private authService: AuthenticationService,
     private dialog: MatDialog,
     private cityService: CityService,
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.preference = new Preference();
@@ -49,12 +49,15 @@ export class PreferencesComponent implements OnInit {
     this.preference.email = user.email;
     this.user_id = user._id;
     debugger;
-    this.profile = this.authService.getUser();
+    // this.profile = this.authService.getUser();
+    //this.profile = this.getPreference();
+
     //this.getUserDetails();
     this.getPreference();
 
     this.cityService.getCities().subscribe((response: City[]) => {
-      this.cities = response; } );
+      this.cities = response;
+    });
 
     this.genreList = [
       { id: 1, item_text: "Action" },
@@ -88,23 +91,20 @@ export class PreferencesComponent implements OnInit {
     };
   }
 
-  editProfile(){
+  editProfile() {
     this.readonly = false;
   }
 
-  saveChanges(){    
+  saveChanges() {
     this.readonly = true;
-    this.credentials = this.profile;
-    this.authService.updateProfile(this.credentials).subscribe(
-      () => { console.log("user updated successfully"); }, 
-      (err) => { console.log("error in update") }
-      );
-    this.preferenceService.updatePreferences(this.user_id, this.preference);  
+    this.profile.genreList = this.preference.genreList;
+    this.profile.actorsList = this.preference.actorsList;
+    this.preferenceService.updatePreferences(this.user_id, this.profile);
   }
 
   getUserDetails() {
     this.authService.getUserDetailsById(this.user_id).subscribe(
-      (response: any)=>{
+      (response: any) => {
         this.profile = response;
       },
       error => {
@@ -125,6 +125,9 @@ export class PreferencesComponent implements OnInit {
     this.preferenceService.getPreferencesById(this.user_id).subscribe(
       (response: any) => {
         this.preference = response;
+        debugger;
+        this.profile = response;
+        this.profile.location = response.city;
       },
       error => {
         this.dialog.open(ErrorDialogComponent, {

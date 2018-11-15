@@ -3,10 +3,7 @@ import { Injectable } from "../../../node_modules/@angular/core";
 import {
   HttpClient,
   HttpHeaders,
-  HttpParams
 } from "../../../node_modules/@angular/common/http";
-// import { timingSafeEqual } from 'crypto';
-
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -24,14 +21,29 @@ export class PreferenceService {
   constructor(private http: HttpClient) { }
 
   getPreferencesById(id: number) {
-    return this.http.get("http://localhost:4241/preferences/" + id, {
-      responseType: "json"
+    let token = localStorage.getItem('token');
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'x-access-token': 'Bearer ' + token
+      })
+    };
+    return this.http.get("http://localhost:4241/users/", {
+      responseType: "json",
+      headers: httpOptions.headers
     });
   }
 
-  updatePreferences(id: number, preferences: Preference) {
-    this.http.put("http://localhost:4241/preferences/" + id,
-      preferences, httpOptions).subscribe(results => this.var = results);
+  updatePreferences(id: number, profile) {
+    let token = localStorage.getItem('token');
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'x-access-token': 'Bearer ' + token
+      })
+    };
+    this.http.put("http://localhost:4241/users/",
+      profile, httpOptions).subscribe(results => this.var = results);
   }
 
 }

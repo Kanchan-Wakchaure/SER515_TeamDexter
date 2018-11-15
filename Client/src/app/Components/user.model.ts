@@ -4,4 +4,6 @@ export class User {
     email: String;
     password: String;
     location: String;
+    genreList: [number, string];
+    actorsList: [number, string];
 }
