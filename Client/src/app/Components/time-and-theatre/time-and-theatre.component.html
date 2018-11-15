@@ -2,39 +2,48 @@
   <mat-tab-group>
   <mat-tab label="Today">
     <br>
-    <div class="row container scroller">
+    <div class="row container scroller" *ngIf="day1">
+      <p>Sorry, no movies today</p>
     	<div class="col-6 theatre" *ngFor="let day of day1">
     		 <h6>{{ day.theatre }} </h6>
           <div class="row container">
-            <p class="timings" *ngFor="let showTime of day['times']">
-             <a href= "{{showTime.booking_link}}"> {{ showTime.time }} </a>
-            </p>
+            <mat-chip-list *ngFor="let showTime of day['times']">
+                <a class="chips" href= "{{showTime.booking_link}}">
+                  <mat-chip>{{showTime.time}}</mat-chip>&nbsp;
+                </a>
+            </mat-chip-list>
           </div>
     	</div>
     </div>
   </mat-tab>
   <mat-tab label="Tomorrow">
     <br>
-    <div class="row container scroller">
+    <div class="row container scroller" *ngIf="day2">
+      <p>Sorry, no movies for tomorrow</p>
       <div class="col-6 theatre" *ngFor="let day of day2">
          <h6>{{ day.theatre }} </h6>
           <div class="row container">
-            <p class="timings" *ngFor="let showTime of day['times']">
-             <a href= "{{showTime.booking_link}}"> {{ showTime.time }} </a>
-            </p>
+            <mat-chip-list *ngFor="let showTime of day['times']">
+                <a class="chips" href= "{{showTime.booking_link}}">
+                  <mat-chip>{{showTime.time}}</mat-chip>&nbsp;
+                </a>
+            </mat-chip-list>
           </div>
       </div>
     </div>
   </mat-tab>
   <mat-tab label="Day After">
     <br>
-    <div class="row container scroller">
+    <div class="row container scroller" *ngIf="day3">
+      <p>Sorry, no movies for day after</p>
       <div class="col-6 theatre" *ngFor="let day of day3">
          <h6>{{ day.theatre }} </h6>
           <div class="row container">
-            <p class="timings" *ngFor="let showTime of day['times']">
-             <a href= "{{showTime.booking_link}}"> {{ showTime.time }} </a>
-            </p>
+            <mat-chip-list *ngFor="let showTime of day['times']">
+                <a class="chips" href= "{{showTime.booking_link}}">
+                  <mat-chip>{{showTime.time}}</mat-chip>&nbsp;
+                </a>
+            </mat-chip-list>
           </div>
       </div>
     </div>
