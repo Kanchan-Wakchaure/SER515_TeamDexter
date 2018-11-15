@@ -22,6 +22,7 @@ export class TimeAndTheatreComponent implements OnInit {
   tempTimes2 = [];
   tempTimes3 = [];
 
+
   constructor(public movieService: MovieService, private dialog: MatDialog) {}
 
   ngOnInit() {

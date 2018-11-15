@@ -51,9 +51,9 @@
                     <br><h5>Cast</h5>
                     <div class="row cast" align="center">
                         <span *ngFor="let cast of movie.cast; let isLast=last; let i=index">
-                            <div class="col-md-12" align="center">
-                                <img class="user" src={{get_image(cast.profile_path)}} *ngIf="i<10" alt="Sorry, No image">
-                                <br><font size="3" color="maroon"><p class="cast_name" *ngIf="i<10">{{cast.name}}</p></font>
+                            <div class="col-md-12" align="center" *ngIf="i<10">
+                                <img class="user" src={{get_image(cast.profile_path)}} alt="Sorry, No image">
+                                <br><font size="3" color="maroon"><p class="cast_name">{{cast.name}}</p></font>
                             </div>
                         </span>
                     </div>
