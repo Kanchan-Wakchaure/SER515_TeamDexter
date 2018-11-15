@@ -4,54 +4,67 @@
     </div>
 </div>
 
-<div *ngIf="movie" class="container">
+<iframe *ngIf="video" class="trailer_frame" [src]="video | safe" frameborder="0" allowfullscreen></iframe>
+
+<div *ngIf="movie">
     <div class="row">
-        <div class="col-md-3 poster">
-            <img src={{movie.poster_path}}>
+        <div class="col-md-1"></div>
+        <div class="col-md-2">
+            <img class="poster" src={{movie.poster_path}}>
         </div>
 
         <div class="col-md-7">
 
-            <font size="18" color="black">&nbsp;{{movie.original_title}}</font>
+            <font face="georgia" size="18" color="black">&nbsp;{{movie.original_title}}</font>
 
             <span class="language">&nbsp; {{movie.original_language}}</span>
 
-            <div class="row tagline">
-                <p>{{movie.tagline}}</p>
-            </div>
-
             <div class="row genres">
-                <span *ngFor="let genre of movie.genres; let isLast=last">
-                    <p>{{genre.name}}{{isLast ? '' : '/'}}</p>
-                </span>
-            </div>
+                    <mat-chip-list *ngFor="let genre of movie.genres">
+                        <mat-chip>{{genre.name}}</mat-chip>&nbsp;
+                    </mat-chip-list>
 
-            <div class="row tagline">
-                <p>{{movie.overview}}</p>
-            </div>
+                    <a class="btn btn-primar booking" role="button" (click)=openDialog()>Find Shows</a>
+            </div><br>
 
-            <div class="row info">
-                <b>Release Date</b>
-                <p>&nbsp; {{movie.release_date | date}}</p>
-            </div>
-            <div class="row info">
-                <b>Votes</b>
-                <p>&nbsp; {{movie.vote_count}}</p>
-
-                <b>&nbsp; Average</b>
-                <p>&nbsp; {{movie.vote_average}}</p>
-            </div>
-
-            <div class="row info">
-                <b>Cast</b>
-                <div class="scroller">
-                    <span *ngFor="let cast of movie.cast; let isLast=last">
-                        <font>{{cast.name}}{{isLast ? '' : ', '}}</font>
-                    </span>
+            <div class="row quick_info">
+                <div class="col-md-4" align="center">
+                    <mat-icon>calendar_today</mat-icon>
+                    <p>{{movie.release_date | date}}</p>
+                </div>
+                <div class="col-md-4" align="center">
+                    <mat-icon>thumb_up_alt</mat-icon>
+                    <p>{{movie.vote_count}} &nbsp;</p>
+                </div>
+                <div class="col-md-4" align="center">
+                    <mat-icon>star_rate</mat-icon>
+                    <p>{{movie.vote_average}}/10</p>
                 </div>
             </div>
 
-            <a class="btn btn-primar booking info" role="button" (click)=openDialog()>Find Shows</a>
+            <mat-tab-group>
+              <mat-tab label="About">
+                <br>
+                    <h5>Summary</h5>
+                    <font size="2">{{movie.overview}}</font><br>
+
+                    <br><h5>Cast</h5>
+                    <div class="row cast" align="center">
+                        <span *ngFor="let cast of movie.cast; let isLast=last; let i=index">
+                            <div class="col-md-12" align="center" *ngIf="i<10">
+                                <img class="user" src={{get_image(cast.profile_path)}} alt="Sorry, No image">
+                                <br><font size="3" color="maroon"><p class="cast_name">{{cast.name}}</p></font>
+                            </div>
+                        </span>
+                    </div>
+              </mat-tab>
+              <mat-tab label="Reviews">
+                    <span *ngFor="let review of movie.reviews; let isLast=last">
+                        <br><font color="maroon"><h5>{{review.author}}</h5></font>
+                        <font size="2">{{review.content}}</font><br>
+                    </span>
+              </mat-tab>
+            </mat-tab-group>
 
         </div>
     </div>

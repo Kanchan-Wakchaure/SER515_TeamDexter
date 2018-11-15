@@ -22,6 +22,7 @@ export class MovieCardComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
+  
   }
 
   getDetails(){

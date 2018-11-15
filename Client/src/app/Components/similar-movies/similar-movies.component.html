@@ -1,11 +1,13 @@
 <b *ngIf="movies != 0">SIMILAR MOVIES</b>
 <div class="scroll" *ngIf="movies != 0">
   <mat-card *ngFor="let movie of movies" class="movie-card">
-    <mat-card-header>
-    </mat-card-header>
-
-    <mat-card-content>
-      <img mat-card-image src={{movie.poster_path}} alt="Movie Image" class="image-card">
-    </mat-card-content>
+  	<a style = "cursor: pointer" (click)="getDetails(movie.id)">
+	    <mat-card-header>
+	    </mat-card-header>
+	    <mat-card-content>
+	      <img mat-card-image src={{movie.poster_path}} alt="Movie Image" class="image-card">
+	    </mat-card-content>
+	</a>
   </mat-card>
 </div>
+

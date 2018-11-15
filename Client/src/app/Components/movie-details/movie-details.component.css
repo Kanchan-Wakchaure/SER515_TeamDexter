@@ -1,4 +1,6 @@
- a:not([href]):not([tabindex]) {
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+ 
+ a:not([tabindex]) {
 	 color: white;
  }
 
@@ -8,36 +10,46 @@
 	justify-content: center;
 }
 
-img {
-	width: 90%;
-}
-
-.poster {
-	margin-left: 8%;
-}
+/*img {
+	width: 100%;
+}*/
 
 .booking {
-	float: left;
-	margin-right: 10%;
-	margin-top: 3%;
+	float: right;
+	margin-left: auto;
 	background-color: maroon;
 	cursor: pointer;
 	font-size: 12px;
 	text-align: center;
+	width: 20%;
 } 
+
+.trailer {
+	float: right;
+	margin-right: 15%;
+	margin-top: 10%;
+	background-color: maroon;
+	cursor: pointer;
+	font-size: 12px;
+	font-color: white;
+	text-align: center;
+	width: 70%;
+}
+
+.trailer_frame {
+	width: 100%;
+	height: 350px;
+	margin-top: -1.67%;
+}
 
 .genres {
 	font-family: "Times New Roman", Times, serif;
-	margin-left: 2%;
+	margin-left: 1%;
+	width: 100%;
 }
 
 .tagline {
-	font-style: italic;
-	margin-left: 2%
-}
-
-.info {
-	margin-left: 2%;
+	margin-left: 1%;
 }
 
 .td-config{
@@ -48,7 +60,7 @@ img {
 
 .scroller {
     overflow: scroll;
-    height: 50px;
+    height: auto;
 }
 
 .suggest {
@@ -61,6 +73,30 @@ img {
 	overflow-y: auto;
 }
 
-#booker {
-	visibility: hidden;
+.user {
+  display: inline-block;
+  width: 116px;
+  height: 116px;
+  border-radius: 25px;
+}
+
+.quick_info {
+	padding-top: 2%;
+	background-color: rgba(163, 163, 163, 0.3);
+	margin-bottom: 2%;
+	margin-left: 1%;
+	border-radius: 25px;
+}
+
+.cast {
+	width: 100%;
+}
+
+.cast_name {
+	margin-top: 5%;
+}
+
+.poster {
+	width: 100%;
+	margin-top: -20%;
 }

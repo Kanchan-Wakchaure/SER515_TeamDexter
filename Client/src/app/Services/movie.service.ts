@@ -5,7 +5,10 @@ import {
   HttpHeaders,
   HttpParams
 } from "@angular/common/http";
+import { City } from "../Components/city.model";
+import {AuthenticationService} from "../Services/authentication.service";
 // import { timingSafeEqual } from 'crypto';
+
 
 /*
 * A service Class that acts as centralized repository for handling movie data.
@@ -20,7 +23,7 @@ export class MovieService {
   public movies: Movie[] = [];
   private movie_id: number;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthenticationService) { }
 
   /* A getter method to get movies.
     * @returns movies: Movie[].
@@ -60,8 +63,20 @@ export class MovieService {
   }
 
   getShowTimes(days: number){
-    return this.http.get("http://localhost:4241/showtimes/"+ this.movie_id +"?date="+days, {
+    const city: City = <City>JSON.parse(window.localStorage.getItem('city'));
+    return this.http.get(
+      "http://localhost:4241/showtimes/"+ this.movie_id + "?date=" + days + "&city=" + city.id, 
+      {
       responseType: "json"
-    });
+      });
+  }
+  getRecommendedMovieList(){
+    let user: any = this.authService.getUser();
+    console.log(user._id)
+    return this.http.get(
+      "http://localhost:4241/movies/?type=recommended&userId=" + user._id,{
+        responseType : "json"
+      }
+    );
   }
 }

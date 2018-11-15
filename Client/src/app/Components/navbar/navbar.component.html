@@ -24,23 +24,25 @@
       <nav class="navset">
         <a class="nav-li" href="/home">Home</a>
         <a class="nav-li" href="/coming_soon">Coming Soon</a>
-        <a class="nav-li" href="/wish_list">Wish List</a>
-        <a class="nav-li" href="/latest">Latest</a>
+        <a class="nav-li" href="/recommended" *ngIf="loggedIn">Recommended</a>
       </nav>
+      <div class="log">
+        <button class="btn btn-primary login-button" (click)="openCityDialog()">Select City</button>
+      </div>
       <div class="log" *ngIf="!loggedIn">
         <button class="btn btn-primary login-button" (click)="openDialog()">Log In</button>
       </div>
-      <div class="signup" *ngIf="!loggedIn">
+      <div class="log" *ngIf="!loggedIn">
         <button class="btn btn-primary login-button" (click)="openSignUp()">Sign Up</button>
       </div>
       <div class="nav dropdown" *ngIf="loggedIn">
         <button class="btn btn-danger user-button dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
           aria-expanded="false" (click)="toggleDropdown()">
-          hi, {{this.authenticationService.getUser().firstName}}!
+          hi, {{this.authenticationService.getUser().firstname}}!
         </button>
         <div class="dropdown-menu" id="dropdownMenuButton">
           <!-- <a class="dropdown-item nav-li" [routerLink]="['preferences']">Set Preferences</a> -->
-          <a class="dropdown-item nav-li" href="/user_profile" (click)="viewprofile()">View Profile</a>
+          <a class="dropdown-item nav-li" href="/preferences" (click)="viewprofile()">View Profile</a>
           <a *ngIf="user.email==adminEmail" class="dropdown-item nav-li" href="/manage">Manage</a>
           <a class="dropdown-item nav-li" href="#" (click)="logOut()">Log out</a>
         </div>

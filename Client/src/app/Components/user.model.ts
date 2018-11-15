@@ -1,7 +1,9 @@
 export class User {
-    firstName: String;
-    lastName: String;
-    eMail: String;
+    firstname: String;
+    lastname: String;
+    email: String;
     password: String;
     location: String;
+    genreList: [number, string];
+    actorsList: [number, string];
 }

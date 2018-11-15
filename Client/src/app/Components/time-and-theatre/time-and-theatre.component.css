@@ -2,16 +2,30 @@
 	padding-left: 10px;
 }
 
-.scroller {
-    overflow: scroll;
-    height: 370px;
-}
-
 a {
     color: maroon;
+}
+
+a:hover{
+    text-decoration: none;
 }
 
 .theatre {
 	padding-left: 5px;
 	padding-right: 5px;
+	margin-bottom: 5%;
+}
+
+.chips {
+	margin-bottom: 5px; 
+}
+
+.chip {
+    display: inline-block;
+    width: 17%;
+    margin-right: 2%;
+    font-size: 12px;
+    line-height: 30px;
+    border-radius: 25px;
+    background-color: rgba(163, 163, 163, 0.3);
 }

@@ -1,5 +1,5 @@
 <div matDialogTitle>
-  Error
+  Error Message
 </div>
 <hr>
 <div matDialogContent>
@@ -9,6 +9,4 @@
 <div class="row justify-content-end" matDialogActions>
 
   <button style="outline:none;" mat-raised-button *ngIf="data.ok" (click)="closeDialog()">OK</button>
-  <button mat-raised-button *ngIf="data.cancel" (click)="closeDialog()">Cancel</button>
-
 </div>

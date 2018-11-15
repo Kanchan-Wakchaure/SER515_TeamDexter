@@ -2,6 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { Movie } from "../movie.model";
 import { MovieService } from "../../Services/movie.service";
+import { ErrorDialogComponent } from "../error-dialog/error-dialog.component";
+import { MatDialog } from "@angular/material";
 
 @Component({
   selector: "app-home",
@@ -16,7 +18,8 @@ export class HomeComponent implements OnInit {
   constructor(
     public movieService: MovieService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -26,11 +29,28 @@ export class HomeComponent implements OnInit {
     } else if (this.router.url.includes("/coming_soon")) {
       this.showSlider = false;
       this.upcomingMovies();
-    } else {
+    } else if (this.router.url.includes("/recommended")) {
+      this.showSlider = false;
+      this.recommendedMovies();
+
+    }else {
       this.showSlider = true;
-      this.movieService.getMovies(this.page).subscribe((response: Movie[]) => {
-        this.movies = response;
-      });
+      this.movieService.getMovies(this.page).subscribe(
+        (response: Movie[]) => {
+          this.movies = response;
+        },
+        error => {
+          this.dialog.open(ErrorDialogComponent, {
+            width: "500px",
+            height: "210px",
+            data: {
+              message: error.error.errorCode + " :  " + error.error.message,
+              ok: true
+            },
+            disableClose: true
+          });
+        }
+      );
     }
   }
 
@@ -38,29 +58,97 @@ export class HomeComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       let movieName: string = params["name"];
       let details: string = params["details"];
-      this.movieService
-        .getSearchedMovieList(movieName, details)
-        .subscribe((res: Movie[]) => {
+      this.movieService.getSearchedMovieList(movieName, details).subscribe(
+        (res: Movie[]) => {
           this.movies = res;
-        });
+        },
+        error => {
+          this.dialog.open(ErrorDialogComponent, {
+            width: "500px",
+            height: "210px",
+            data: {
+              message: error.error.errorCode + " :  " + error.error.message,
+              ok: true
+            },
+            disableClose: true
+          });
+        }
+      );
     });
   }
 
   private upcomingMovies() {
-    this.movieService.getUpcomingMovieList(this.page).subscribe((res: Movie[]) => {
-      this.movies = res;
-    });
+    this.movieService.getUpcomingMovieList(this.page).subscribe(
+      (res: Movie[]) => {
+        this.movies = res;
+      },
+      error => {
+        this.dialog.open(ErrorDialogComponent, {
+          width: "500px",
+          height: "210px",
+          data: {
+            message: error.error.errorCode + " :  " + error.error.message,
+            ok: true
+          },
+          disableClose: true
+        });
+      }
+    );
   }
 
+  private recommendedMovies(){
+    this.movieService.getRecommendedMovieList().subscribe(
+      (res: Movie[]) => {
+        this.movies = res;
+      },
+      error => {
+        this.dialog.open(ErrorDialogComponent, {
+          width: "500px",
+          height: "210px",
+          data: {
+            message: error.error.errorCode + " :  " + error.error.message,
+            ok: true
+          },
+          disableClose: true
+        });
+      }
+    );
+  }
   private loadPage(id: number) {
-    if(this.router.url.includes('/coming_soon'))
-      this.movieService.getUpcomingMovieList(id).subscribe((response: Movie[])=> {
-        this.movies = response;
-      })
-    else if(this.router.url.includes('/home'))
-      this.movieService.getMovies(id).subscribe((response: Movie[])=> {
-      this.movies = response;
-      }) 
+    if (this.router.url.includes("/coming_soon"))
+      this.movieService.getUpcomingMovieList(id).subscribe(
+        (response: Movie[]) => {
+          this.movies = response;
+        },
+        error => {
+          this.dialog.open(ErrorDialogComponent, {
+            width: "500px",
+            height: "210px",
+            data: {
+              message: error.error.errorCode + " :  " + error.error.message,
+              ok: true
+            },
+            disableClose: true
+          });
+        }
+      );
+    else if (this.router.url.includes("/home"))
+      this.movieService.getMovies(id).subscribe(
+        (response: Movie[]) => {
+          this.movies = response;
+        },
+        error => {
+          this.dialog.open(ErrorDialogComponent, {
+            width: "500px",
+            height: "210px",
+            data: {
+              message: error.error.errorCode + " :  " + error.error.message,
+              ok: true
+            },
+            disableClose: true
+          });
+        }
+      );
     window.scrollTo(0, 0);
   }
 }

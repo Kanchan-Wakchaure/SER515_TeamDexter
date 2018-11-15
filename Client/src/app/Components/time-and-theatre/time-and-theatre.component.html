@@ -1,42 +1,55 @@
 <div class="container">
   <mat-tab-group>
-  <mat-tab label="Today">
-    <br>
-    <div class="row container scroller">
-    	<div class="col-6 theatre" *ngFor="let day of day1">
-    		 <h6>{{ day.theatre }} </h6>
+    <mat-tab label="Today">
+      <br>
+      <div class="row container" *ngIf="day1">
+        <p *ngIf="one == 'a'" style="color: red">
+          Sorry, no shows avaliable for this movie for today.
+        </p>
+        <div class="col-6 theatre" *ngFor="let day of day1">
+          <h6>{{ day.theatre }} </h6>
           <div class="row container">
-            <p class="timings" *ngFor="let showTime of day['times']">
-             <a href= "{{showTime.booking_link}}"> {{ showTime.time }} </a>
-            </p>
+            <p class="timings chip" *ngFor="let showTime of day['times']">
+              <a style="cursor: pointer" target="_blank" href="{{showTime.booking_link}}">{{ showTime.time }} </a>
+            </p>&nbsp;
           </div>
-    	</div>
-    </div>
-  </mat-tab>
-  <mat-tab label="Tomorrow">
-    <br>
-    <div class="row container scroller">
-      <div class="col-6 theatre" *ngFor="let day of day2">
-         <h6>{{ day.theatre }} </h6>
-          <div class="row container">
-            <p class="timings" *ngFor="let showTime of day['times']">
-             <a href= "{{showTime.booking_link}}"> {{ showTime.time }} </a>
-            </p>
-          </div>
+        </div>
       </div>
-    </div>
-  </mat-tab>
-  <mat-tab label="Day After">
-    <br>
-    <div class="row container scroller">
-      <div class="col-6 theatre" *ngFor="let day of day3">
-         <h6>{{ day.theatre }} </h6>
+    </mat-tab>
+    <mat-tab label="Tomorrow">
+      <br>
+      <div class="row container scroller" *ngIf="day2">
+        <p *ngIf="two == 'a'" style="color: red">
+          Sorry, no shows avaliable for this movie for tomorrow.
+        </p>
+        <div class="col-6 theatre" *ngFor="let day of day2">
+          <h6>{{ day.theatre }} </h6>
           <div class="row container">
-            <p class="timings" *ngFor="let showTime of day['times']">
-             <a href= "{{showTime.booking_link}}"> {{ showTime.time }} </a>
+            <p class="timings chip" *ngFor="let showTime of day['times']">
+              <a style="cursor: pointer" target="_blank" href="{{showTime.booking_link}}">{{ showTime.time }} </a>
             </p>
           </div>
+        </div>
       </div>
-    </div>
-  </mat-tab>
-</mat-tab-group></div>
+    </mat-tab>
+    <mat-tab label="Day After">
+      <br>
+      <div class="row container scroller" *ngIf="day3">
+        <p *ngIf="three == 'a'" style="color: red">
+          Sorry, no shows avaliable for this movie for day after tomorrow.
+        </p>
+        <div class="col-6 theatre" *ngFor="let day of day3">
+          <h6>{{ day.theatre }} </h6>
+          <div class="row container">
+            <p class="timings chip" *ngFor="let showTime of day['times']">
+              <a style="cursor: pointer" target="_blank" href="{{showTime.booking_link}}">{{ showTime.time }} </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+  <div class="row justify-content-center spinner" *ngIf="!timingsLoaded">
+    <mat-spinner [color]="color" [diameter]="50"></mat-spinner>
+  </div>
+</div>
