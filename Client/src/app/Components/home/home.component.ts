@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private dialog: MatDialog
-  ) {}
+  ) { }
 
   ngOnInit() {
     if (this.router.url.includes("/search")) {
@@ -29,7 +29,11 @@ export class HomeComponent implements OnInit {
     } else if (this.router.url.includes("/coming_soon")) {
       this.showSlider = false;
       this.upcomingMovies();
-    } else {
+    } else if (this.router.url.includes("/recommended")) {
+      this.showSlider = false;
+      this.recommendedMovies();
+
+    }else {
       this.showSlider = true;
       this.movieService.getMovies(this.page).subscribe(
         (response: Movie[]) => {
@@ -92,6 +96,24 @@ export class HomeComponent implements OnInit {
     );
   }
 
+  private recommendedMovies(){
+    this.movieService.getRecommendedMovieList().subscribe(
+      (res: Movie[]) => {
+        this.movies = res;
+      },
+      error => {
+        this.dialog.open(ErrorDialogComponent, {
+          width: "500px",
+          height: "210px",
+          data: {
+            message: error.error.errorCode + " :  " + error.error.message,
+            ok: true
+          },
+          disableClose: true
+        });
+      }
+    );
+  }
   private loadPage(id: number) {
     if (this.router.url.includes("/coming_soon"))
       this.movieService.getUpcomingMovieList(id).subscribe(
