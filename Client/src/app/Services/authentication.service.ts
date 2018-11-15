@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators/map';
@@ -65,7 +65,7 @@ export class AuthenticationService {
     if (token) {
       payLoad = token.split('.')[1];
       payLoad = window.atob(payLoad);
-      return JSON.parse(payLoad);     
+      return JSON.parse(payLoad);
     } else {
       return null;
     }
@@ -135,8 +135,16 @@ export class AuthenticationService {
   }
 
   public getUserDetailsById(id: number) {
-    return this.httpClient.get("http://localhost:4241/users/" + id, {
-      responseType: "json"
+    let token = localStorage.getItem('token');
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'x-access-token': 'Bearer ' + token
+      })
+    };
+    return this.httpClient.get("http://localhost:4241/users/", {
+      responseType: "json",
+      headers: httpOptions.headers
     });
   }
 

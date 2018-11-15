@@ -25,7 +25,7 @@
         <a class="nav-li" href="/home">Home</a>
         <a class="nav-li" href="/coming_soon">Coming Soon</a>
         <a class="nav-li" href="/recommended" *ngIf="loggedIn">Recommended</a>
-        </nav>
+      </nav>
       <div class="log">
         <button class="btn btn-primary login-button" (click)="openCityDialog()">Select City</button>
       </div>
@@ -38,7 +38,7 @@
       <div class="nav dropdown" *ngIf="loggedIn">
         <button class="btn btn-danger user-button dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
           aria-expanded="false" (click)="toggleDropdown()">
-          hi, {{this.authenticationService.getUser().firstName}}!
+          hi, {{this.authenticationService.getUser().firstname}}!
         </button>
         <div class="dropdown-menu" id="dropdownMenuButton">
           <!-- <a class="dropdown-item nav-li" [routerLink]="['preferences']">Set Preferences</a> -->
