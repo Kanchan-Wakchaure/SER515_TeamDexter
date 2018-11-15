@@ -90,13 +90,14 @@ function fetchMovies(myGenreList, myActorList) {
     return query.exec().then(function (movies) {
         for (var i = 0; i < movies.length; i++) {
             var details = {}
-            details["id"] = movies[i].id;
-            details["title"] = movies[i].title;
-            details["_id"] = movies[i]._id;
-            details["tagline"] = movies[i].tagline;
-            details["poster_path"] = keys.imageBaseURL + movies[i].poster_path;
-            details["release_date"] = movies[i].release_date;
-            mdetails.push(details);
+            if (movies[i].poster_path != null) {
+                details["id"] = movies[i].id;
+                details["title"] = movies[i].title;
+                details["tagline"] = movies[i].tagline;
+                details["poster_path"] = keys.imageBaseURL + movies[i].poster_path;
+                details["release_date"] = movies[i].release_date;
+                mdetails.push(details);
+            }
         }
         return mdetails;
     })
