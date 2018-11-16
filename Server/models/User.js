@@ -27,10 +27,6 @@ let userSchema = new Schema({
     type: [],
     default: null
   },
-  languageList: {
-    type: [],
-    default: null
-  },
   actorsList: {
     type: [],
     default: null

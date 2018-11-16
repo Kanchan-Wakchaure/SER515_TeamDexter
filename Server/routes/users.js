@@ -51,9 +51,7 @@ router.put('/', verifyToken, function (req, res, next) {
             user.lastname = req.body.lastname;
             user.city = req.body.location;
             user.genreList = req.body.genreList;
-            user.languageList = req.body.languageList;
             user.actorsList = req.body.actorsList;
-            console.log(user.genreList, user.languageList, user.actorsList)
             user.save().then(respose => {
                 res.status(200).json({
                     'preference': 'updated successfully'
