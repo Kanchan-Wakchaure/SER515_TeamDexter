@@ -11,6 +11,7 @@ import { AuthenticationService, User } from '../../Services/authentication.servi
 import { Movie } from '../movie.model';
 import { CitySelectComponent } from '../city-select/city-select.component';
 import { CityService } from '../../Services/city.service';
+import { PreferenceService } from '../../Services/preference.service';
 
 @Component({
   selector: 'app-navbar',
@@ -26,9 +27,12 @@ export class NavbarComponent implements OnInit {
   movies: Movie[];
   loggedIn: boolean = false;
   user: User;
-  adminEmail: string = "shi.g.bhat@gmail.com"
+  adminEmail: string = "shi.g.bhat@gmail.com";
+  username: String; 
+
   constructor(public dialog: MatDialog, private movieService: MovieService,
     private router: Router, private authenticationService: AuthenticationService,
+    private preferenceService: PreferenceService,
     private cityService: CityService) { }
 
   ngOnInit() {
@@ -78,6 +82,10 @@ export class NavbarComponent implements OnInit {
   loadUser() {
     this.loggedIn = this.authenticationService.isLoggedIn();
     this.user = this.authenticationService.getUser();
+    this.preferenceService.getUserData().subscribe(
+      (response: any) => {
+        this.username = response.firstname;
+    });
   }
 
   navigateToHome() {

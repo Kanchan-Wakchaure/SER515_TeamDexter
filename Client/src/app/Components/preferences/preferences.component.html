@@ -7,24 +7,24 @@
     <br>
     <h5><u>User Details </u></h5>
     <label for="firstname">First Name:</label>
-    <input class="form-control" type="string" name="firstname" id="firstname" [(ngModel)]="profile.firstname"
+    <input class="form-control" type="string" name="firstname" id="firstname" [(ngModel)]="user.firstname"
       [readonly]="readonly">
   </div>
 
   <div class="form-group">
     <label for="lastname">Last Name:</label>
-    <input class="form-control" type="string" name="lastname" id="lastname" [(ngModel)]="profile.lastname" [readonly]="readonly">
+    <input class="form-control" type="string" name="lastname" id="lastname" [(ngModel)]="user.lastname" [readonly]="readonly">
   </div>
 
   <div class="form-group">
     <label for="email">Email:</label>
-    <input class="form-control" type="email" name="email" id="email" readonly [(ngModel)]="profile.email">
+    <input class="form-control" type="email" name="email" id="email" readonly [(ngModel)]="user.email">
   </div>
 
   <div class="form-group">
     <label for="location">Location:</label>
-    <input *ngIf="readonly" class="form-control" type="location" name="location" id="location" readonly [(ngModel)]="profile.location">
-    <select *ngIf="!readonly" class="form-control" id="location" name="location" [(ngModel)]="profile.location">
+    <input *ngIf="readonly" class="form-control" type="location" name="location" id="location" readonly [(ngModel)]="user.location">
+    <select *ngIf="!readonly" class="form-control" id="location" name="location" [(ngModel)]="user.location">
       <option *ngFor="let c of cities" [ngValue]="c.name">{{c.name}}</option>
     </select>
   </div>
@@ -32,25 +32,15 @@
   <div class="form-group">
     <h5><u>Set Preferences </u></h5>
     <label for="genres">Genre:</label>
-    <ng-multiselect-dropdown [placeholder]="'Select Genres'" [data]="genreList" [(ngModel)]="preference.genreList"
-      [settings]="dropdownSettings" name="genres">
+    <ng-multiselect-dropdown [placeholder]="'Select Genres'" [data]="genreList" [(ngModel)]="user.genreList"
+      [settings]="dropdownSettings" name="genres" [disabled] = "readonly">
     </ng-multiselect-dropdown>
   </div>
 
-  <!-- <div class="form-group">
-            <label for="languages">Language:</label>
-            <ng-multiselect-dropdown [placeholder]="'Select Languages'" 
-                                     [data]="languageList" 
-                                     [(ngModel)]="preference.languageList"
-                                     [settings]="dropdownSettings"                                     
-                                     name="languages">
-            </ng-multiselect-dropdown>
-          </div> -->
-
   <div class="form-group">
     <label for="actors">Actor:</label>
-    <ng-multiselect-dropdown [placeholder]="'Select Actors'" [data]="actorsList" [(ngModel)]="preference.actorsList"
-      [settings]="dropdownSettings" name="actors">
+    <ng-multiselect-dropdown [placeholder]="'Select Actors'" [data]="actorsList" [(ngModel)]="user.actorsList"
+      [settings]="dropdownSettings" name="actors" [disabled] = "readonly">
     </ng-multiselect-dropdown>
   </div>
 

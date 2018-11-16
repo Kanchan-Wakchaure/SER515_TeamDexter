@@ -134,22 +134,5 @@ export class AuthenticationService {
     return this.dialogRef;
   }
 
-  public getUserDetailsById(id: number) {
-    let token = localStorage.getItem('token');
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'x-access-token': 'Bearer ' + token
-      })
-    };
-    return this.httpClient.get("http://localhost:4241/users/", {
-      responseType: "json",
-      headers: httpOptions.headers
-    });
-  }
-
-  public updateProfile(user: TokenPayload): Observable<any> {
-    return this.httpClient.put('http://localhost:4241/users/', user);
-  }
 
 }
