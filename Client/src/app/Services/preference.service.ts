@@ -20,7 +20,7 @@ export class PreferenceService {
 
   constructor(private http: HttpClient) { }
 
-  getPreferencesById(id: number) {
+  getUserData() {
     let token = localStorage.getItem('token');
     const httpOptions = {
       headers: new HttpHeaders({
@@ -34,7 +34,7 @@ export class PreferenceService {
     });
   }
 
-  updatePreferences(id: number, profile) {
+  updateUserData(profile) {
     let token = localStorage.getItem('token');
     const httpOptions = {
       headers: new HttpHeaders({
