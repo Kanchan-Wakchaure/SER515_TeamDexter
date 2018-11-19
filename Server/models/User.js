@@ -31,6 +31,10 @@ let userSchema = new Schema({
     type: [],
     default: null
   },
+  role: {
+    type: String,
+    default: "User"
+  }
 });
 
 //function to set password.
@@ -56,6 +60,7 @@ userSchema.methods.generateJwt = function () {
     firstname: this.firstname,
     lastname: this.lastname,
     location: this.city,
+    role: this.role,
     exp: parseInt(expiry.getTime() / 1000)
   }, "MY_SECRET");
 };
