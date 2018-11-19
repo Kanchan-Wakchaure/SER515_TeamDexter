@@ -13,6 +13,7 @@ export interface User {
   lastname: string;
   exp: number;
   iat: number;
+  role: string;
 }
 
 interface TokenResponse {
@@ -98,6 +99,7 @@ export class AuthenticationService {
         if (data.token) {
           this.saveToken(data.token);
         }
+        debugger;
         return data;
       }
     ));

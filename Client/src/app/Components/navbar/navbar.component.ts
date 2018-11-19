@@ -27,8 +27,8 @@ export class NavbarComponent implements OnInit {
   movies: Movie[];
   loggedIn: boolean = false;
   user: User;
-  adminEmail: string = "shi.g.bhat@gmail.com";
-  username: String; 
+  admin: string = "Admin";
+  username: String;
 
   constructor(public dialog: MatDialog, private movieService: MovieService,
     private router: Router, private authenticationService: AuthenticationService,
@@ -45,8 +45,8 @@ export class NavbarComponent implements OnInit {
       width: '600px'
     })
     this.authenticationService.setDialogRef(dialogReference);
-    dialogReference.afterClosed().subscribe(result => { 
-      this.loadUser();  
+    dialogReference.afterClosed().subscribe(result => {
+      this.loadUser();
     });
     return false;
   }
@@ -56,14 +56,14 @@ export class NavbarComponent implements OnInit {
     const dialogReference = this.dialog.open(SignupComponent, { width: '600px' })
 
     //action needed after dialog is closed.
-    dialogReference.afterClosed().subscribe(result => { 
+    dialogReference.afterClosed().subscribe(result => {
       this.loggedIn = this.authenticationService.isLoggedIn();
-     });
+    });
     return false;
   }
 
   openCityDialog() {
-    const cityDialogReference = this.dialog.open(CitySelectComponent,{
+    const cityDialogReference = this.dialog.open(CitySelectComponent, {
       width: '600px'
     })
     this.cityService.setCityDialogRef(cityDialogReference);
@@ -81,11 +81,12 @@ export class NavbarComponent implements OnInit {
 
   loadUser() {
     this.loggedIn = this.authenticationService.isLoggedIn();
+    debugger;
     this.user = this.authenticationService.getUser();
     this.preferenceService.getUserData().subscribe(
       (response: any) => {
         this.username = response.firstname;
-    });
+      });
   }
 
   navigateToHome() {
