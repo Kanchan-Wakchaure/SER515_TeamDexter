@@ -40,9 +40,9 @@
           aria-expanded="false" (click)="toggleDropdown()">
           hi, {{username}}!
         </button>
-        <div class="dropdown-menu" id="dropdownMenuButton">        
+        <div class="dropdown-menu" id="dropdownMenuButton">
           <a class="dropdown-item nav-li" href="/preferences" (click)="viewprofile()">View Profile</a>
-          <a *ngIf="user.email==adminEmail" class="dropdown-item nav-li" href="/manage">Manage</a>
+          <a *ngIf="user.role==admin" class="dropdown-item nav-li" href="/manage">Manage</a>
           <a class="dropdown-item nav-li" href="#" (click)="logOut()">Log out</a>
         </div>
       </div>
