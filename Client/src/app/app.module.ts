@@ -22,10 +22,13 @@ import { MovieCardComponent } from "./Components/MovieComponents/movie-card-comp
 import { NavbarComponent } from "./Components/navbar/navbar.component";
 import { HomeComponent } from "./Components/home/home.component";
 import { FooterComponent } from "./Components/footer/footer.component";
-import { MovieDetailsComponent, SafePipe } from "./Components/movie-details/movie-details.component";
+import {
+  MovieDetailsComponent,
+  SafePipe
+} from "./Components/movie-details/movie-details.component";
 import { MovieSlideComponent } from "./Components/MovieComponents/movie-slide/movie-slide.component";
 import { LoginComponent } from "./Components/login/login.component";
-import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { MovieService } from "./Services/movie.service";
 import { ReactiveFormsModule } from "../../node_modules/@angular/forms";
 import { AuthenticationService } from "./Services/authentication.service";
@@ -40,11 +43,12 @@ import { ErrorDialogComponent } from "./Components/error-dialog/error-dialog.com
 import { AdmminService } from "./Services/admin.service";
 import { MatButtonModule } from "@angular/material/button";
 import { AdminManageComponent } from "./Components/admin-manage/admin-manage.component";
-import { CitySelectComponent } from './Components/city-select/city-select.component';
+import { CitySelectComponent } from "./Components/city-select/city-select.component";
 
 const routes: Routes = [
   { path: "coming_soon", component: HomeComponent },
-  {path: "recommended", component: HomeComponent},
+  { path: "recommended", component: HomeComponent },
+  { path: "now_playing", component: HomeComponent },
   { path: "wish_list/:id", component: HomeComponent },
   { path: "latest", component: HomeComponent },
   { path: "home", component: HomeComponent },
