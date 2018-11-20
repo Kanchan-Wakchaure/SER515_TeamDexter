@@ -110,7 +110,9 @@ function fetchID() {
     var query = User.find();
     return query.exec().then(function (users) {
         for (var x = 0; x < users.length; x++) {
-            listOfIDs.push(users[x]._id);
+            if (users[x].verified == true && users[x].role == 'User') {
+                listOfIDs.push(users[x]._id);
+            }
         }
         return listOfIDs;
     })
@@ -126,6 +128,8 @@ function fetchPreferences(myID) {
         details.firstname = users.firstname;
         details.lastname = users.lastname;
         details.city = users.city;
+        details.role = users.role;
+        details.verified = users.verified;
         return details;
     })
 }
@@ -169,15 +173,15 @@ function fetchMovies(myGenreList, myActorList) {
             },
             original_language: "en",
             $or: [{
-                genre_list: {
-                    $in: myGenreList
+                    genre_list: {
+                        $in: myGenreList
+                    }
+                },
+                {
+                    'cast.0.name': {
+                        $in: myActorList
+                    }
                 }
-            },
-            {
-                'cast.0.name': {
-                    $in: myActorList
-                }
-            }
             ]
         }).sort({
             release_date: -1

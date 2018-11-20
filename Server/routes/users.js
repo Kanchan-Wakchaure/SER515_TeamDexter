@@ -18,7 +18,9 @@ var ctrlProfile = require('../services/profile');
 var ctrlAuth = require('../services/authentication');
 const User = require('../models/User');
 
-const { verifyToken } = require('../middlewares/verifyToken')
+const {
+    verifyToken
+} = require('../middlewares/verifyToken')
 
 // router.get('/', auth, ctrlProfile.profileRead);
 // router.post('/', ctrlAuth.register);     //use this for register
@@ -34,7 +36,6 @@ router.get("/", verifyToken, function (req, res, next) {
         if (err) {
             next(err);
         } else {
-            console.log(user);
             return res.json(user);
         }
     })
@@ -53,10 +54,10 @@ router.put('/', verifyToken, function (req, res, next) {
             user.genreList = req.body.genreList;
             user.actorsList = req.body.actorsList;
             user.save().then(respose => {
-                res.status(200).json({
-                    'preference': 'updated successfully'
-                });
-            })
+                    res.status(200).json({
+                        'preference': 'updated successfully'
+                    });
+                })
                 .catch(err => {
                     next(err);
                 });
