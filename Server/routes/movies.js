@@ -9,6 +9,11 @@ var {
 var {
   getUpcomingMovies
 } = require("../services/getUpcomingMovies");
+
+var {
+  getNowPlayingMovies
+} = require("../services/getNowPlayingMovies");
+
 var {
   getMovieSearch
 } = require("../services/getMovieSearch");
@@ -66,6 +71,15 @@ router.get("/", function (req, res, next) {
         .then(movies => {
           res.json(movies);
         }).catch(err => {
+          next(err);
+        })
+      break;
+      case 'nowplaying':
+      getNowPlayingMovies(page)
+        .then(movie => {
+          res.json(movie);
+        })
+        .catch(err => {
           next(err);
         })
       break;
