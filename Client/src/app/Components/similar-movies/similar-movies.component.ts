@@ -12,6 +12,8 @@ import { ErrorDialogComponent } from "../error-dialog/error-dialog.component";
 })
 export class SimilarMoviesComponent implements OnInit {
   public movies: Movie[];
+  public min_similar: number = 0;
+  public max_similar: number = 5;
 
   @Input()
   public movieID: number;
@@ -43,5 +45,13 @@ export class SimilarMoviesComponent implements OnInit {
   getDetails(id: string){
     if(id != '')
       this.router.navigate(['movie_details', {movie_id: id}]);
+  }
+  next(){
+      this.min_similar = 6;
+      this.max_similar = 11;
+  }
+  previous(){
+      this.min_similar = 0;
+      this.max_similar = 5;
   }
 }

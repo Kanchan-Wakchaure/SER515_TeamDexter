@@ -10,10 +10,6 @@
 	justify-content: center;
 }
 
-/*img {
-	width: 100%;
-}*/
-
 .booking {
 	float: right;
 	margin-left: auto;
@@ -69,10 +65,6 @@
 	margin-right: 6%;
 }
 
-.scroll_vertical{
-	overflow-y: auto;
-}
-
 .user {
   display: inline-block;
   width: 116px;
@@ -99,4 +91,9 @@
 .poster {
 	width: 100%;
 	margin-top: -20%;
+}
+
+.review {
+	max-height: 200px;
+	overflow: scroll;
 }
