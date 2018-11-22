@@ -45,23 +45,23 @@
             <mat-tab-group>
               <mat-tab label="About">
                 <br>
-                    <h5>Summary</h5>
-                    <font size="2">{{movie.overview}}</font><br>
+                    <font color="maroon"><h5>Summary</h5></font>
+                    <font size="3">{{movie.overview}}</font><br>
 
-                    <br><h5>Cast</h5>
+                    <br><font color="maroon"><h5>Cast</h5></font>
                     <div class="row cast" align="center">
-                        <span *ngFor="let cast of movie.cast; let isLast=last; let i=index">
-                            <div class="col-md-12" align="center" *ngIf="i<10">
+                        <div class="col-md-2" *ngFor="let cast of movie.cast; let isLast=last; let i=index">
+                            <div align="center" *ngIf="i<12">
                                 <img class="user" src={{get_image(cast.profile_path)}} alt="Sorry, No image">
-                                <br><font size="3" color="maroon"><p class="cast_name">{{cast.name}}</p></font>
+                                <br><font size="3"><p class="cast_name">{{cast.name}}</p></font>
                             </div>
-                        </span>
+                        </div>
                     </div>
               </mat-tab>
               <mat-tab label="Reviews">
                     <span *ngFor="let review of movie.reviews; let isLast=last">
                         <br><font color="maroon"><h5>{{review.author}}</h5></font>
-                        <font size="2">{{review.content}}</font><br>
+                        <div class="review"><font size="3">{{review.content}}</font></div><br>
                     </span>
               </mat-tab>
             </mat-tab-group>
@@ -69,7 +69,7 @@
         </div>
     </div>
     <div class="row suggest">
-        <div class="scroll_vertical">
+        <div class="">
             <app-similar-movies [movieID]="movie_id"></app-similar-movies>
         </div>
     </div>
