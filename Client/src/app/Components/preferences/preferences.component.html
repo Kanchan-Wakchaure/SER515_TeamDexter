@@ -45,5 +45,6 @@
   </div>
 
   <button *ngIf="readonly" type="submit" class="btn btn-danger" (click)="editProfile()">Edit Profile</button>
-  <button *ngIf="!readonly" type="submit" class="btn btn-success" (click)="saveChanges()">Save Changes</button><br><br><br>
+  <button *ngIf="!readonly" type="submit" class="btn btn-success" (click)="saveChanges()">Save Changes</button>
+  <a class="nav-li" *ngIf="!readonly" href= "/preferences">Cancel</a><br><br><br>
 </div>
