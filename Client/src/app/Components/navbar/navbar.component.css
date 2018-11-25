@@ -1,202 +1,201 @@
-.navigation{
-	width: 100%;
-	background-color: black;
+.navigation {
+  width: 100%;
+  background-color: black;
 }
 
-.logo{
-	color: maroon;
-	text-align: right;
-	font-size: 20px;
-	font-weight: bold;
-	padding-top: 17%;
-	cursor: pointer;
-}
-.search-box{
-	padding-top: 4%;
-	align-content: center;
-	height: 0;
+.logo {
+  color: red;
+  text-align: right;
+  font-size: 20px;
+  font-weight: bold;
+  padding-top: 17%;
+  cursor: pointer;
 }
 
-.search-button{
-	background-color: maroon;
-	cursor: pointer;
-	font-size: 12px;
-	width: 40%;
-	height: 100%;
-	border: 1px solid #8D0707;
-	text-align: center;
+.search-box {
+  padding-top: 4%;
+  align-content: center;
+  height: 0;
 }
 
-.search-content{
-	padding-top: 2.7%;
+.search-button {
+  background-color: maroon;
+  cursor: pointer;
+  font-size: 12px;
+  width: 40%;
+  height: 100%;
+  border: 1px solid #8D0707;
+  text-align: center;
 }
 
-.navbar{
-	float: left;
-	padding: 0rem 30% !important;
+.search-content {
+  padding-top: 2.7%;
 }
-.user-button{
-	background-color: maroon;
-	font-size: 10px;
-	vertical-align: center;
+
+.navbar {
+  float: left;
+  padding: 0rem 30% !important;
+}
+
+.user-button {
+  background-color: maroon;
+  font-size: 10px;
+  vertical-align: center;
 }
 
 
 .nav-li {
-	color: maroon;
-	display: block;
-	padding: 0.8rem 0.6rem;
-	font-size: 16px;
+  color: red;
+  display: block;
+  padding: 0.8rem 0.6rem;
+  font-size: 16px;
 }
 
 .navset {
-	display: flex;
-	padding-left: 0;
-	margin-bottom: 0;
-	list-style: none;
-	max-width: auto;
+  display: flex;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+  max-width: auto;
 }
 
-.login-button{
-	background-color: maroon;
-	cursor: pointer;
-	font-size: 9px;
- 	border: 1px solid black;
- 	text-align: center;
-	vertical-align: center;
-	outline: none; 
- }
-
-
- .log{
- 	padding-left: 1%;
- 	display: inline;
- }
-
-
- .caret-text{
-	 margin-left: 10px;
-	 color: maroon;
- }
-
- a:not([href]):not([tabindex]) {
-	 color: white;
- }
-
-@media (min-width: 768px) and (max-width: 1199px) { 
-
-	.logo{
-		color: maroon;
-		text-align: right;
-		font-size: 18px;
-		font-weight: bold;
-		padding-top: 17%;
-	}
-
-	.search-box{
-		padding-top: 3%;
-		align-content: center;
-		height: 0;
-	}
-
-	.search-button{
-		background-color: maroon;
-		font-size: 10px;
-		width: 75%;
-		height: 100%;
-		border: 1px solid #8D0707;
-		text-align: center;
-	}
-
-	.search-content{
-		padding-top: 2%;
-		padding-left: 1% !important;
-	}
-
-    .nav-li{
-    	color: maroon;
-		display: block;
-		padding: 0.8rem 0.4rem;
-		font-size: 11px;
-    }
-
-    .navbar{
-		padding: 0rem 32% !important;
-	}
-
-	.login-button{
-	 	background-color: maroon;
-	 	font-size: 8px;
-	 	border: 1px solid black;
-	 	text-align: center;
-	 	vertical-align: center;
-	 	height: 2%;
-	 }
-
-	button{
-		outline: none;
-	}	 
-}
-
-@media (max-width: 767px) { 
-
-	.logo{
-		color: maroon;
-		text-align: right;
-		font-size: 16px;
-		font-weight: bold;
-		padding-top: 17%;
-	}
-
-	.search-box{
-		padding-top: 2%;
-		align-content: center;
-		height: 0;
-	}
-
-	.search-button{
-		background-color: maroon;
-		font-size: 10px;
-		width: 75%;
-		height: 100%;
-		border: 1px solid #8D0707;
-		text-align: center;
-	}
-
-	 .search-content{
-		padding-top: 1.8%;
-		padding-left: 1% !important;
-	}
-
-    .nav-li{
-    	color: maroon;
-		display: block;
-		padding: 0.8rem 0.3rem;
-		font-size: 9px;
-    }
-
-    .navbar{
-		padding: 0rem 30% !important;
-	}
-
-	.login-button{
-	 	background-color: maroon;
-	 	font-size: 7px;
-	 	border: 1px solid black;
-	 	text-align: center;
-	 	vertical-align: center;
-	 	height: 1%;
-	 }
-
-	 .signup-button{
-		background-color: maroon;
-		font-size: 7px;
-		border: 1px solid black;
-		text-align: center;
-		vertical-align: center;
-		height: 1%;
-	}	 
+.login-button {
+  background-color: maroon;
+  cursor: pointer;
+  font-size: 9px;
+  border: 1px solid black;
+  text-align: center;
+  vertical-align: center;
+  outline: none;
 }
 
 
+.log {
+  padding-left: 1%;
+  display: inline;
+}
 
+
+.caret-text {
+  margin-left: 10px;
+  color: maroon;
+}
+
+a:not([href]):not([tabindex]) {
+  color: white;
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+
+  .logo {
+    color: maroon;
+    text-align: right;
+    font-size: 18px;
+    font-weight: bold;
+    padding-top: 17%;
+  }
+
+  .search-box {
+    padding-top: 3%;
+    align-content: center;
+    height: 0;
+  }
+
+  .search-button {
+    background-color: maroon;
+    font-size: 10px;
+    width: 75%;
+    height: 100%;
+    border: 1px solid #8D0707;
+    text-align: center;
+  }
+
+  .search-content {
+    padding-top: 2%;
+    padding-left: 1% !important;
+  }
+
+  .nav-li {
+    color: red;
+    display: block;
+    padding: 0.8rem 0.4rem;
+    font-size: 11px;
+  }
+
+  .navbar {
+    padding: 0rem 32% !important;
+  }
+
+  .login-button {
+    background-color: maroon;
+    font-size: 8px;
+    border: 1px solid black;
+    text-align: center;
+    vertical-align: center;
+    height: 2%;
+  }
+
+  button {
+    outline: none;
+  }
+}
+
+@media (max-width: 767px) {
+
+  .logo {
+    color: maroon;
+    text-align: right;
+    font-size: 16px;
+    font-weight: bold;
+    padding-top: 17%;
+  }
+
+  .search-box {
+    padding-top: 2%;
+    align-content: center;
+    height: 0;
+  }
+
+  .search-button {
+    background-color: maroon;
+    font-size: 10px;
+    width: 75%;
+    height: 100%;
+    border: 1px solid #8D0707;
+    text-align: center;
+  }
+
+  .search-content {
+    padding-top: 1.8%;
+    padding-left: 1% !important;
+  }
+
+  .nav-li {
+    color: red;
+    display: block;
+    padding: 0.8rem 0.3rem;
+    font-size: 9px;
+  }
+
+  .navbar {
+    padding: 0rem 30% !important;
+  }
+
+  .login-button {
+    background-color: maroon;
+    font-size: 7px;
+    border: 1px solid black;
+    text-align: center;
+    vertical-align: center;
+    height: 1%;
+  }
+
+  .signup-button {
+    background-color: maroon;
+    font-size: 7px;
+    border: 1px solid black;
+    text-align: center;
+    vertical-align: center;
+    height: 1%;
+  }
+}
