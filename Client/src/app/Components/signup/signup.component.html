@@ -95,7 +95,8 @@
           <p style="color: red">Please agree to terms and conditions for sign up</p>  
           </span>
               
-          <button [disabled]="!signupForm.valid" class="btn btn-danger" type="submit" >Sign Up</button>         
+          <button [disabled]="!signupForm.valid" class="btn btn-danger" type="submit" >Sign Up</button>   
+          <a class="nav-li" href="/home">Cancel</a>      
         </div> 
         <br><p *ngIf="isError" style="color: red">{{error_msg}}</p>               
       </form>      
