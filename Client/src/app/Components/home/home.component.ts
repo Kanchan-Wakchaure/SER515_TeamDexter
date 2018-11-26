@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { Movie } from "../movie.model";
 import { MovieService } from "../../Services/movie.service";
@@ -14,6 +14,10 @@ export class HomeComponent implements OnInit {
   public movies: Movie[];
   public showSlider: boolean = true;
   page: number = 1;
+  public emptyFlag: boolean = false;
+  public paginationFlag: boolean = true;
+
+  @Input() public message: String;
 
   constructor(
     public movieService: MovieService,
@@ -119,7 +123,14 @@ export class HomeComponent implements OnInit {
   private recommendedMovies() {
     this.movieService.getRecommendedMovieList().subscribe(
       (res: Movie[]) => {
-        this.movies = res;
+        if (res.length == 0) {
+          this.emptyFlag = true;
+          this.message =
+            "Sorry, No recommendations found for your preferences at this time";
+        } else {
+          this.movies = res;
+        }
+        this.paginationFlag = false;
       },
       error => {
         this.dialog.open(ErrorDialogComponent, {
