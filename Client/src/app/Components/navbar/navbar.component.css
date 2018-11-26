@@ -32,9 +32,11 @@
   padding-top: 2.7%;
 }
 
-.navbar {
+.navb {
+  height: 100%;
   float: left;
-  padding: 0rem 30% !important;
+  padding-bottom: 1%;
+  padding-top: 1%;
 }
 
 .user-button {
@@ -67,14 +69,13 @@
   text-align: center;
   vertical-align: center;
   outline: none;
+  height: 50%;
 }
-
 
 .log {
-  padding-left: 1%;
+  margin-left: 0.5%;
   display: inline;
 }
-
 
 .caret-text {
   margin-left: 10px;
