@@ -26,9 +26,9 @@ export class ActivationComponent implements OnInit {
       this.authenticationService.activate(this.code).subscribe(
         (response: any) => {
           this.successmessage = response.message;
-          this.redirectmessage = "redirecting you to home page....";
+          this.redirectmessage = "redirecting you to preferences page....";
           setTimeout(() => {
-            this.router.navigate(["/home"]);
+            this.router.navigate(["/preferences"]);
           }, 2000);
         },
         error => {
