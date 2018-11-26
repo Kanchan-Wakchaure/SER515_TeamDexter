@@ -12,6 +12,7 @@ import { Movie } from '../movie.model';
 import { CitySelectComponent } from '../city-select/city-select.component';
 import { CityService } from '../../Services/city.service';
 import { PreferenceService } from '../../Services/preference.service';
+import { ErrorDialogComponent } from '../error-dialog/error-dialog.component';
 
 @Component({
   selector: 'app-navbar',
@@ -81,11 +82,13 @@ export class NavbarComponent implements OnInit {
 
   loadUser() {
     this.loggedIn = this.authenticationService.isLoggedIn();
-    debugger;
     this.user = this.authenticationService.getUser();
     this.preferenceService.getUserData().subscribe(
       (response: any) => {
         this.username = response.firstname;
+      },
+      error => {
+        this.username = this.user.firstname;
       });
   }
 
