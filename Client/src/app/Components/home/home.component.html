@@ -2,22 +2,17 @@
 <div *ngIf="showSlider">
   <app-movie-slide></app-movie-slide>
 </div>
+<div *ngIf="emptyFlag" class="p-style">
+  <p class="p-style" align="center">{{message}}</p>
+</div>
 <br>
 <div class="band container">
   <div *ngFor="let movie of movies">
     <app-movie-card [movie]=movie> </app-movie-card>
-    </div>
+  </div>
 </div>
-<div class="container mt-4">
-  <ngb-pagination
-    class = "d-flex justify-content-end"
-    [collectionSize] = "1000"
-    [maxSize] = "7"
-    [pageSize] = "20"
-    [(page)] = "page"
-    [boundaryLinks] = "true"
-    (pageChange) = "loadPage($event)"
-    >
+<div class="container mt-4" *ngIf="paginationFlag">
+  <ngb-pagination class="d-flex justify-content-end" [collectionSize]="1000" [maxSize]="7" [pageSize]="20" [(page)]="page"
+    [boundaryLinks]="true" (pageChange)="loadPage($event)">
   </ngb-pagination>
 </div>
-  

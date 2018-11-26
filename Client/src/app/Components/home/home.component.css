@@ -1,17 +1,22 @@
 /*CSS class to create rows for movie cards*/
 .band {
-    margin: 5px auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: auto;
-    grid-gap: 20px;
-  }
-
-ngb-pagination ::ng-deep ul > li > a {
-    color: black;
+  margin: 5px auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  grid-gap: 20px;
 }
 
-ngb-pagination ::ng-deep ul > li.active > a {
-    color: white;
-    background-color: #dc3545 !important;
+ngb-pagination ::ng-deep ul>li>a {
+  color: black;
+}
+
+ngb-pagination ::ng-deep ul>li.active>a {
+  color: white;
+  background-color: #dc3545 !important;
+}
+
+.p-style {
+  color: red;
+  font-size: 17px;
 }
