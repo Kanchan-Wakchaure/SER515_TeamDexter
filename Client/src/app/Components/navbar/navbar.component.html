@@ -20,24 +20,17 @@
     </div>
   </div>
   <div class="row">
-    <div class="navbar">
-      <nav class="navset">
-        <a class="nav-li" href="/home">Home</a>
-        <a class="nav-li" href="/coming_soon">Coming Soon</a>
-        <a class="nav-li" href="/now_playing">Now Playing</a>
-        <a class="nav-li" href="/recommended" *ngIf="loggedIn">Recommended</a>
-      </nav>
-      <div class="log">
-        <button class="btn btn-primary login-button" (click)="openCityDialog()">Select City</button>
-      </div>
-      <div class="log" *ngIf="!loggedIn">
-        <button class="btn btn-primary login-button" (click)="openDialog()">Log In</button>
-      </div>
-      <div class="log" *ngIf="!loggedIn">
-        <button class="btn btn-primary login-button" (click)="openSignUp()">Sign Up</button>
-      </div>
-      <div class="nav dropdown" *ngIf="loggedIn">
-        <button class="btn btn-danger user-button dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
+    <div class="col-md-3"></div>
+    <div class="navb col-md-6">
+      <a class="nav-li log" href="/home">Home</a>
+      <a class="nav-li log" href="/coming_soon">Coming Soon</a>
+      <a class="nav-li log" href="/now_playing">Now Playing</a>
+      <a class="nav-li log" href="/recommended" *ngIf="loggedIn">Recommended</a>
+      <button class="btn btn-primary login-button log" (click)="openCityDialog()">Select City</button>
+      <button *ngIf="!loggedIn" class="btn btn-primary login-button log" (click)="openDialog()">Log In</button>
+      <button *ngIf="!loggedIn" class="btn btn-primary login-button log" (click)="openSignUp()">Sign Up</button>
+      <div class="nav dropdown log" *ngIf="loggedIn">
+        <button class="btn btn-danger user-button dropdown-toggle login-button" type="button" data-toggle="dropdown" aria-haspopup="true"
           aria-expanded="false" (click)="toggleDropdown()">
           hi, {{username}}!
         </button>
