@@ -35,7 +35,10 @@ router.get("/", verifyToken, function (req, res, next) {
     User.findById(req.userid, (err, user) => {
         if (err) {
             next(err);
-        } else {
+        } else if (!user.verified) {
+            return res.status(401).json("User not verified");
+        }
+        else {
             return res.json(user);
         }
     })
@@ -47,17 +50,18 @@ router.put('/', verifyToken, function (req, res, next) {
     User.findById(req.userid, (err, user) => {
         if (!user) {
             next(new Error("User not found"));
-        } else {
+        }
+        else {
             user.firstname = req.body.firstname;
             user.lastname = req.body.lastname;
             user.city = req.body.location;
             user.genreList = req.body.genreList;
             user.actorsList = req.body.actorsList;
             user.save().then(respose => {
-                    res.status(200).json({
-                        'preference': 'updated successfully'
-                    });
-                })
+                res.status(200).json({
+                    'preference': 'updated successfully'
+                });
+            })
                 .catch(err => {
                     next(err);
                 });
