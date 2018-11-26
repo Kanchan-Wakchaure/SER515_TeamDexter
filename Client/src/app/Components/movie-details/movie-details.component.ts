@@ -5,6 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { TimeAndTheatreComponent } from '../time-and-theatre/time-and-theatre.component';
 import { DomSanitizer } from "@angular/platform-browser";
+import { CitySelectComponent } from '../city-select/city-select.component';
+import { CityService } from '../../Services/city.service';
 
 @Pipe({ name: 'safe' })
 export class SafePipe implements PipeTransform {
@@ -28,7 +30,7 @@ export class MovieDetailsComponent implements OnInit {
   video: string;
 
   constructor(public movieService: MovieService, private route: ActivatedRoute,
-    private router: Router, public dialog: MatDialog) {
+    private router: Router, public dialog: MatDialog, private cityService: CityService) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
 
@@ -58,6 +60,25 @@ export class MovieDetailsComponent implements OnInit {
   }
 
   openDialog() {
+    
+    if(window.sessionStorage.getItem('city') === null) {
+      const cityDialogReference = this.dialog.open(CitySelectComponent, {
+        width: '600px'
+      });
+      this.cityService.setCityDialogRef(cityDialogReference);
+      this.cityService.getCityDialogRef().afterClosed().subscribe(
+        data => {
+          this.openTimeandTheatreDialog();
+        });
+    } else {
+      this.openTimeandTheatreDialog();
+    }
+    
+    
+  }
+
+  openTimeandTheatreDialog() {
+    
     const dialogReference = this.dialog.open(TimeAndTheatreComponent, {
       width: '780px',
       height: '500px',
