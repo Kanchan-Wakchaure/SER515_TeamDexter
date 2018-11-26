@@ -67,7 +67,12 @@ export class MovieService {
   }
 
   getShowTimes(days: number) {
-    const city: City = <City>JSON.parse(window.localStorage.getItem("city"));
+    var city: City = <City>JSON.parse(window.localStorage.getItem("city"))
+    if (city ==null){
+        var city = new City()
+        city.id = '1901'
+        //var city:City = {id:'1901', name:'', slug:'',lat}
+    }
     return this.http.get(
       "http://localhost:4241/showtimes/" +
         this.movie_id +
