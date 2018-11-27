@@ -64,6 +64,7 @@ export class HomeComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       let movieName: string = params["name"];
       let details: string = params["details"];
+      this.paginationFlag = false;
       this.movieService.getSearchedMovieList(movieName, details).subscribe(
         (res: Movie[]) => {
           this.movies = res;
