@@ -2,18 +2,25 @@
   width: 100%;
   background-color: black;
 }
+.city-text {
+  width: 95%;
+  text-align: right;
+  color: red;
+  padding-top: 1%;
+  float: right;
+}
 
 .logo {
   color: red;
   text-align: right;
   font-size: 20px;
   font-weight: bold;
-  padding-top: 17%;
+  padding-top: 8%;
   cursor: pointer;
 }
 
 .search-box {
-  padding-top: 4%;
+  padding-top: 2%;
   align-content: center;
   height: 0;
 }
@@ -29,7 +36,7 @@
 }
 
 .search-content {
-  padding-top: 2.7%;
+  padding-top: 1.4%;
 }
 
 .navb {
@@ -139,6 +146,7 @@ a:not([href]):not([tabindex]) {
   button {
     outline: none;
   }
+
 }
 
 @media (max-width: 767px) {
