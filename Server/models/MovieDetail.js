@@ -30,10 +30,6 @@ let MovieDetail = new Schema({
   imdb_id: {
     type: String,
     default: null
-    /*required:[{
-            minlength:9,
-            maxlength:9,
-            validate:'^tt[0-9]{7}'}] */
   },
   original_language: {
     type: String

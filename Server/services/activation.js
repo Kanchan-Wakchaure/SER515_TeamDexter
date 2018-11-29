@@ -7,7 +7,6 @@ module.exports = {
 
     generateOTP: (user_id) => {
         var token = randtoken.generate(16);
-        console.log("inside generate token", user_id)
         return user_id + " " + token
     },
     encryptOTP: (token) => {
@@ -24,26 +23,19 @@ module.exports = {
     },
     activateAccount: (code) => {
         console.log("control is here")
-        //const activation = new Activation();
-        //activation.user_id = code
-        //console.log(activation)
         var query = Activation.findOne({
             'userid': code
         });
-        //query.select('name occupation');
 
         return query.exec().then(function (activation) {
-            console.log("user found", activation);
             if (activation === null) {
                 throw new Error()
             }
             var query1 = User.findById(code)
             return query1.exec().then(function (user) {
-                console.log(user)
                 user.verified = true;
                 var query3 = user.save()
                 return query3.then(function (updatedUser) {
-                    console.log("hurray", updatedUser)
                     return true
                 }).catch(function (err) {
                     throw err
@@ -52,7 +44,6 @@ module.exports = {
                 throw err
             });
         }).catch(function (err) {
-            //console.log(err)
             throw err
         });
     }

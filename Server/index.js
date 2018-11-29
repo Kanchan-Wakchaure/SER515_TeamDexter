@@ -14,7 +14,6 @@ var cookieParser = require("cookie-parser");
 
 require('./config/passport');
 require('./services/db');
-//var { getRefresh } = require('./services/getNewMovie')
 
 //Created server at port 4241
 const PORT = process.env.PORT || 4241;
@@ -42,15 +41,6 @@ app.use("/preferences", preferencesRoute);
 app.use("/activate", activationRoute);
 app.use("/email", emailRoute);
 app.use("/showtimes", showtimesRoute);
-
-//error handlers
-
-// catch 404 and forward to error handler
-//app.use(function (request, response, next) {
-//  var error = new Error('Not Found');
-//  error.status = 404;
-//  next(error);
-//});
 
 // Error handlers
 app.use(function (error, request, response, next) {

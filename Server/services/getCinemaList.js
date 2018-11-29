@@ -15,8 +15,7 @@ module.exports = {
             json: true // Automatically parses the JSON string in the response
         };
 
-        request(options).then(body => {
-            //console.log(body.cinemas)
+        request(options).then(body => {        
             for (var i = 0; i < body.cinemas.length; i++) {
                 const cinema = new Cinema(body.cinemas[i])
                 cinema.save(function (err) {

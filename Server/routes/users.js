@@ -22,13 +22,9 @@ const {
     verifyToken
 } = require('../middlewares/verifyToken')
 
-// router.get('/', auth, ctrlProfile.profileRead);
-// router.post('/', ctrlAuth.register);     //use this for register
 
 router.route('/')
-    //.get(auth, ctrlProfile.profileRead)
     .post(ctrlAuth.register)
-//.put(ctrlAuth.updateUser);
 
 router.get("/", verifyToken, function (req, res, next) {
 
@@ -46,7 +42,6 @@ router.get("/", verifyToken, function (req, res, next) {
 
 //update user preference
 router.put('/', verifyToken, function (req, res, next) {
-    //console.log(req.userid)
     User.findById(req.userid, (err, user) => {
         if (!user) {
             next(new Error("User not found"));

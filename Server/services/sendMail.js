@@ -6,8 +6,7 @@ const keys = require("../config/keys");
 
 module.exports.sendEmail = function (req, res) {
     var emailList = [];
-    //var src1, src2, src3, src4, src5, src6;
-    var sources = []
+    var sources = [];
     fetchID().then(function (IdList) {
         for (var i = 0; i < IdList.length; i++) {
             fetchPreferences(IdList[i]).then(function (users) {
@@ -30,13 +29,6 @@ module.exports.sendEmail = function (req, res) {
                         var srcx = myMovies[l].poster_path;
                         sources.push(srcx);
                     }
-                    //console.log(sources);
-                    //src1 = "https://image.tmdb.org/t/p/w500//wrFpXMNBRj2PBiN4Z5kix51XaIZ.jpg";
-                    //src2 = "https://image.tmdb.org/t/p/w500//i91mfvFcPPlaegcbOyjGgiWfZzh.jpg";
-                    //src3 = "https://image.tmdb.org/t/p/w500//x1txcDXkcM65gl7w20PwYSxAYah.jpg";
-                    //src4 = "https://image.tmdb.org/t/p/w500//2uNW4WbgBXL25BAbXGLnLqX71Sw.jpg";
-                    //src5 = "https://image.tmdb.org/t/p/w500//ptSrT1JwZFWGhjSpYUtJaasQrh.jpg";
-                    //src6 = "https://image.tmdb.org/t/p/w500//lNkDYKmrVem1J0aAfCnQlJOCKnT.jpg";
                     var mailOptions = {
                         from: 'findmyshow1@gmail.com',
                         to: email,
