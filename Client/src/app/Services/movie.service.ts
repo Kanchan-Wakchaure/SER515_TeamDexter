@@ -3,7 +3,6 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { City } from "../Components/city.model";
 import { AuthenticationService } from "../Services/authentication.service";
-// import { timingSafeEqual } from 'crypto';
 
 /*
  * A service Class that acts as centralized repository for handling movie data.
