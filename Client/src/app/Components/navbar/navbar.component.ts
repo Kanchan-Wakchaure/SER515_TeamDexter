@@ -13,6 +13,7 @@ import { CitySelectComponent } from '../city-select/city-select.component';
 import { CityService } from '../../Services/city.service';
 import { PreferenceService } from '../../Services/preference.service';
 import { ErrorDialogComponent } from '../error-dialog/error-dialog.component';
+import { City } from '../city.model';
 
 @Component({
   selector: 'app-navbar',
@@ -30,14 +31,17 @@ export class NavbarComponent implements OnInit {
   user: User;
   admin: string = "Admin";
   username: String;
-
+  selectedCity: String = " ";
   constructor(public dialog: MatDialog, private movieService: MovieService,
     private router: Router, private authenticationService: AuthenticationService,
     private preferenceService: PreferenceService,
     private cityService: CityService) { }
 
   ngOnInit() {
-    this.loadUser();
+    if(this.authenticationService.isLoggedIn()) {
+      this.loadUser();
+    }
+    this.displayCityName();
   }
 
   //opens pop up when login is clicked.
@@ -68,8 +72,21 @@ export class NavbarComponent implements OnInit {
       width: '600px'
     })
     this.cityService.setCityDialogRef(cityDialogReference);
+    this.cityService.getCityDialogRef().afterClosed().subscribe(
+      result => {
+        this.displayCityName();
+      }
+    )
   }
 
+  displayCityName() {
+    if(window.sessionStorage.getItem('city') === null ) {
+      this.selectedCity = "None";
+    } else {
+      this.selectedCity = (<City>JSON.parse(window.sessionStorage.getItem('city'))).name;
+    }
+  }
+  
   searchMovies(movieName: string, details: string) {
     if (details == "full") {
       this.router.navigate(['search', { name: movieName, details: details }]);
