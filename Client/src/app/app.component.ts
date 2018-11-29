@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { CityService } from './Services/city.service';
-
 
 @Component({
   selector: 'app-root',
@@ -9,10 +7,7 @@ import { CityService } from './Services/city.service';
 })
 
 export class AppComponent {
-  
-  
-  
-  constructor(private cityService: CityService) { }
+  constructor() { }
 
   ngOnInit() {
    

@@ -1,16 +1,6 @@
 import { Preference } from "../Components/preference.model";
 import { Injectable } from "../../../node_modules/@angular/core";
-import {
-  HttpClient,
-  HttpHeaders,
-} from "../../../node_modules/@angular/common/http";
-
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-    'Authorization': 'my-auth-token'
-  })
-};
+import { HttpClient, HttpHeaders } from "../../../node_modules/@angular/common/http";
 
 @Injectable()
 export class PreferenceService {

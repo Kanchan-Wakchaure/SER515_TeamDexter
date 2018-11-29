@@ -2,13 +2,9 @@ import { Component, OnInit } from "@angular/core";
 import { PreferenceService } from "../../Services/preference.service";
 import { User } from "../../Components/user.model";
 import { MatDialog } from "@angular/material";
-import { ErrorDialogComponent } from "../error-dialog/error-dialog.component";
 import { City } from '../city.model';
 import { CityService } from '../../Services/city.service';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSnackBar } from '@angular/material';
-import { debug } from "util";
-import { toPublicName } from "@angular/compiler/src/i18n/serializers/xmb";
 import { AuthenticationService } from "../../Services/authentication.service";
 
 @Component({
@@ -31,7 +27,6 @@ export class PreferencesComponent implements OnInit {
   constructor(
     public snackBar: MatSnackBar,
     public preferenceService: PreferenceService,
-    private dialog: MatDialog,
     private cityService: CityService,
     private authenticationService: AuthenticationService
   ) { }
@@ -66,12 +61,6 @@ export class PreferencesComponent implements OnInit {
       { id: 18, item_text: "War" },
       { id: 19, item_text: "Western" },
     ];
-
-    /*     this.languageList = [
-          { id: 1, item_text: "English" },
-          { id: 2, item_text: "Spanish" },
-          { id: 3, item_text: "Hindi" }
-        ]; */
 
     this.actorsList = [
       { id: 1, item_text: "Al Pacino" },

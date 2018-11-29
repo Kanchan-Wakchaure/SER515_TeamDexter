@@ -12,7 +12,6 @@ import { Movie } from '../movie.model';
 import { CitySelectComponent } from '../city-select/city-select.component';
 import { CityService } from '../../Services/city.service';
 import { PreferenceService } from '../../Services/preference.service';
-import { ErrorDialogComponent } from '../error-dialog/error-dialog.component';
 import { City } from '../city.model';
 
 @Component({
