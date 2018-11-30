@@ -22,7 +22,13 @@ export class CitySelectComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.selectedLocation = (<City>JSON.parse(window.sessionStorage.getItem('city'))).name;
+    if(window.sessionStorage.getItem('city')!==null){
+      this.selectedLocation = (<City>JSON.parse(window.sessionStorage.getItem('city'))).name;
+    } else {
+      this.selectedLocation = "select"
+    }
+      
+    
     this.cityService.getCities().subscribe((response: City[]) => {
       this.cities = response;
       this.cities.sort((one, two) => (one.name < two.name ? -1 : 1));
