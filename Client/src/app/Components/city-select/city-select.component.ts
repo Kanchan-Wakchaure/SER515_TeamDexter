@@ -15,14 +15,14 @@ export class CitySelectComponent implements OnInit {
 
   //variable that binds with html form.
   cityForm: FormGroup;
-  selectedLocation: string;
+  selectedLocation: String;
   constructor(
     private auth: AuthenticationService,
     private cityService: CityService,
   ) {}
 
   ngOnInit() {
-    
+    this.selectedLocation = (<City>JSON.parse(window.sessionStorage.getItem('city'))).name;
     this.cityService.getCities().subscribe((response: City[]) => {
       this.cities = response;
       this.cities.sort((one, two) => (one.name < two.name ? -1 : 1));
