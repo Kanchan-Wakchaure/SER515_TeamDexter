@@ -8,7 +8,6 @@ export class Movie {
     public tagline: String;
     public overview: String;
     public vote_average: Number;
-    //public genre: String;
     public poster_path: String;
     public id: string;
     public cinema_detail: [string, string];

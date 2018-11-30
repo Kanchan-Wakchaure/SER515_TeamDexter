@@ -1,13 +1,19 @@
-<b *ngIf="movies != 0">SIMILAR MOVIES</b>
-<div class="scroll" *ngIf="movies != 0">
-  <mat-card *ngFor="let movie of movies" class="movie-card">
+<div *ngIf="movies != 0">
+	<b>SIMILAR MOVIES</b>
+	<a *ngIf="min_similar==0" class="btn btn-primar navigate" role="button" (click)=next()>next</a>
+	<a *ngIf="min_similar==6" class="btn btn-primar navigate" role="button" (click)=previous()>previous</a>
+</div>
+<br><div class="scroll" *ngIf="movies != 0">
+	<div *ngFor="let movie of movies; let i=index">
+  <mat-card class="movie-card" *ngIf="i>=min_similar && i<=max_similar">
   	<a style = "cursor: pointer" (click)="getDetails(movie.id)">
 	    <mat-card-header>
 	    </mat-card-header>
 	    <mat-card-content>
-	      <img mat-card-image src={{movie.poster_path}} alt="Movie Image" class="image-card">
+	      <img mat-card-image src={{movie.poster_path}} alt="Movie Image" class="image-card poster">
 	    </mat-card-content>
 	</a>
   </mat-card>
+</div>
 </div>
 

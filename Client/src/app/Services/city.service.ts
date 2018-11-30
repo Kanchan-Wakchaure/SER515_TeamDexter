@@ -8,7 +8,6 @@ import { MatDialogRef } from '../../../node_modules/@angular/material';
 export class CityService{
     public cities: City[] = [];
     private cityDialogRef: MatDialogRef<CitySelectComponent>;
-
 constructor(private http: HttpClient) {}
 
 //method to get cities list to populate on sign up page
@@ -23,5 +22,4 @@ public setCityDialogRef(cityDialofRef) {
 public getCityDialogRef() {
     return this.cityDialogRef;
 }
-
 }

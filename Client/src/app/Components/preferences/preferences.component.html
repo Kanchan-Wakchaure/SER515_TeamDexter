@@ -7,8 +7,7 @@
     <br>
     <h5><u>User Details </u></h5>
     <label for="firstname">First Name:</label>
-    <input class="form-control" type="string" name="firstname" id="firstname" [(ngModel)]="user.firstname"
-      [readonly]="readonly">
+    <input class="form-control" type="string" name="firstname" id="firstname" [(ngModel)]="user.firstname" [readonly]="readonly">
   </div>
 
   <div class="form-group">
@@ -32,18 +31,19 @@
   <div class="form-group">
     <h5><u>Set Preferences </u></h5>
     <label for="genres">Genre:</label>
-    <ng-multiselect-dropdown [placeholder]="'Select Genres'" [data]="genreList" [(ngModel)]="user.genreList"
-      [settings]="dropdownSettings" name="genres" [disabled] = "readonly">
+    <ng-multiselect-dropdown [placeholder]="'Select Genres'" [data]="genreList" [(ngModel)]="user.genreList" [settings]="dropdownSettings"
+      name="genres" [disabled]="readonly">
     </ng-multiselect-dropdown>
   </div>
 
   <div class="form-group">
     <label for="actors">Actor:</label>
     <ng-multiselect-dropdown [placeholder]="'Select Actors'" [data]="actorsList" [(ngModel)]="user.actorsList"
-      [settings]="dropdownSettings" name="actors" [disabled] = "readonly">
+      [settings]="dropdownSettings" name="actors" [disabled]="readonly">
     </ng-multiselect-dropdown>
   </div>
 
-  <button *ngIf="readonly" type="submit" class="btn btn-danger" (click)="editProfile()">Edit Profile</button>
-  <button *ngIf="!readonly" type="submit" class="btn btn-success" (click)="saveChanges()">Save Changes</button><br><br><br>
+  <button *ngIf="verified && readonly" type="submit" class="btn btn-danger" (click)="editProfile()">Edit Profile</button>
+  <button *ngIf="!readonly" type="submit" class="btn btn-success" (click)="saveChanges()">Save Changes</button>
+  <a class="nav-li" *ngIf="!readonly" href="/preferences">Cancel</a><br><br><br>
 </div>

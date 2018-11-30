@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { Movie } from "../movie.model";
 import { MovieService } from "../../Services/movie.service";
@@ -14,13 +14,17 @@ export class HomeComponent implements OnInit {
   public movies: Movie[];
   public showSlider: boolean = true;
   page: number = 1;
+  public emptyFlag: boolean = false;
+  public paginationFlag: boolean = true;
+
+  @Input() public message: String;
 
   constructor(
     public movieService: MovieService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private dialog: MatDialog
-  ) { }
+  ) {}
 
   ngOnInit() {
     if (this.router.url.includes("/search")) {
@@ -29,11 +33,13 @@ export class HomeComponent implements OnInit {
     } else if (this.router.url.includes("/coming_soon")) {
       this.showSlider = false;
       this.upcomingMovies();
+    } else if (this.router.url.includes("/now_playing")) {
+      this.showSlider = false;
+      this.nowPlayingMovies();
     } else if (this.router.url.includes("/recommended")) {
       this.showSlider = false;
       this.recommendedMovies();
-
-    }else {
+    } else {
       this.showSlider = true;
       this.movieService.getMovies(this.page).subscribe(
         (response: Movie[]) => {
@@ -58,6 +64,7 @@ export class HomeComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       let movieName: string = params["name"];
       let details: string = params["details"];
+      this.paginationFlag = false;
       this.movieService.getSearchedMovieList(movieName, details).subscribe(
         (res: Movie[]) => {
           this.movies = res;
@@ -96,10 +103,35 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  private recommendedMovies(){
-    this.movieService.getRecommendedMovieList().subscribe(
+  private nowPlayingMovies() {
+    this.movieService.getNowPlayingMovieList(this.page).subscribe(
       (res: Movie[]) => {
         this.movies = res;
+      },
+      error => {
+        this.dialog.open(ErrorDialogComponent, {
+          width: "500px",
+          height: "210px",
+          data: {
+            message: error.error.errorCode + " :  " + error.error.message,
+            ok: true
+          },
+          disableClose: true
+        });
+      }
+    );
+  }
+  private recommendedMovies() {
+    this.movieService.getRecommendedMovieList().subscribe(
+      (res: Movie[]) => {
+        if (res.length == 0) {
+          this.emptyFlag = true;
+          this.message =
+            "Sorry, No recommendations found for your preferences at this time";
+        } else {
+          this.movies = res;
+        }
+        this.paginationFlag = false;
       },
       error => {
         this.dialog.open(ErrorDialogComponent, {

@@ -1,3 +1,7 @@
+ a:not([tabindex]) {
+   color: white;
+ }
+
 .movie-card {
   background: white;
   text-decoration: none;
@@ -15,6 +19,16 @@
 }
 
 .scroll {
-  overflow: scroll;
+  overflow: hidden;
   display: flex;
+}
+
+.navigate {
+  float: right;
+  margin-right: 1%;
+  background-color: maroon;
+  cursor: pointer;
+  font-size: 12px;
+  text-align: center;
+  width: 10%;
 }

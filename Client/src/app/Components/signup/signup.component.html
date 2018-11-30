@@ -1,105 +1,75 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <form [formGroup]="signupForm" (ngSubmit)="OnSignup()" *ngIf = "!isSignedUp">
-              
+      <form [formGroup]="signupForm" (ngSubmit)="OnSignup()" *ngIf="!isSignedUp">
+
         <div formGroupName="signupData">
 
           <div class="form-group">
-          <h3>New User:</h3>
+            <h3>New User:</h3>
           </div>
 
           <div class="form-group">
-          <label for="firstname">First Name:</label>
-          <input class="form-control" 
-                 type="string" 
-                 name="firstname" 
-                 id="firstname" 
-                 formControlName="firstname"
-                 placeholder="{{fnamePlaceholder}}"
-                 [(ngModel)]="credentials.firstname">
+            <label for="firstname">First Name:</label>
+            <input class="form-control" type="string" name="firstname" id="firstname" formControlName="firstname"
+              placeholder="{{fnamePlaceholder}}" [(ngModel)]="credentials.firstname">
           </div>
-          <span class="help-block"                
-                *ngIf="!signupForm.get('signupData.firstname').valid && signupForm.get('signupData.firstname').touched">
-          <p style="color: red">First Name is required</p>  
-          </span>   
-                
-          <div class="form-group">
-          <label for="lastname">Last Name:</label>
-          <input class="form-control" 
-                 type="string" 
-                 name="lastname" 
-                 id="lastname" 
-                 formControlName="lastname"
-                 placeholder="{{lnamePlaceholder}}"
-                 [(ngModel)]="credentials.lastname">
-          </div>
-          <span class="help-block"                
-                *ngIf="!signupForm.get('signupData.lastname').valid && signupForm.get('signupData.lastname').touched">
-          <p style="color: red">Last Name is required</p>  
-          </span>                 
+          <span class="help-block" *ngIf="!signupForm.get('signupData.firstname').valid && signupForm.get('signupData.firstname').touched">
+            <p style="color: red">First Name is required</p>
+          </span>
 
           <div class="form-group">
-          <label for="email">Email:</label>
-          <input class="form-control" 
-                 type="email" 
-                 name="email" 
-                 id="email" 
-                 formControlName="email"
-                 placeholder="{{emailPlaceholder1}}"
-                [(ngModel)]="credentials.email">
-          </div>             
-          <span class="help-block"
-                *ngIf="!signupForm.get('signupData.email').valid && signupForm.get('signupData.email').touched">          
-          <p style="color: red">Please enter a valid email</p> 
-          </span>
-                
-          <div class="form-group">
-          <label for="password">Password:</label>
-          <input class="form-control" 
-                 type="password" 
-                 name="password" 
-                 id="password" 
-                 formControlName="password"
-                 placeholder="{{passwordPlaceholder1}}"
-                 [(ngModel)]="credentials.password">
+            <label for="lastname">Last Name:</label>
+            <input class="form-control" type="string" name="lastname" id="lastname" formControlName="lastname"
+              placeholder="{{lnamePlaceholder}}" [(ngModel)]="credentials.lastname">
           </div>
-          <span class="help-block"
-                *ngIf="!signupForm.get('signupData.password').valid && signupForm.get('signupData.password').touched">
-          <p style="color: red">Password is required</p>  
+          <span class="help-block" *ngIf="!signupForm.get('signupData.lastname').valid && signupForm.get('signupData.lastname').touched">
+            <p style="color: red">Last Name is required</p>
           </span>
-              
+
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input class="form-control" type="email" name="email" id="email" formControlName="email" placeholder="{{emailPlaceholder1}}"
+              [(ngModel)]="credentials.email">
+          </div>
+          <span class="help-block" *ngIf="!signupForm.get('signupData.email').valid && signupForm.get('signupData.email').touched">
+            <p style="color: red">Please enter a valid email</p>
+          </span>
+
+          <div class="form-group">
+            <label for="password">Password:</label>
+            <input class="form-control" type="password" name="password" id="password" formControlName="password"
+              placeholder="{{passwordPlaceholder1}}" [(ngModel)]="credentials.password">
+          </div>
+          <span class="help-block" *ngIf="!signupForm.get('signupData.password').valid && signupForm.get('signupData.password').touched">
+            <p style="color: red">Password is required</p>
+          </span>
+
           <div class="form-group">
             <label for="location">Location:</label>
-            <select class="form-control"
-                    id="location" 
-                    name="location"
-                    formControlName="location"
-                    [(ngModel)]="credentials.location">
-                    <option value ="" disabled selected hidden [ngValue]="null">Select</option>
-                    <option *ngFor="let c of cities" [ngValue]="c.name">{{c.name}}</option>
+            <select class="form-control" id="location" name="location" formControlName="location" [(ngModel)]="credentials.location">
+              <option value="" disabled selected hidden [ngValue]="null">Select</option>
+              <option *ngFor="let c of cities" [ngValue]="c.name">{{c.name}}</option>
             </select>
-            <span class="help-block"
-                  *ngIf="!signupForm.get('signupData.location').valid && signupForm.get('signupData.location').touched">
-                  <p style="color: red">Please select your location</p>
+            <span class="help-block" *ngIf="!signupForm.get('signupData.location').valid && signupForm.get('signupData.location').touched">
+              <p style="color: red">Please select your location</p>
             </span>
-          </div>        
-          <div class="form-group">                    
-          <input type = "checkbox"
-                 name = "check"  formControlName = "check" id="check">
-              By clicking this checkbox, you agree to our <font color = "Blue">Terms & Conditions</font> 
-              and <font color = "Blue">Privacy Policy </font>                 
-          </div> 
-          <span class="help-block"
-          *ngIf="!signupForm.get('signupData.check').valid && signupForm.get('signupData.check').touched">
-          <p style="color: red">Please agree to terms and conditions for sign up</p>  
+          </div>
+          <div class="form-group">
+            <input type="checkbox" name="check" formControlName="check" id="check">
+            By clicking this checkbox, you agree to our <font color="Blue">Terms & Conditions</font>
+            and <font color="Blue">Privacy Policy </font>
+          </div>
+          <span class="help-block" *ngIf="!signupForm.get('signupData.check').valid && signupForm.get('signupData.check').touched">
+            <p style="color: red">Please agree to terms and conditions for sign up</p>
           </span>
-              
-          <button [disabled]="!signupForm.valid" class="btn btn-danger" type="submit" >Sign Up</button>         
-        </div> 
-        <br><p *ngIf="isError" style="color: red">{{error_msg}}</p>               
-      </form>      
-    </div> 
-    <p *ngIf="isSignedUp">{{success_msg}}</p>         
+
+          <button [disabled]="!signupForm.valid" class="btn btn-danger" type="submit">Sign Up</button>
+        </div>
+        <br>
+        <p *ngIf="isError" style="color: red">{{error_msg}}</p>
+      </form>
+    </div>
+    <p *ngIf="isSignedUp">{{success_msg}}</p>
   </div>
 </div>

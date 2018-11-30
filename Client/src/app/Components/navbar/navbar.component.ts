@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from "@angular/router";
 
 import { MatDialog } from '../../../../node_modules/@angular/material';
@@ -12,6 +12,7 @@ import { Movie } from '../movie.model';
 import { CitySelectComponent } from '../city-select/city-select.component';
 import { CityService } from '../../Services/city.service';
 import { PreferenceService } from '../../Services/preference.service';
+import { City } from '../city.model';
 
 @Component({
   selector: 'app-navbar',
@@ -27,16 +28,21 @@ export class NavbarComponent implements OnInit {
   movies: Movie[];
   loggedIn: boolean = false;
   user: User;
-  adminEmail: string = "shi.g.bhat@gmail.com";
-  username: String; 
-
+  admin: string = "Admin";
+  username: String;
+  public static selectedCity: String = "Select City ";
+  public static test: String;
   constructor(public dialog: MatDialog, private movieService: MovieService,
     private router: Router, private authenticationService: AuthenticationService,
     private preferenceService: PreferenceService,
     private cityService: CityService) { }
 
   ngOnInit() {
-    this.loadUser();
+    if (this.authenticationService.isLoggedIn()) {
+      this.loadUser();
+    }
+    NavbarComponent.selectedCity = (<City>JSON.parse(window.sessionStorage.getItem('city'))).name;
+    this.displayCityName();
   }
 
   //opens pop up when login is clicked.
@@ -45,8 +51,8 @@ export class NavbarComponent implements OnInit {
       width: '600px'
     })
     this.authenticationService.setDialogRef(dialogReference);
-    dialogReference.afterClosed().subscribe(result => { 
-      this.loadUser();  
+    dialogReference.afterClosed().subscribe(result => {
+      this.loadUser();
     });
     return false;
   }
@@ -56,19 +62,34 @@ export class NavbarComponent implements OnInit {
     const dialogReference = this.dialog.open(SignupComponent, { width: '600px' })
 
     //action needed after dialog is closed.
-    dialogReference.afterClosed().subscribe(result => { 
+    dialogReference.afterClosed().subscribe(result => {
       this.loggedIn = this.authenticationService.isLoggedIn();
-     });
+    });
     return false;
   }
 
   openCityDialog() {
-    const cityDialogReference = this.dialog.open(CitySelectComponent,{
+    const cityDialogReference = this.dialog.open(CitySelectComponent, {
       width: '600px'
     })
     this.cityService.setCityDialogRef(cityDialogReference);
+    this.cityService.getCityDialogRef().afterClosed().subscribe(
+      citySelected => {
+        this.displayCityName();
+      }
+    )
   }
 
+  displayCityName() {
+    if (window.sessionStorage.getItem('city') === null) {
+      NavbarComponent.selectedCity = "Select City";
+    } else {
+      NavbarComponent.selectedCity = (<City>JSON.parse(window.sessionStorage.getItem('city'))).name;
+    }
+  }
+  getSelectedCity() {
+    return NavbarComponent.selectedCity;
+  }
   searchMovies(movieName: string, details: string) {
     if (details == "full") {
       this.router.navigate(['search', { name: movieName, details: details }]);
@@ -85,7 +106,10 @@ export class NavbarComponent implements OnInit {
     this.preferenceService.getUserData().subscribe(
       (response: any) => {
         this.username = response.firstname;
-    });
+      },
+      error => {
+        this.username = this.user.firstname;
+      });
   }
 
   navigateToHome() {
@@ -106,10 +130,11 @@ export class NavbarComponent implements OnInit {
     document.getElementById('dropdownMenuButton').classList.toggle('show');
   }
 
-  findMovieNames(movieName: string, details: string) {
-    if (movieName && movieName.length >= 3) {
+  findMovieNames(event: KeyboardEvent,movieName: string, details: string) {
+    console.log(event)
+    if (event.keyCode != 38 && event.keyCode != 40 && movieName && movieName.length >= 3){
       this.searchMovies(movieName, details);
-    }
+    } 
   }
 
   getDetails(movieId: number) {
