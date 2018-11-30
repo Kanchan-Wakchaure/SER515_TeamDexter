@@ -130,10 +130,11 @@ export class NavbarComponent implements OnInit {
     document.getElementById('dropdownMenuButton').classList.toggle('show');
   }
 
-  findMovieNames(movieName: string, details: string) {
-    if (movieName && movieName.length >= 3) {
+  findMovieNames(event: KeyboardEvent,movieName: string, details: string) {
+    console.log(event)
+    if (event.keyCode != 38 && event.keyCode != 40 && movieName && movieName.length >= 3){
       this.searchMovies(movieName, details);
-    }
+    } 
   }
 
   getDetails(movieId: number) {

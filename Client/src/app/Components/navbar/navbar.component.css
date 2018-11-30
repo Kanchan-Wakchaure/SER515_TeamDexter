@@ -19,6 +19,13 @@
   cursor: pointer;
 }
 
+.avatar {
+  vertical-align: middle;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
 .search-box {
   padding-top: 2%;
   align-content: center;

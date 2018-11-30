@@ -8,13 +8,16 @@
     </div>
     <div class="col-md-8 col-sm-8">
       <div class="form-group search-box">
-        <input matInput [matAutocomplete]="auto" type="text" class="form-control" (keyup)="findMovieNames(seachForm.value,partial)"
+        <input matInput [matAutocomplete]="auto" type="text" class="form-control" (keyup)="findMovieNames($event,seachForm.value,partial)"
           id="search_subject" placeholder="Search for movies" [formControl]="seachForm">
         <mat-autocomplete #auto="matAutocomplete">
-          <mat-option (keyup.enter)="getDetails(movie.id)" (click)="getDetails(movie.id)" *ngFor=" let movie of movies"
+            
+          <mat-option (onSelectionChange)="getDetails(movie.id)" (click)="getDetails(movie.id)" *ngFor=" let movie of movies"
             [value]="movies.title">
-            {{movie.title}}
+            <img class="avatar" src={{movie.poster_path}} width="40" height="40" alt=' '>
+              {{movie.title}}
           </mat-option>
+          
         </mat-autocomplete>
       </div>
     </div>
