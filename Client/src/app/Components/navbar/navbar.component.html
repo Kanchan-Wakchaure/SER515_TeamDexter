@@ -1,7 +1,7 @@
 <div class="container-fluid navigation">
-  <div class="row">
+  <!-- <div class="row">
     <p class="city-text">Current Location: {{selectedCity}}</p>
-  </div>
+  </div> -->
   <div class="row">
     <div class="col-md-2 col-sm-2">
       <div class="logo" (click)="navigateToHome()">FindMyShow</div>
@@ -29,12 +29,12 @@
       <a class="nav-li log" href="/coming_soon">Coming Soon</a>
       <a class="nav-li log" href="/now_playing">Now Playing</a>
       <a class="nav-li log" href="/recommended" *ngIf="loggedIn">Recommended</a>
-      <button class="btn btn-primary login-button log" (click)="openCityDialog()">Select City</button>
+      <button class="btn btn-primary login-button log" (click)="openCityDialog()">{{getSelectedCity()}}</button>
       <button *ngIf="!loggedIn" class="btn btn-primary login-button log" (click)="openDialog()">Log In</button>
       <button *ngIf="!loggedIn" class="btn btn-primary login-button log" (click)="openSignUp()">Sign Up</button>
       <div class="nav dropdown log" *ngIf="loggedIn">
-        <button class="btn btn-danger user-button dropdown-toggle login-button" type="button" data-toggle="dropdown" aria-haspopup="true"
-          aria-expanded="false" (click)="toggleDropdown()">
+        <button class="btn btn-danger user-button dropdown-toggle login-button" type="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false" (click)="toggleDropdown()">
           hi, {{username}}!
         </button>
         <div class="dropdown-menu" id="dropdownMenuButton">
