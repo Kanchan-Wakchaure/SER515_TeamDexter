@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from "@angular/router";
 
 import { MatDialog } from '../../../../node_modules/@angular/material';
@@ -30,16 +30,18 @@ export class NavbarComponent implements OnInit {
   user: User;
   admin: string = "Admin";
   username: String;
-  selectedCity: String = " ";
+  public static selectedCity: String = "Select City ";
+  public static test: String;
   constructor(public dialog: MatDialog, private movieService: MovieService,
     private router: Router, private authenticationService: AuthenticationService,
     private preferenceService: PreferenceService,
     private cityService: CityService) { }
 
   ngOnInit() {
-    if(this.authenticationService.isLoggedIn()) {
+    if (this.authenticationService.isLoggedIn()) {
       this.loadUser();
     }
+    NavbarComponent.selectedCity = (<City>JSON.parse(window.sessionStorage.getItem('city'))).name;
     this.displayCityName();
   }
 
@@ -72,20 +74,22 @@ export class NavbarComponent implements OnInit {
     })
     this.cityService.setCityDialogRef(cityDialogReference);
     this.cityService.getCityDialogRef().afterClosed().subscribe(
-      result => {
+      citySelected => {
         this.displayCityName();
       }
     )
   }
 
   displayCityName() {
-    if(window.sessionStorage.getItem('city') === null ) {
-      this.selectedCity = "None";
+    if (window.sessionStorage.getItem('city') === null) {
+      NavbarComponent.selectedCity = "Select City";
     } else {
-      this.selectedCity = (<City>JSON.parse(window.sessionStorage.getItem('city'))).name;
+      NavbarComponent.selectedCity = (<City>JSON.parse(window.sessionStorage.getItem('city'))).name;
     }
   }
-  
+  getSelectedCity() {
+    return NavbarComponent.selectedCity;
+  }
   searchMovies(movieName: string, details: string) {
     if (details == "full") {
       this.router.navigate(['search', { name: movieName, details: details }]);
