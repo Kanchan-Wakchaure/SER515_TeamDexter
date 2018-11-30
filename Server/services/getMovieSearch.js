@@ -37,6 +37,7 @@ module.exports = {
                     var overview = new MovieOverview();
                     overview.id = item.id;
                     overview.title = item.title;
+                    overview.poster_path = keys.imageBaseURL + item.poster_path;
                     movieList.push(overview);
                 })
             }
