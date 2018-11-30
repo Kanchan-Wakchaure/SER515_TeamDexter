@@ -23,8 +23,7 @@ router.get("/:id", function (req, res, next) {
             res.send(movie);
         })
         .catch(err => {
-            next(err);
-            //console.log("Error fetching movie showtimes");
+            next(err);        
         });
 
 });

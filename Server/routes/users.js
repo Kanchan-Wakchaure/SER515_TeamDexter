@@ -18,23 +18,23 @@ var ctrlProfile = require('../services/profile');
 var ctrlAuth = require('../services/authentication');
 const User = require('../models/User');
 
-const { verifyToken } = require('../middlewares/verifyToken')
+const {
+    verifyToken
+} = require('../middlewares/verifyToken')
 
-// router.get('/', auth, ctrlProfile.profileRead);
-// router.post('/', ctrlAuth.register);     //use this for register
 
 router.route('/')
-    //.get(auth, ctrlProfile.profileRead)
     .post(ctrlAuth.register)
-//.put(ctrlAuth.updateUser);
 
 router.get("/", verifyToken, function (req, res, next) {
 
     User.findById(req.userid, (err, user) => {
         if (err) {
             next(err);
-        } else {
-            console.log(user);
+        } else if (!user.verified) {
+            return res.status(401).json("User not verified");
+        }
+        else {
             return res.json(user);
         }
     })
@@ -42,11 +42,11 @@ router.get("/", verifyToken, function (req, res, next) {
 
 //update user preference
 router.put('/', verifyToken, function (req, res, next) {
-    //console.log(req.userid)
     User.findById(req.userid, (err, user) => {
         if (!user) {
             next(new Error("User not found"));
-        } else {
+        }
+        else {
             user.firstname = req.body.firstname;
             user.lastname = req.body.lastname;
             user.city = req.body.location;

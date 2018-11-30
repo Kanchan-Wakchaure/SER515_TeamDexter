@@ -95,25 +95,12 @@ module.exports = {
 
             i++;
             if (i >= 503) {
-
-                clearInterval(myvar);
-                console.log("done")
+                clearInterval(myvar);                
             }
 
-
-
-            console.log(`https://api.themoviedb.org/3/discover/movie?api_key=9e82bc133417a5be5b0329b47e5779eb&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${i}`)
             request(`https://api.themoviedb.org/3/discover/movie?api_key=9e82bc133417a5be5b0329b47e5779eb&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${i}`, function (error, response, body) {
 
-
-                //console.log(response.statusCode)
-
-
-
                 if (!error && response.statusCode == 200) {
-                    //console.log(body);
-
-                    // count+
                     var obj = JSON.parse(body);
 
                     for (const item of obj.results) {
@@ -124,7 +111,6 @@ module.exports = {
                 else {
                     console.log(error)
                 }
-                //console.log(count)
             });
 
         }
@@ -137,9 +123,7 @@ module.exports = {
             const movieList = new MovieList(bodyy);
             console.log(`https://api.themoviedb.org/3/movie/${movieList.id}/credits?api_key=27cf025538cae1af45246a85b9dbde84`)
             request(`https://api.themoviedb.org/3/movie/${movieList.id}/credits?api_key=27cf025538cae1af45246a85b9dbde84`, function (error, response, body) {
-
-                //console.log(JSON.parse(body)["cast"])
-
+         
                 for (var k in bodyy.genre_ids) {
                     for (var j in genre_list) {
                         if (bodyy.genre_ids[k] == genre_list[j]['id']) {
@@ -150,25 +134,20 @@ module.exports = {
 
                 }
 
-                movieList["cast"].push(JSON.parse(body)["cast"])
-                //console.log(movieList)
+                movieList["cast"].push(JSON.parse(body)["cast"])              
 
                 movieList.save(function (err) {
                     if (err) {
                         console.log(err);
                     }
                     else {
-                        console.log("saved");
+                        console.log("saved new movie in database");
                     }
 
                 });
 
 
             })
-
-
-
-
         }
 
 

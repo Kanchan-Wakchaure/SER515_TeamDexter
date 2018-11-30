@@ -12,7 +12,6 @@ module.exports.register = function (req, res) {
   user.lastname = req.body.lastname;
   user.email = req.body.email;
   user.city = req.body.location;
-  console.log(user.firstname, user.email, user.city)
   user.setPassword(req.body.password);
   user.save(function (err, insertedDocument) {
     if (err) {
@@ -25,9 +24,7 @@ module.exports.register = function (req, res) {
     else {
       var token, otp;
       token = user.generateJwt();
-      //console.log("id of inserted doc", insertedDocument.id)
       otp = encryptOTP(generateOTP(insertedDocument.id))
-      console.log(otp)
       var activation = new Activation();
       activation.userid = insertedDocument.id
       activation.otp = otp
@@ -109,7 +106,6 @@ module.exports.updateUser = function (request, response) {
       response.json({ "message": "UnauthorizedError: private profile" });
     }
     else {
-      console.log(request.body);
       user.firstname = request.body.firstname;
       user.lastname = request.body.lastname;
       user.city = request.body.location;
