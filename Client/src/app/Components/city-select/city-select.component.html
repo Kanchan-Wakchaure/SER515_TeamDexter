@@ -12,7 +12,7 @@
                     name="location"
                     formControlName="location"
                     [(ngModel)]="selectedLocation">
-                    <option value ="" disabled selected hidden [ngValue]="null">Select</option>
+                    <option value ="" disabled selected hidden [ngValue]="null">{{selectedLocation}}</option>
                     <option *ngFor="let c of cities" [ngValue]="c.name">{{c.name}}</option>
             </select>
             <span class="help-block"
